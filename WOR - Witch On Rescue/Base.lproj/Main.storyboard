@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dz3-If-tsD">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" id="BV1-FR-VrT" customClass="GameViewController" customModule="Avanta_Run" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="89"/>
+        </scene>
+        <!--Level View Controller-->
+        <scene sceneID="Tnd-bj-x0U">
+            <objects>
+                <viewController id="dz3-If-tsD" customClass="LevelViewController" customModule="Avanta_Run" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WJL-qz-OEx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background_SelectLevel" translatesAutoresizingMaskIntoConstraints="NO" id="ufF-Il-erR">
+                                <rect key="frame" x="0.0" y="-5" width="414" height="906"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Journey Label" translatesAutoresizingMaskIntoConstraints="NO" id="eDU-Q3-x7A">
+                                <rect key="frame" x="53.5" y="76" width="307.5" height="94"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JmT-Bo-UWt">
+                                <rect key="frame" x="20" y="216" width="374" height="554"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="13" minimumInteritemSpacing="1" id="th8-wI-0GR">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LevelCell" reuseIdentifier="LevelCell" id="gpJ-fZ-qUV" customClass="LevelCollectionViewCell" customModule="Avanta_Run" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="112" height="112"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Oxy-lJ-l22">
+                                            <rect key="frame" x="0.0" y="0.0" width="112" height="112"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sla-AA-uSe">
+                                                    <rect key="frame" x="-12" y="-7" width="136" height="126"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Sla-AA-uSe" secondAttribute="height" multiplier="68:63" id="WDN-td-ZbR"/>
+                                                        <constraint firstAttribute="width" constant="136" id="dPb-UL-FsA"/>
+                                                        <constraint firstAttribute="height" constant="112" id="nEM-Oa-n7b"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="LEVEL DOOR 1"/>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="Sla-AA-uSe" firstAttribute="height" secondItem="Oxy-lJ-l22" secondAttribute="height" multiplier="1.125" id="P6i-ZI-UNe"/>
+                                                <constraint firstItem="Sla-AA-uSe" firstAttribute="centerX" secondItem="Oxy-lJ-l22" secondAttribute="centerX" id="WZd-VC-DtQ"/>
+                                                <constraint firstItem="Sla-AA-uSe" firstAttribute="width" secondItem="Oxy-lJ-l22" secondAttribute="width" multiplier="1.21429" id="rcT-Sw-lHs"/>
+                                                <constraint firstItem="Sla-AA-uSe" firstAttribute="centerY" secondItem="Oxy-lJ-l22" secondAttribute="centerY" id="wXi-UW-VuI"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="112" height="112"/>
+                                        <connections>
+                                            <outlet property="levelInputButton" destination="Sla-AA-uSe" id="YVC-CH-7nO"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xuj-Ts-4GF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JmT-Bo-UWt" firstAttribute="top" secondItem="eDU-Q3-x7A" secondAttribute="top" constant="140" id="0MC-D3-5At"/>
+                            <constraint firstItem="ufF-Il-erR" firstAttribute="centerX" secondItem="xuj-Ts-4GF" secondAttribute="centerX" id="1Qp-RF-xA1"/>
+                            <constraint firstItem="eDU-Q3-x7A" firstAttribute="centerX" secondItem="xuj-Ts-4GF" secondAttribute="centerX" id="1zn-Sf-7HG"/>
+                            <constraint firstItem="ufF-Il-erR" firstAttribute="centerY" secondItem="xuj-Ts-4GF" secondAttribute="centerY" constant="-5" id="AaE-Mw-kOr"/>
+                            <constraint firstItem="xuj-Ts-4GF" firstAttribute="bottom" secondItem="JmT-Bo-UWt" secondAttribute="bottom" constant="92" id="JKv-F4-9Pn"/>
+                            <constraint firstItem="JmT-Bo-UWt" firstAttribute="leading" secondItem="xuj-Ts-4GF" secondAttribute="leading" constant="20" id="Oow-qs-qUb"/>
+                            <constraint firstItem="ufF-Il-erR" firstAttribute="height" secondItem="WJL-qz-OEx" secondAttribute="height" constant="10" id="X1D-Ld-6tI"/>
+                            <constraint firstItem="ufF-Il-erR" firstAttribute="width" secondItem="WJL-qz-OEx" secondAttribute="height" multiplier="207:448" id="j0p-Nl-NrH"/>
+                            <constraint firstItem="xuj-Ts-4GF" firstAttribute="trailing" secondItem="JmT-Bo-UWt" secondAttribute="trailing" constant="20" id="pxo-xD-wZ9"/>
+                            <constraint firstItem="eDU-Q3-x7A" firstAttribute="top" secondItem="xuj-Ts-4GF" secondAttribute="top" constant="32" id="zv2-07-GeV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="levelCollectionView" destination="JmT-Bo-UWt" id="Hgb-nE-AHP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8EJ-7L-gsB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-513.04347826086962" y="87.723214285714278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Background_SelectLevel" width="428" height="926"/>
+        <image name="Journey Label" width="307.5" height="94"/>
+        <image name="LEVEL DOOR 1" width="112" height="112"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
