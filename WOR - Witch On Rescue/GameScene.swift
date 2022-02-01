@@ -15,10 +15,12 @@ class GameScene: SKScene {
     private var piece: SKSpriteNode!
     private var cameraNode: SKCameraNode!
     private var enemy: SKSpriteNode!
-    
+    private var cat: SKSpriteNode!
+    private var potion: SKSpriteNode!
     
     private var pieceNames: [String] = ["piece_1", "piece_2", "piece_3"]
     private var pieceSpawnPoint: CGPoint!
+    private var catSpawnPoint: CGPoint!
     
     private var movingNode: SKSpriteNode?
     private var lastTouchPosition: CGPoint?
@@ -33,6 +35,8 @@ class GameScene: SKScene {
     private var playerCameraOffSet: CGFloat = 0
     
     var createdPieces: CGFloat = 2
+    var catsRescued = 0
+    var pointsCounter = 0
     
     private var initialPlayerPosition: CGPoint!
     private var initialCameraPosition: CGPoint!
@@ -41,7 +45,6 @@ class GameScene: SKScene {
     private var initialEnemySpeed: CGFloat!
     private var initialEnemySpeedAcceleration: CGFloat!
     
-    // var cameraPosition = player.position
     
     override func didMove(to view: SKView) {
         player = childNode(withName: "player") as? SKSpriteNode
@@ -65,6 +68,9 @@ class GameScene: SKScene {
         
         
         animationSetup()
+        spawnCat()
+        rescueCat()
+        spawnPotion()
     }
     
     
@@ -73,7 +79,6 @@ class GameScene: SKScene {
             if node.name == "player" {
                 movingNode = player
             } else if node.name == "piece" {
-                print("New moving node: \(piece)")
                 movingNode = piece
             }
         }
@@ -82,10 +87,8 @@ class GameScene: SKScene {
     func touchMoved(toPoint pos : CGPoint) {
         if let movingNode = movingNode {
             if movingNode.name == "piece" {
-                print("New position: \(pos)")
                 movingNode.position = pos
             }
-            
             lastTouchPosition = pos
         }
     }
@@ -99,6 +102,7 @@ class GameScene: SKScene {
             movingNode.name = "base"
             movingNode.removeAllActions()
             spawnPiece()
+            pointsCounter += 20
         }
         movingNode = nil
     }
@@ -151,6 +155,40 @@ class GameScene: SKScene {
         addChild(newPiece)
     }
     
+    func spawnCat() {
+        let newCat = SKSpriteNode(imageNamed: "cat")
+        newCat.position = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
+        newCat.setScale(0.4)
+        cat = newCat
+        newCat.name = "cat"
+        addChild(cat)
+    }
+    
+    func rescueCat() {
+        if player.intersects(cat) {
+            catsRescued += 1
+            pointsCounter += 60
+            cat.removeFromParent()
+            print("pegou")
+            spawnCat()
+        }
+    }
+    
+    func spawnPotion() {
+        let newPotion = SKSpriteNode(imageNamed: "potion")
+        newPotion.position = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
+        newPotion.setScale(0.4)
+        potion = newPotion
+        newPotion.name = "potion"
+        addChild(potion)
+    }
+    
+    func pickPotion() {
+        if player.intersects(potion) {
+            potion.removeFromParent()
+        }
+    }
+    
     func updateCamera(playerPosition: CGPoint) {
         if playerPosition.y + playerCameraOffSet >= maxCameraY {
             self.cameraNode.position.y = playerPosition.y + playerCameraOffSet
@@ -163,7 +201,7 @@ class GameScene: SKScene {
         let normalized = direction.normalized()
         let newPosition = player.position + (normalized * playerSpeed / 60)
         
-        if nodes(at: newPosition).contains(where: { node in node.name == "base" }) {
+        if nodes(at: newPosition).contains(where: { node in node.name == "base" || node.name == "cat" || node.name == "potion"}) {
             player.position = newPosition
             updateCamera(playerPosition: newPosition)
         }
@@ -183,8 +221,6 @@ class GameScene: SKScene {
             enemySpeed += enemySpeedAcceleration
             enemySpeedAcceleration += enemySpeedAccelerationIncrease
         }
-        
-        print("New speed: \(enemySpeed)")
     }
     
     func checkEnemyHitPlayer() {
@@ -203,6 +239,10 @@ class GameScene: SKScene {
         enemySpeed = initialEnemySpeed
         enemySpeedAcceleration = initialEnemySpeedAcceleration
         
+        cat.removeFromParent()
+        cat = nil
+        spawnCat()
+        
         children.filter { node in
             node.name == "base" && node != base
         }.forEach { node in
@@ -213,9 +253,9 @@ class GameScene: SKScene {
            movingNode.name == "piece" {
             piece = nil
             movingNode.removeFromParent()
+        } else {
+            piece.removeFromParent()
         }
-        
-        piece.removeFromParent()
         spawnPiece()
     }
     
@@ -230,8 +270,9 @@ class GameScene: SKScene {
         
         moveEnemy()
         checkEnemyHitPlayer()
-        
         updateEnemySpeed()
+        rescueCat()
+        pickPotion()
         
     }
     
@@ -249,6 +290,5 @@ class GameScene: SKScene {
         let animation = SKAction.repeatForever(frames)
         
         player.run(animation)
-        
     }
 }
