@@ -44,6 +44,7 @@ class GameScene: SKScene {
     
     private var initialEnemySpeed: CGFloat!
     private var initialEnemySpeedAcceleration: CGFloat!
+    private var pieceNode: PieceNode!
     
     
     override func didMove(to view: SKView) {
@@ -66,6 +67,16 @@ class GameScene: SKScene {
         initialEnemySpeed = enemySpeed
         initialEnemySpeedAcceleration = enemySpeedAcceleration
         
+        if let piece = PieceFactory.shared.buildRandomPiece() {
+            let container = SKNode()
+            
+            container.position = .zero
+            
+            addChild(container)
+            
+            pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 10)
+        }
+        
         
         animationSetup()
         spawnCat()
@@ -80,6 +91,8 @@ class GameScene: SKScene {
                 movingNode = player
             } else if node.name == "piece" {
                 movingNode = piece
+            } else if node.name == "rotatable_piece" {
+                pieceNode.rotate()
             }
         }
     }
@@ -186,6 +199,8 @@ class GameScene: SKScene {
     func pickPotion() {
         if player.intersects(potion) {
             potion.removeFromParent()
+                // here i reduced the speed but idealy it will reduce the size of the enemy
+            enemySpeed = -enemySpeed / 2
         }
     }
     
@@ -268,7 +283,7 @@ class GameScene: SKScene {
             }
         }
         
-        moveEnemy()
+//        moveEnemy()
         checkEnemyHitPlayer()
         updateEnemySpeed()
         rescueCat()

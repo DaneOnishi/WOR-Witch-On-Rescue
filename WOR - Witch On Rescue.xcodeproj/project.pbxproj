@@ -26,6 +26,10 @@
 		41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4D27A72AE50092EF03 /* LevelViewController.swift */; };
 		41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4F27A72CDB0092EF03 /* Configurations.swift */; };
 		41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */; };
+		41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 41E6558827A9BD4000466D06 /* TileMapScene.sks */; };
+		41E6558B27A9BFC000466D06 /* TileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 41E6558A27A9BFC000466D06 /* TileSet.sks */; };
+		41E6558D27AA3D6500466D06 /* PieceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6558C27AA3D6500466D06 /* PieceFactory.swift */; };
+		41E6558F27AA40D400466D06 /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6558E27AA40D400466D06 /* PieceNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +72,10 @@
 		41842E4D27A72AE50092EF03 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		41842E4F27A72CDB0092EF03 /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		41E6558827A9BD4000466D06 /* TileMapScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileMapScene.sks; sourceTree = "<group>"; };
+		41E6558A27A9BFC000466D06 /* TileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileSet.sks; sourceTree = "<group>"; };
+		41E6558C27AA3D6500466D06 /* PieceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceFactory.swift; sourceTree = "<group>"; };
+		41E6558E27AA40D400466D06 /* PieceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +129,10 @@
 				4161D7CD27A371FA00191C83 /* AppDelegate.swift */,
 				4161D7CF27A371FA00191C83 /* GameScene.sks */,
 				4161D7D127A371FA00191C83 /* Actions.sks */,
-				4161D7D327A371FA00191C83 /* GameScene.swift */,
+				41E6558827A9BD4000466D06 /* TileMapScene.sks */,
+				41E6558A27A9BFC000466D06 /* TileSet.sks */,
 				4161D7D727A371FA00191C83 /* Main.storyboard */,
+				4161D7D327A371FA00191C83 /* GameScene.swift */,
 				41842E4F27A72CDB0092EF03 /* Configurations.swift */,
 				41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */,
 				41842E4D27A72AE50092EF03 /* LevelViewController.swift */,
@@ -131,9 +141,11 @@
 				4161D80027A3757200191C83 /* Player.swift */,
 				4161D80727A3A64E00191C83 /* Base.swift */,
 				4161D80327A3759200191C83 /* Piece.swift */,
+				41E6558C27AA3D6500466D06 /* PieceFactory.swift */,
 				4161D80527A375A100191C83 /* Coin.swift */,
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
+				41E6558E27AA40D400466D06 /* PieceNode.swift */,
 			);
 			path = "WOR - Witch On Rescue";
 			sourceTree = "<group>";
@@ -260,8 +272,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4161D7D927A371FA00191C83 /* Main.storyboard in Resources */,
+				41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */,
 				4161D7D027A371FA00191C83 /* GameScene.sks in Resources */,
 				4161D7DB27A371FD00191C83 /* Assets.xcassets in Resources */,
+				41E6558B27A9BFC000466D06 /* TileSet.sks in Resources */,
 				4161D7DE27A371FD00191C83 /* LaunchScreen.storyboard in Resources */,
 				4161D7D227A371FA00191C83 /* Actions.sks in Resources */,
 			);
@@ -288,9 +302,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41E6558F27AA40D400466D06 /* PieceNode.swift in Sources */,
 				4161D80627A375A100191C83 /* Coin.swift in Sources */,
 				4161D80127A3757200191C83 /* Player.swift in Sources */,
 				4161D7D427A371FA00191C83 /* GameScene.swift in Sources */,
+				41E6558D27AA3D6500466D06 /* PieceFactory.swift in Sources */,
 				41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */,
 				4161D80427A3759200191C83 /* Piece.swift in Sources */,
 				4161D7D627A371FA00191C83 /* GameViewController.swift in Sources */,
