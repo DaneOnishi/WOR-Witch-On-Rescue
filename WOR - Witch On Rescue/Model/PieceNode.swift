@@ -22,7 +22,7 @@ class PieceNode {
     let startingZPosition: Int // Minimum zIndex this piece uses
     
     let matrixSize = 4 // Static, might need to be changed if pieces change size
-    let blockSize: (width: CGFloat, height: CGFloat) = (width: 100, height: 140) // The width and height of an individual block
+    let blockSize: (width: CGFloat, height: CGFloat) = (width: 100, height: 70) // The width and height of an individual block
     
     func render() { // Builds SKSpriteNodes from the `piece`
         
@@ -48,7 +48,7 @@ class PieceNode {
                     
                     print("[render] Generating for i: \(i), j: \(j)")
                     
-                    let node = createBlockNode(type: block)
+                    let node = createBlockNode(type: block, blockType: .grass)
                     
                     let offset = calculateOffset(i: i, j: j)
                     
@@ -62,7 +62,6 @@ class PieceNode {
                 }
             }
         }
-        
     }
     
     func rotate() { // Rotates the piece node (and the underlying piece)
@@ -78,10 +77,99 @@ class PieceNode {
         render()
     }
     
-    private func createBlockNode(type: PieceState) -> SKSpriteNode {
-        let node = SKSpriteNode(imageNamed: "block")
+    private func createBlockNode(type: PieceState, blockType: BlockType) -> SKSpriteNode {
+        let blockTexture = blockType.randomBlockTexture()
+        let node = SKSpriteNode(imageNamed: blockTexture.rawValue)
         node.name = "rotatable_piece"
-        node.size = CGSize(width: blockSize.width, height: blockSize.height)
+        
+        let nodeHeight = blockSize.height
+        let blockHeightProportion = blockTexture.heightPercentage
+        
+        let actualHeight = nodeHeight / blockHeightProportion
+        
+        let nodeWidth = blockSize.width
+        let blockWidthProportion = blockTexture.widthPercentage
+        
+        let actualWidth = nodeWidth / blockWidthProportion
+
+        
+        node.size = CGSize(width: actualWidth, height: actualHeight)
         return node
     }
 }
+
+enum BlockType {
+    case grass
+    
+    var blockTiles: [BlockTexture] {
+        switch self {
+        case .grass:
+            return [.block]
+        }
+        return []
+    }
+    var targetTiles: [BlockTexture] {
+        switch self {
+        case .grass:
+            return [.block]
+        }
+        return []
+    }
+    
+    func randomBlockTexture() -> BlockTexture {
+        let texture = blockTiles.randomElement()!
+        return texture
+    }
+}
+
+enum BlockTexture: String {
+    case block = "block"
+    
+    var blockHeight: CGFloat {
+        switch self {
+        case .block:
+            return 43
+        }
+        return 1
+    }
+    
+    var bottomBlockHeight: CGFloat {
+        switch self {
+        case .block:
+            return 23
+        }
+        return 1
+    }
+    
+    var blockWidth: CGFloat {
+        switch self {
+        case .block:
+            return 86.2
+        }
+    }
+    
+    var blockBorder: CGFloat {
+        switch self {
+        case .block:
+            return 2.8
+        }
+    }
+    
+    var totalWidth: CGFloat {
+        blockWidth + (2 * blockBorder)
+    }
+    
+    var totalHeight: CGFloat {
+        blockHeight + (2 * bottomBlockHeight)
+    }
+    
+    var heightPercentage: CGFloat {
+        blockHeight / totalHeight
+    }
+    
+    var widthPercentage: CGFloat {
+        blockWidth / totalWidth
+    }
+}
+
+

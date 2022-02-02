@@ -134,18 +134,12 @@
 				4161D7D727A371FA00191C83 /* Main.storyboard */,
 				4161D7D327A371FA00191C83 /* GameScene.swift */,
 				41842E4F27A72CDB0092EF03 /* Configurations.swift */,
-				41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */,
-				41842E4D27A72AE50092EF03 /* LevelViewController.swift */,
-				4161D7D527A371FA00191C83 /* GameViewController.swift */,
 				4161D80927A3AD6200191C83 /* SpriteKit+.swift */,
-				4161D80027A3757200191C83 /* Player.swift */,
-				4161D80727A3A64E00191C83 /* Base.swift */,
-				4161D80327A3759200191C83 /* Piece.swift */,
-				41E6558C27AA3D6500466D06 /* PieceFactory.swift */,
-				4161D80527A375A100191C83 /* Coin.swift */,
+				41E6559127AAFE2E00466D06 /* Model */,
+				41E6559027AAFDF800466D06 /* Controller */,
+				41E6559227AAFE7E00466D06 /* Collection */,
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
-				41E6558E27AA40D400466D06 /* PieceNode.swift */,
 			);
 			path = "WOR - Witch On Rescue";
 			sourceTree = "<group>";
@@ -165,6 +159,36 @@
 				4161D7F327A371FE00191C83 /* NanoBusinessMechanicsUITestsLaunchTests.swift */,
 			);
 			path = NanoBusinessMechanicsUITests;
+			sourceTree = "<group>";
+		};
+		41E6559027AAFDF800466D06 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				41842E4D27A72AE50092EF03 /* LevelViewController.swift */,
+				4161D7D527A371FA00191C83 /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		41E6559127AAFE2E00466D06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41E6558C27AA3D6500466D06 /* PieceFactory.swift */,
+				41E6558E27AA40D400466D06 /* PieceNode.swift */,
+				4161D80027A3757200191C83 /* Player.swift */,
+				4161D80727A3A64E00191C83 /* Base.swift */,
+				4161D80327A3759200191C83 /* Piece.swift */,
+				4161D80527A375A100191C83 /* Coin.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		41E6559227AAFE7E00466D06 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
