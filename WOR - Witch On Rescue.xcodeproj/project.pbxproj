@@ -32,6 +32,7 @@
 		41E6558F27AA40D400466D06 /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6558E27AA40D400466D06 /* PieceNode.swift */; };
 		41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559327AB51FD00466D06 /* GameCenterManager.swift */; };
 		41E6559627AB7A5E00466D06 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559527AB7A5E00466D06 /* Grid.swift */; };
+		41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559727AC4FD700466D06 /* GameCenterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		41E6558E27AA40D400466D06 /* PieceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceNode.swift; sourceTree = "<group>"; };
 		41E6559327AB51FD00466D06 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		41E6559527AB7A5E00466D06 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		41E6559727AC4FD700466D06 /* GameCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 		41E6559027AAFDF800466D06 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				41E6559727AC4FD700466D06 /* GameCenterViewController.swift */,
 				41842E4D27A72AE50092EF03 /* LevelViewController.swift */,
 				4161D7D527A371FA00191C83 /* GameViewController.swift */,
 			);
@@ -335,6 +338,7 @@
 				41E6558F27AA40D400466D06 /* PieceNode.swift in Sources */,
 				4161D80627A375A100191C83 /* Coin.swift in Sources */,
 				4161D80127A3757200191C83 /* Player.swift in Sources */,
+				41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */,
 				41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */,
 				4161D7D427A371FA00191C83 /* GameScene.swift in Sources */,
 				41E6558D27AA3D6500466D06 /* PieceFactory.swift in Sources */,
