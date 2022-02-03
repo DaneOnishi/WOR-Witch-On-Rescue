@@ -11,10 +11,11 @@ import GameplayKit
 class GameScene: SKScene {
     
     private var player : SKSpriteNode!
-    private var base: SKSpriteNode!
-    private var piece: SKSpriteNode!
+
     private var cameraNode: SKCameraNode!
+    
     private var enemy: SKSpriteNode!
+    
     private var cat: SKSpriteNode!
     private var potion: SKSpriteNode!
     
@@ -48,18 +49,22 @@ class GameScene: SKScene {
     
     private var gameCenterManager: GameCenterManager!
     
+    var playerFootPosition: CGPoint {
+        player.position - CGPoint(x: 0, y: player.size.height/2)
+    }
+    
+    var lastTargetGridNode: GridNode!
+    
     private var grid: Grid!
     var gridNodeSize: CGSize!
-
     
     override func didMove(to view: SKView) {
         player = childNode(withName: "player") as? SKSpriteNode
-        base = childNode(withName: "base") as? SKSpriteNode
-        piece = childNode(withName: "piece") as? SKSpriteNode
+        let pieceSpawnPointNode = childNode(withName: "pieceSpawn")!
         enemy = childNode(withName: "enemy") as? SKSpriteNode
         cameraNode = camera!
 
-        pieceSpawnPoint = piece.position
+        pieceSpawnPoint = pieceSpawnPointNode.position
         spawnPointCameraOffSet = pieceSpawnPoint.y - cameraNode.position.y
         playerCameraOffSet = cameraNode.position.y - player.position.y
         
@@ -75,14 +80,9 @@ class GameScene: SKScene {
         grid = Grid(in: self, playerHeight: player.size.height, playerPosition: player.position)
         gridNodeSize = grid.gridNodeSize
         
+        spawnRandomPiece()
         
-        if let piece = PieceFactory.shared.buildRandomPiece() {
-            let container = SKNode()
-            container.position = .zero
-            addChild(container)
-            
-            pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 10, blockSize: gridNodeSize)
-        }
+        spawnBase()
         
         
         animationSetup()
@@ -91,14 +91,24 @@ class GameScene: SKScene {
         spawnPotion()
     }
     
-    private var startingPosition: CGPoint?
     
+    fileprivate func spawnBase() {
+        let gridContainer = grid.gridContainer
+        
+        if let playerGridNode = gridContainer.atPoint(convert(playerFootPosition, to: gridContainer)) as? GridNode {
+            let blockNode = BlockNode(blockSize: grid.gridNodeSize, category: .target, blockType: .grass)
+            lastTargetGridNode = playerGridNode
+            playerGridNode.addBlockNode(blockNode: blockNode)
+        }
+    }
+    
+    private var startingDragPosition: CGPoint?
     func touchDown(atPoint pos : CGPoint) {
         if let node = nodes(at: pos).first {
             if node.name == "rotatable_piece" {
                 movingNode = pieceNode.container
-                movingNode?.alpha = 0.4
-                startingPosition = pos
+                movingNode?.alpha = 0.7
+                startingDragPosition = pos
             }
         }
     }
@@ -108,7 +118,17 @@ class GameScene: SKScene {
             if movingNode == pieceNode.container {
                 pieceNode.container.position = pos
                 
-                grid.highlightGrid(basedOn: pieceNode)
+                var canPlace = false
+                
+                let startNode = pieceNode.getStartNode()
+                let startGridNode = grid.getGridNode(for: startNode)
+                
+                if let startGridNode = startGridNode,
+                   startGridNode.isNeighbour(to: lastTargetGridNode) {
+                    canPlace = true
+                }
+                
+                grid.highlightGrid(basedOn: pieceNode, canPlace: canPlace)
             }
             
             lastTouchPosition = pos
@@ -121,12 +141,12 @@ class GameScene: SKScene {
         if movingNode == pieceNode.container {
             movingNode?.alpha = 1
             
-            if let startingPosition = startingPosition,
+            if let startingPosition = startingDragPosition,
                startingPosition.distance(to: pos) < 40 {
                 pieceNode.rotate()
             }
             
-            startingPosition = nil
+            startingDragPosition = nil
             
 //            placePiece()
             grid.setHighlightOff()
@@ -154,39 +174,18 @@ class GameScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-
-    
-    func spawnPiece() {
-        let newPiece = SKSpriteNode(imageNamed: pieceNames.randomElement()!)
-        
+    fileprivate func spawnRandomPiece() {
         createdPieces += 1
         
-        newPiece.zPosition = -createdPieces
-        newPiece.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
-        newPiece.name = "piece"
-        newPiece.setScale(0.28)
-        
-        piece = newPiece
-        
-        let moveUp = SKAction.move(by: CGVector(dx: 0, dy: 20), duration: 0.5)
-        moveUp.timingMode = .easeInEaseOut
-        
-        let moveDown = SKAction.move(by: CGVector(dx: 0, dy: -20), duration: 0.5)
-        moveDown.timingMode = .easeInEaseOut
-        
-        newPiece.run(
-            SKAction.repeatForever(
-                SKAction.sequence([
-                    moveUp,
-                    SKAction.wait(forDuration: 0.1),
-                    moveDown,
-                    SKAction.wait(forDuration: 0.1)
-                ])
-            )
-        )
-        
-        addChild(newPiece)
+        if let piece = PieceFactory.shared.buildRandomPiece() {
+            let container = SKNode()
+            container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
+            addChild(container)
+            
+            pieceNode = PieceNode(piece: piece, container: container, startingZPosition: -5 + (Int(-createdPieces) * 4), blockSize: gridNodeSize)
+        }
     }
+
     
     func spawnCat() {
         let newCat = SKSpriteNode(imageNamed: "cat")
@@ -281,20 +280,6 @@ class GameScene: SKScene {
         cat = nil
         spawnCat()
         
-        children.filter { node in
-            node.name == "base" && node != base
-        }.forEach { node in
-            node.removeFromParent()
-        }
-        
-        if let movingNode = movingNode,
-           movingNode.name == "piece" {
-            piece = nil
-            movingNode.removeFromParent()
-        } else {
-            piece.removeFromParent()
-        }
-        spawnPiece()
         GameCenterManager.shared.updateScore(with: pointsCounter)
         
     }

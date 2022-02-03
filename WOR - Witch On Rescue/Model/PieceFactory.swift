@@ -12,21 +12,21 @@ class PieceFactory {
     
     private init(){}
     
-    private let templates: [PieceType: [[PieceState]]] = [
+    private let templates: [PieceType: [[BlockCategory]]] = [
         .line: [
             [.empty, .target, .empty, .empty],
             [.empty, .block, .empty, .empty],
             [.empty, .block, .empty, .empty],
-            [.empty, .block, .empty, .empty],
+            [.empty, .start, .empty, .empty],
         ],
         .l: [
-            [.empty, .block, .empty, .empty],
+            [.empty, .start, .empty, .empty],
             [.empty, .block, .empty, .empty],
             [.empty, .block, .target, .empty],
             [.empty, .empty, .empty, .empty],
         ],
         .mirrorL: [
-            [.empty, .empty, .block, .empty],
+            [.empty, .empty, .start, .empty],
             [.empty, .empty, .block, .empty],
             [.empty, .target, .block, .empty],
             [.empty, .empty, .empty, .empty],

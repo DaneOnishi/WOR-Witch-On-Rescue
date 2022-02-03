@@ -45,11 +45,11 @@ class PieceNode {
             for (j, block)  in blockRow.enumerated() {
                 switch block {
                 case .empty: continue
-                case .block, .target:
+                case .start, .block, .target:
                     
                     print("[render] Generating for i: \(i), j: \(j)")
                     
-                    let node = createBlockNode(type: block, blockType: .grass)
+                    let node = createBlockNode(category: block, blockType: .grass)
                     
                     let offset = calculateOffset(i: i, j: j)
                     
@@ -78,10 +78,43 @@ class PieceNode {
         render()
     }
     
-    private func createBlockNode(type: PieceState, blockType: BlockType) -> SKSpriteNode {
-        let blockTexture = blockType.randomBlockTexture()
-        let node = SKSpriteNode(imageNamed: blockTexture.rawValue)
+    private func createBlockNode(category: BlockCategory, blockType: BlockType) -> BlockNode {
+        let node = BlockNode(blockSize: blockSize, category: category, blockType: blockType)
         node.name = "rotatable_piece"
+        return node
+    }
+    
+    func getBlockNodes() -> [BlockNode] {
+        container.children .compactMap { node in
+            node as? BlockNode
+        }
+    }
+    
+    func getStartNode() -> BlockNode {
+        getBlockNodes()
+            .first { node in
+                node.category == .start
+            }!
+    }
+    
+    func getTargetNode() -> BlockNode {
+        getBlockNodes()
+            .first { node in
+                node.category == .target
+            }!
+    }
+}
+
+class BlockNode: SKSpriteNode {
+    
+    let category: BlockCategory
+    let blockType: BlockType
+    
+    internal init(blockSize: CGSize, category: BlockCategory, blockType: BlockType) {
+        self.category = category
+        self.blockType = blockType
+        
+        let blockTexture = blockType.randomBlockTexture()
         
         let nodeHeight = blockSize.height
         let blockHeightProportion = blockTexture.heightPercentage
@@ -92,12 +125,17 @@ class PieceNode {
         let blockWidthProportion = blockTexture.widthPercentage
         
         let actualWidth = nodeWidth / blockWidthProportion
-
         
-        node.size = CGSize(width: actualWidth, height: actualHeight)
-        return node
+        let texture = SKTexture(imageNamed: blockTexture.rawValue)
+        super.init(texture: texture, color: .clear, size: CGSize(width: actualWidth, height: actualHeight))
+        self.size = size
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
+
 
 enum BlockType {
     case grass
@@ -107,14 +145,12 @@ enum BlockType {
         case .grass:
             return [.block]
         }
-        return []
     }
     var targetTiles: [BlockTexture] {
         switch self {
         case .grass:
             return [.block]
         }
-        return []
     }
     
     func randomBlockTexture() -> BlockTexture {

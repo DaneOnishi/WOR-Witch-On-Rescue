@@ -10,10 +10,10 @@ import SpriteKit
 import UIKit
 
 class Piece {
-    let pieceMatrix: [[PieceState]]
+    let pieceMatrix: [[BlockCategory]]
     let type: PieceType
     
-    init(pieceMatrix: [[PieceState]], type: PieceType) {
+    init(pieceMatrix: [[BlockCategory]], type: PieceType) {
         self.pieceMatrix = pieceMatrix
         self.type = type
     }
@@ -45,10 +45,11 @@ class Piece {
 }
 
 
-enum PieceState {
+enum BlockCategory {
     case empty
     case block
     case target
+    case start
 }
 
 enum PieceType: CaseIterable {

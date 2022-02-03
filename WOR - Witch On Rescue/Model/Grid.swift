@@ -61,22 +61,18 @@ class Grid {
     
     var highlightedNodes: [GridNode] = []
     
-    func highlightGrid(basedOn pieceNode: PieceNode) {
+    func highlightGrid(basedOn pieceNode: PieceNode, canPlace: Bool) {
         // pega todos os nós da pieceNode
-        let blockNodes = pieceNode.container.children
+        let blockNodes = pieceNode.getBlockNodes()
         var newHighlightedNodes: [GridNode] = []
         
         for blockNode in blockNodes {
-            // pega a posicao
-            let blockPosition = blockNode.position
-            
-            // pega a posicao na grid
-            let gridPosition = gridContainer.convert(blockPosition, from: pieceNode.container)
             
             // pega o no naquela posicao na grid
-            if let gridNode = gridContainer.atPoint(gridPosition) as? GridNode {
+            if let gridNode = getGridNode(for: blockNode) {
                 // da highlight nele
-                gridNode.setHighlighted()
+                let highlightMode: HighlightMode = canPlace ? .placeable : .hovering
+                gridNode.setHighlighted(highlightMode: highlightMode)
                 
                 newHighlightedNodes.append(gridNode)
             }
@@ -89,6 +85,19 @@ class Grid {
         
         highlightedNodes = newHighlightedNodes
         
+    }
+    
+    func getGridNode(for blockNode: BlockNode) -> GridNode? {
+        // pega a posicao
+        let blockPosition = blockNode.position
+        
+        // pega a posicao na grid
+        if let parent = blockNode.parent {
+            let gridPosition = gridContainer.convert(blockPosition, from: parent)
+            return gridContainer.atPoint(gridPosition) as? GridNode
+        }
+        
+        return nil
     }
     
     func setHighlightOff() {
@@ -105,7 +114,8 @@ class GridNode: SKSpriteNode {
         super.init(texture: nil, color: .clear, size: .zero)
         self.size = size
         self.position = position
-        self.color = .purple
+        self.color = .clear
+        self.zPosition = -10000000
         self.name = "grid_node"
     }
     
@@ -113,12 +123,40 @@ class GridNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setHighlighted() {
-        color = .cyan
+    func setHighlighted(highlightMode: HighlightMode) {
+        switch highlightMode {
+        case .placeable:
+            color = .green
+        case .hovering:
+            color = .yellow
+        }
     }
     
     func setHighlightOff() {
-        color = .purple
+        color = .clear
     }
     
+    func addBlockNode(blockNode: BlockNode) {
+        if blockNode.parent != nil {
+            blockNode.removeFromParent()
+        }
+        blockNode.name = ""
+        addChild(blockNode)
+        blockNode.position = .zero
+    }
+    
+    func isNeighbour(to other: GridNode) -> Bool {
+        if position.y == other.position.y, abs(position.x - other.position.x) == size.width {
+            return true
+        } else if position.x == other.position.x, abs(position.y - other.position.y) == size.height{
+            return true
+        }
+        return false
+    }
+    
+}
+
+enum HighlightMode {
+    case placeable
+    case hovering
 }
