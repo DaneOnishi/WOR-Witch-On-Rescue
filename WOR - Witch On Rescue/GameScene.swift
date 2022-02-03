@@ -22,7 +22,7 @@ class GameScene: SKScene {
     private var pieceSpawnPoint: CGPoint!
     private var catSpawnPoint: CGPoint!
     
-    private var movingNode: SKSpriteNode?
+    private var movingNode: SKNode?
     private var lastTouchPosition: CGPoint?
     
     private var playerSpeed: CGFloat = 304.23
@@ -36,7 +36,7 @@ class GameScene: SKScene {
     
     var createdPieces: CGFloat = 2
     var catsRescued = 0
-    var pointsCounter = 0
+    var pointsCounter: Int = 0
     
     private var initialPlayerPosition: CGPoint!
     private var initialCameraPosition: CGPoint!
@@ -46,6 +46,11 @@ class GameScene: SKScene {
     private var initialEnemySpeedAcceleration: CGFloat!
     private var pieceNode: PieceNode!
     
+    private var gameCenterManager: GameCenterManager!
+    
+    private var grid: Grid!
+    var gridNodeSize: CGSize!
+
     
     override func didMove(to view: SKView) {
         player = childNode(withName: "player") as? SKSpriteNode
@@ -67,14 +72,16 @@ class GameScene: SKScene {
         initialEnemySpeed = enemySpeed
         initialEnemySpeedAcceleration = enemySpeedAcceleration
         
+        grid = Grid(in: self, playerHeight: player.size.height, playerPosition: player.position)
+        gridNodeSize = grid.gridNodeSize
+        
+        
         if let piece = PieceFactory.shared.buildRandomPiece() {
             let container = SKNode()
-            
             container.position = .zero
-            
             addChild(container)
             
-            pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 10)
+            pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 10, blockSize: gridNodeSize)
         }
         
         
@@ -84,41 +91,52 @@ class GameScene: SKScene {
         spawnPotion()
     }
     
+    private var startingPosition: CGPoint?
     
     func touchDown(atPoint pos : CGPoint) {
         if let node = nodes(at: pos).first {
-            if node.name == "player" {
-                movingNode = player
-            } else if node.name == "piece" {
-                movingNode = piece
-            } else if node.name == "rotatable_piece" {
-                pieceNode.rotate()
+            if node.name == "rotatable_piece" {
+                movingNode = pieceNode.container
+                movingNode?.alpha = 0.4
+                startingPosition = pos
             }
         }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
         if let movingNode = movingNode {
-            if movingNode.name == "piece" {
-                movingNode.position = pos
+            if movingNode == pieceNode.container {
+                pieceNode.container.position = pos
+                
+                grid.highlightGrid(basedOn: pieceNode)
             }
+            
             lastTouchPosition = pos
         }
     }
     
+    
+    
     func touchUp(atPoint pos : CGPoint) {
-        if let movingNode = movingNode,
-           movingNode.name == "piece",
-           children
-            .filter({ node in node.name == "base" })
-            .contains(where: { node in node.intersects(movingNode) }) {
-            movingNode.name = "base"
-            movingNode.removeAllActions()
-            spawnPiece()
-            pointsCounter += 20
+        if movingNode == pieceNode.container {
+            movingNode?.alpha = 1
+            
+            if let startingPosition = startingPosition,
+               startingPosition.distance(to: pos) < 40 {
+                pieceNode.rotate()
+            }
+            
+            startingPosition = nil
+            
+//            placePiece()
+            grid.setHighlightOff()
         }
-        movingNode = nil
     }
+    
+    func placePiece() {
+        
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
@@ -135,6 +153,8 @@ class GameScene: SKScene {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
+    
+
     
     func spawnPiece() {
         let newPiece = SKSpriteNode(imageNamed: pieceNames.randomElement()!)
@@ -222,6 +242,9 @@ class GameScene: SKScene {
         }
     }
     
+
+    
+    
     func moveEnemy() {
         let direction = CGPoint(x: 0, y: 1)
         let normalized = direction.normalized()
@@ -272,6 +295,8 @@ class GameScene: SKScene {
             piece.removeFromParent()
         }
         spawnPiece()
+        GameCenterManager.shared.updateScore(with: pointsCounter)
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -290,6 +315,7 @@ class GameScene: SKScene {
         pickPotion()
         
     }
+    
     
     func animationSetup() {
         

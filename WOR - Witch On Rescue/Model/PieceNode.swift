@@ -9,10 +9,11 @@ import Foundation
 import SpriteKit
 
 class PieceNode {
-    internal init(piece: Piece, container: SKNode, startingZPosition: Int) {
+    internal init(piece: Piece, container: SKNode, startingZPosition: Int, blockSize: CGSize) {
         self.piece = piece
         self.container = container
         self.startingZPosition = startingZPosition
+        self.blockSize = blockSize
         
         render()
     }
@@ -22,7 +23,7 @@ class PieceNode {
     let startingZPosition: Int // Minimum zIndex this piece uses
     
     let matrixSize = 4 // Static, might need to be changed if pieces change size
-    let blockSize: (width: CGFloat, height: CGFloat) = (width: 100, height: 70) // The width and height of an individual block
+    let blockSize: CGSize // The width and height of an individual block
     
     func render() { // Builds SKSpriteNodes from the `piece`
         
@@ -130,7 +131,6 @@ enum BlockTexture: String {
         case .block:
             return 43
         }
-        return 1
     }
     
     var bottomBlockHeight: CGFloat {
@@ -138,7 +138,6 @@ enum BlockTexture: String {
         case .block:
             return 23
         }
-        return 1
     }
     
     var blockWidth: CGFloat {

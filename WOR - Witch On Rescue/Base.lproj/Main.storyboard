@@ -16,6 +16,17 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21J-y1-Kfm">
+                                <rect key="frame" x="278" y="99" width="102" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="leaderboard"/>
+                                <connections>
+                                    <action selector="gameCenterVC:" destination="3se-qz-xqx" eventType="touchUpInside" id="IPN-7i-zLW"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -60,7 +71,6 @@
                                                     <rect key="frame" x="-12" y="-7" width="136" height="126"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Sla-AA-uSe" secondAttribute="height" multiplier="68:63" id="WDN-td-ZbR"/>
-                                                        <constraint firstAttribute="width" constant="136" id="dPb-UL-FsA"/>
                                                         <constraint firstAttribute="height" constant="112" id="nEM-Oa-n7b"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
