@@ -90,6 +90,70 @@ class PieceNode {
         }
     }
     
+    func getOrderedBlockNodes() -> [BlockNode] {
+        let blockNodes = getBlockNodes()
+        guard blockNodes.count > 1 else {
+            return [blockNodes.first!]
+        }
+        
+        var orderedBlockNodes: [BlockNode] = []
+        
+        let startBlockNode = getStartNode()
+        
+        orderedBlockNodes.append(startBlockNode)
+        
+        
+        
+        func getFirstNeighbourNotOrdered(blockNode: BlockNode) -> BlockNode {
+            let center = blockNode.position
+            
+            let possibleRightBlockPosition = center + CGPoint(x: blockSize.width, y: 0)
+            if let rightBlock = container.nodes(at: possibleRightBlockPosition)
+                .filter({ $0.position.y == blockNode.position.y && $0 != blockNode })
+                .min(by: { current, other in
+                    current.position.distance(to: blockNode.position) < other.position.distance(to: blockNode.position)
+                }) as? BlockNode,
+               !orderedBlockNodes.contains(rightBlock) {
+                return rightBlock
+            }
+            
+            let possibleLeftBlockPosition = center + CGPoint(x: -blockSize.width, y: 0)
+            if let leftBlock = container.nodes(at: possibleLeftBlockPosition)
+                .filter({ $0.position.y == blockNode.position.y && $0 != blockNode })
+                .min(by: { current, other in
+                    current.position.distance(to: blockNode.position) < other.position.distance(to: blockNode.position)
+                }) as? BlockNode,
+               !orderedBlockNodes.contains(leftBlock) {
+                return leftBlock
+            }
+            
+            let possibleFrontBlockPosition = center + CGPoint(x: 0, y: blockSize.height)
+            if let frontBlock = container.nodes(at: possibleFrontBlockPosition)
+                .filter({ $0.position.x == blockNode.position.x && $0 != blockNode })
+                .min(by: { current, other in
+                    current.position.distance(to: blockNode.position) < other.position.distance(to: blockNode.position)
+                }) as? BlockNode,
+               !orderedBlockNodes.contains(frontBlock) {
+                return frontBlock
+            }
+            
+            let possibleBackBlockPosition = center + CGPoint(x: 0, y: -blockSize.height)
+            return container.nodes(at: possibleBackBlockPosition)
+                .filter({ $0.position.x == blockNode.position.x && $0 != blockNode })
+                .min(by: { current, other in
+                    current.position.distance(to: blockNode.position) < other.position.distance(to: blockNode.position)
+                })  as! BlockNode
+        }
+        
+        while orderedBlockNodes.count < blockNodes.count {
+            let lastFoundBlockNode = orderedBlockNodes.last!
+            let nextBlockNode = getFirstNeighbourNotOrdered(blockNode: lastFoundBlockNode)
+            orderedBlockNodes.append(nextBlockNode)
+        }
+        
+        return orderedBlockNodes
+    }
+    
     func getStartNode() -> BlockNode {
         getBlockNodes()
             .first { node in
@@ -114,7 +178,7 @@ class BlockNode: SKSpriteNode {
         self.category = category
         self.blockType = blockType
         
-        let blockTexture = blockType.randomBlockTexture()
+        let blockTexture = blockType.randomBlockTexture(for: category)
         
         let nodeHeight = blockSize.height
         let blockHeightProportion = blockTexture.heightPercentage
@@ -146,46 +210,66 @@ enum BlockType {
             return [.block]
         }
     }
+    var startTiles: [BlockTexture] {
+        switch self {
+        case .grass:
+            return [.start]
+        }
+    }
     var targetTiles: [BlockTexture] {
         switch self {
         case .grass:
-            return [.block]
+            return [.target]
         }
     }
     
-    func randomBlockTexture() -> BlockTexture {
-        let texture = blockTiles.randomElement()!
-        return texture
+    func randomBlockTexture(for category: BlockCategory) -> BlockTexture {
+        switch category {
+        case .empty:
+            return .block
+        case .block:
+            return blockTiles.randomElement()!
+        case .target:
+            return targetTiles.randomElement()!
+        case .start:
+            return startTiles.randomElement()!
+        }
     }
 }
 
 enum BlockTexture: String {
     case block = "block"
+    case start = "start"
+    case target = "end"
     
     var blockHeight: CGFloat {
         switch self {
         case .block:
-            return 43
+            return 97
+        case .start:
+            return 97
+        case .target:
+            return 97
         }
     }
     
     var bottomBlockHeight: CGFloat {
         switch self {
-        case .block:
-            return 23
+        case .block, .target, .start:
+            return 45
         }
     }
     
     var blockWidth: CGFloat {
         switch self {
-        case .block:
-            return 86.2
+        case .block, .target, .start:
+            return 144
         }
     }
     
     var blockBorder: CGFloat {
         switch self {
-        case .block:
+        case .block, .target, .start:
             return 2.8
         }
     }

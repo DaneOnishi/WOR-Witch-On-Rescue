@@ -50,6 +50,19 @@ enum BlockCategory {
     case block
     case target
     case start
+    
+//    var blockImage: String {
+//        switch self {
+//        case .empty:
+//            return "block"
+//        case .block:
+//            return "block"
+//        case .target:
+//            return "end"
+//        case .start:
+//            return "start"
+//        }
+//    }
 }
 
 enum PieceType: CaseIterable {

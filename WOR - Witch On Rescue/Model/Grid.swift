@@ -17,7 +17,7 @@ class Grid {
     private let gridAspectRatio: CGFloat = 0.8 // graminha height / width
    
     lazy var initialGridRowCount: Int = {
-        return Int(sceneSize.height / gridNodeSize.height)
+        return Int(sceneSize.height / gridNodeSize.height) + 1000
     }()
     
     lazy var gridNodeSize: CGSize = {
@@ -38,12 +38,13 @@ class Grid {
     func generateInitialGrid(playerHeight: CGFloat, playerPosition: CGPoint) {
         for row in 0..<initialGridRowCount {
             let offset = CGFloat(row) * gridNodeSize.height
-            generateGridRow(y: playerPosition.y - playerHeight / 2 + offset)
+            _ = generateGridRow(y: playerPosition.y - playerHeight / 2 + offset, rowIndex: -(CGFloat(row + 1)))
         }
     }
     
-    func generateGridRow(y: CGFloat) {
+    func generateGridRow(y: CGFloat, rowIndex: CGFloat) -> [GridNode] {
         let nodeSize = gridNodeSize
+        var generatedNodes: [GridNode] = []
         
         func calculateOffset(j: Int) -> (CGFloat) {
             let defaultWidthOffset = -CGFloat(nodeSize.width) * ((gridColumnCount - 1) / 2) // 1.5 is a full block plus half a block
@@ -54,9 +55,11 @@ class Grid {
         }
         
         for j in 0..<Int(gridColumnCount) {
-            let gridNode = GridNode(size: nodeSize, position: CGPoint(x: calculateOffset(j: j), y: y))
+            let gridNode = GridNode(size: nodeSize, position: CGPoint(x: calculateOffset(j: j), y: y), zPosition: 5, contentZPosition: rowIndex)
             gridContainer.addChild(gridNode)
+            generatedNodes.append(gridNode)
         }
+        return generatedNodes
     }
     
     var highlightedNodes: [GridNode] = []
@@ -94,10 +97,14 @@ class Grid {
         // pega a posicao na grid
         if let parent = blockNode.parent {
             let gridPosition = gridContainer.convert(blockPosition, from: parent)
-            return gridContainer.atPoint(gridPosition) as? GridNode
+            return getGridNode(for: gridPosition)
         }
         
         return nil
+    }
+    
+    func getGridNode(for position: CGPoint) -> GridNode? {
+        return gridContainer.atPoint(position) as? GridNode
     }
     
     func setHighlightOff() {
@@ -110,12 +117,20 @@ class Grid {
 
 class GridNode: SKSpriteNode {
     
-    internal init(size: CGSize, position: CGPoint) {
+    let contentZPosition: CGFloat
+    var blockNode: BlockNode?
+    var containsABlockNode: Bool {
+        return blockNode != nil
+    }
+    
+    internal init(size: CGSize, position: CGPoint, zPosition: CGFloat, contentZPosition: CGFloat) {
+        self.contentZPosition = contentZPosition
         super.init(texture: nil, color: .clear, size: .zero)
+        self.zPosition = zPosition
         self.size = size
         self.position = position
         self.color = .clear
-        self.zPosition = -10000000
+        self.zPosition = 0
         self.name = "grid_node"
     }
     
@@ -126,9 +141,10 @@ class GridNode: SKSpriteNode {
     func setHighlighted(highlightMode: HighlightMode) {
         switch highlightMode {
         case .placeable:
-            color = .green
+            color = .green.withAlphaComponent(0.6)
         case .hovering:
-            color = .yellow
+            color = .purple.withAlphaComponent(0.4)
+                
         }
     }
     
@@ -141,8 +157,39 @@ class GridNode: SKSpriteNode {
             blockNode.removeFromParent()
         }
         blockNode.name = ""
-        addChild(blockNode)
+        blockNode.zPosition = contentZPosition
         blockNode.position = .zero
+        self.blockNode = blockNode
+        addChild(blockNode)
+    }
+    
+    func removeBlock(animated: Bool = true, index: Int) {
+        guard let blockNode = blockNode else {
+            return
+        }
+        
+        let newBlockNodePosition = convert(blockNode.position, to: scene!)
+        blockNode.removeFromParent()
+        blockNode.position = newBlockNodePosition
+        
+        if animated {
+            scene?.addChild(blockNode)
+            
+            let sequence = SKAction.sequence([
+                SKAction.wait(forDuration: Double(index) * 0.4),
+                SKAction.group([
+                    SKAction.fadeOut(withDuration: 2),
+                    SKAction.scale(to: 0.5, duration: 2)
+                ])
+            ])
+            
+            blockNode.run(sequence) {
+                blockNode.removeFromParent()
+            }
+            
+        }
+        
+        self.blockNode = nil
     }
     
     func isNeighbour(to other: GridNode) -> Bool {
