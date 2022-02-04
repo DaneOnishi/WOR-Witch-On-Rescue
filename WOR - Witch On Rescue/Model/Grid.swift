@@ -28,17 +28,16 @@ class Grid {
     
     let sceneSize: CGSize
     
-    init(in scene: SKScene, playerHeight: CGFloat, playerPosition: CGPoint) {
+    init(in scene: SKScene) {
         sceneSize = scene.size
         scene.addChild(gridContainer)
-        generateInitialGrid(playerHeight: playerHeight, playerPosition: playerPosition)
     }
     
     
-    func generateInitialGrid(playerHeight: CGFloat, playerPosition: CGPoint) {
+    func generateInitialGrid(playerFootPosition: CGPoint) {
         for row in 0..<initialGridRowCount {
             let offset = CGFloat(row) * gridNodeSize.height
-            _ = generateGridRow(y: playerPosition.y - playerHeight / 2 + offset, rowIndex: -(CGFloat(row + 1)))
+            _ = generateGridRow(y: playerFootPosition.y + offset, rowIndex: -(CGFloat(row + 1)))
         }
     }
     

@@ -20,9 +20,11 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                
+                scene.gameSceneDelegate = self
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -52,5 +54,17 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+}
+
+extension GameViewController: GameSceneDelegate {
+    func presenteGameOver() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let firstVC = storyboard.instantiateViewController(identifier: "GameOverViewController") as? GameOverViewController else {
+            return
+        }
+        firstVC.modalPresentationStyle = .fullScreen
+        self.present(firstVC, animated: true, completion: nil)
     }
 }
