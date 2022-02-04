@@ -90,6 +90,56 @@ class PieceNode {
         }
     }
     
+    func getOrderedBlockNodes() -> [BlockNode] {
+        let blockNodes = getBlockNodes()
+        guard blockNodes.count > 1 else {
+            return [blockNodes.first!]
+        }
+        
+        var orderedBlockNodes: [BlockNode] = []
+        
+        let startBlockNode = getStartNode()
+        
+        orderedBlockNodes.append(startBlockNode)
+        
+        func getFirstNeighbourNotOrdered(blockNode: BlockNode) -> BlockNode {
+            let center = blockNode.position
+            
+            let possibleRightBlockPosition = center + CGPoint(x: blockSize.width, y: 0)
+            if let rightBlock = container.nodes(at: possibleRightBlockPosition)
+                .first(where: { $0.position.y == blockNode.position.y && $0 != blockNode }) as? BlockNode,
+               !orderedBlockNodes.contains(rightBlock) {
+                return rightBlock
+            }
+            
+            let possibleLeftBlockPosition = center + CGPoint(x: -blockSize.width, y: 0)
+            if let leftBlock = container.nodes(at: possibleLeftBlockPosition)
+                .first(where: { $0.position.y == blockNode.position.y && $0 != blockNode }) as? BlockNode,
+               !orderedBlockNodes.contains(leftBlock) {
+                return leftBlock
+            }
+            
+            let possibleFrontBlockPosition = center + CGPoint(x: 0, y: blockSize.height)
+            if let frontBlock = container.nodes(at: possibleFrontBlockPosition)
+                .first(where: {  $0.position.x == blockNode.position.x && $0 != blockNode })  as? BlockNode,
+               !orderedBlockNodes.contains(frontBlock) {
+                return frontBlock
+            }
+            
+            let possibleBackBlockPosition = center + CGPoint(x: 0, y: -blockSize.height)
+            return container.nodes(at: possibleBackBlockPosition)
+                .first(where: { $0.position.x == blockNode.position.x && $0 != blockNode })  as! BlockNode
+        }
+        
+        while orderedBlockNodes.count < blockNodes.count {
+            let lastFoundBlockNode = orderedBlockNodes.last!
+            let nextBlockNode = getFirstNeighbourNotOrdered(blockNode: lastFoundBlockNode)
+            orderedBlockNodes.append(nextBlockNode)
+        }
+        
+        return orderedBlockNodes
+    }
+    
     func getStartNode() -> BlockNode {
         getBlockNodes()
             .first { node in

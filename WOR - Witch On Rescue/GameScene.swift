@@ -11,7 +11,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     private var player : SKSpriteNode!
-
+    
     private var cameraNode: SKCameraNode!
     
     private var enemy: SKSpriteNode!
@@ -22,6 +22,8 @@ class GameScene: SKScene {
     private var pieceNames: [String] = ["piece_1", "piece_2", "piece_3"]
     private var pieceSpawnPoint: CGPoint!
     private var catSpawnPoint: CGPoint!
+    
+    
     
     private var movingNode: SKNode?
     private var lastTouchPosition: CGPoint?
@@ -49,9 +51,19 @@ class GameScene: SKScene {
     
     private var gameCenterManager: GameCenterManager!
     
+    // TODO: Move to player later...
     var playerFootPosition: CGPoint {
         player.position - CGPoint(x: 0, y: player.size.height/2)
     }
+    var playerFootDifference: CGPoint {
+        player.position - playerFootPosition
+    }
+    var previousPlayerMovements: [CGPoint] = []
+    var nextPlayerMovements: [CGPoint] = []
+    var isPlayerWalking = false
+    let blocksPerSecond: Double = 3
+    
+    // ===
     
     var lastTargetGridNode: GridNode!
     
@@ -63,7 +75,7 @@ class GameScene: SKScene {
         let pieceSpawnPointNode = childNode(withName: "pieceSpawn")!
         enemy = childNode(withName: "enemy") as? SKSpriteNode
         cameraNode = camera!
-
+        
         pieceSpawnPoint = pieceSpawnPointNode.position
         spawnPointCameraOffSet = pieceSpawnPoint.y - cameraNode.position.y
         playerCameraOffSet = cameraNode.position.y - player.position.y
@@ -77,13 +89,14 @@ class GameScene: SKScene {
         initialEnemySpeed = enemySpeed
         initialEnemySpeedAcceleration = enemySpeedAcceleration
         
+        
+        
         grid = Grid(in: self, playerHeight: player.size.height, playerPosition: player.position)
         gridNodeSize = grid.gridNodeSize
         
         spawnRandomPiece()
-        
         spawnBase()
-        
+        spawnZeroRow()
         
         animationSetup()
         spawnCat()
@@ -102,6 +115,19 @@ class GameScene: SKScene {
         }
     }
     
+    fileprivate func spawnZeroRow() {
+        let position = playerFootPosition -  CGPoint(x: grid.gridNodeSize.width, y: grid.gridNodeSize.height)
+        
+        let nodes = grid.generateGridRow(y: position.y)
+        
+        for node in nodes {
+            let blockNode = BlockNode(blockSize: grid.gridNodeSize, category: .target, blockType: .grass)
+            
+            node.addBlockNode(blockNode: blockNode)
+        }
+        
+    }
+    
     private var startingDragPosition: CGPoint?
     func touchDown(atPoint pos : CGPoint) {
         if let node = nodes(at: pos).first {
@@ -113,20 +139,37 @@ class GameScene: SKScene {
         }
     }
     
+    func canPlacePiece() -> Bool {
+        
+        for blockNode in pieceNode.getBlockNodes() {
+            if let gridNode = grid.getGridNode(for: blockNode) {
+                if gridNode.containsABlockNode {
+                    return false
+                }
+            } else {
+                return false
+            }
+        }
+        
+        let startNode = pieceNode.getStartNode()
+        let startGridNode = grid.getGridNode(for: startNode)
+        
+        if let startGridNode = startGridNode,
+           startGridNode.isNeighbour(to: lastTargetGridNode) {
+            return true
+        }
+        
+        return false
+    }
+    
+    
+    
     func touchMoved(toPoint pos : CGPoint) {
         if let movingNode = movingNode {
             if movingNode == pieceNode.container {
                 pieceNode.container.position = pos
                 
-                var canPlace = false
-                
-                let startNode = pieceNode.getStartNode()
-                let startGridNode = grid.getGridNode(for: startNode)
-                
-                if let startGridNode = startGridNode,
-                   startGridNode.isNeighbour(to: lastTargetGridNode) {
-                    canPlace = true
-                }
+                let canPlace = canPlacePiece()
                 
                 grid.highlightGrid(basedOn: pieceNode, canPlace: canPlace)
             }
@@ -135,26 +178,82 @@ class GameScene: SKScene {
         }
     }
     
+    func createNextMoveAction() -> SKAction? {
+        guard !nextPlayerMovements.isEmpty else { return nil }
+        
+        let nextPosition = nextPlayerMovements.removeFirst()
+        previousPlayerMovements.append(nextPosition)
+        
+        let moveAction = SKAction.move(to: nextPosition + playerFootDifference, duration: 1/blocksPerSecond)
+        
+        return moveAction
+    }
     
+    func runLoopMoveAction(moveAction: SKAction) {
+        player.run(moveAction) { [weak self] in
+            if let nextMoveAction = self?.createNextMoveAction() {
+                self?.runLoopMoveAction(moveAction: nextMoveAction)
+            } else {
+                self?.isPlayerWalking = false
+            }
+        }
+    }
+    
+    func addPositionsPlayerQueue(positions: [CGPoint]) {
+        print("Current position: \(player.position)")
+        print("Adding positions: \(positions)")
+        
+        nextPlayerMovements.append(contentsOf: positions)
+        if !isPlayerWalking,
+           let moveAction = createNextMoveAction() {
+            isPlayerWalking = true
+            runLoopMoveAction(moveAction: moveAction)
+        }
+    }
+    
+    fileprivate func placePiece() {
+        let orderedBlockNodes = pieceNode.getOrderedBlockNodes()
+        
+        let orderedGridNodes = orderedBlockNodes.compactMap { blockNode in
+            grid.getGridNode(for: blockNode)
+        }
+        
+        let playerPositions = orderedGridNodes.map { gridNode in
+            convert(gridNode.position, from: grid.gridContainer)
+        }
+        
+        addPositionsPlayerQueue(positions: playerPositions)
+        
+        for blockNode in pieceNode.getBlockNodes() {
+            if let gridNode = grid.getGridNode(for: blockNode) {
+                if blockNode.category == .target {
+                    lastTargetGridNode = gridNode
+                }
+                
+                gridNode.addBlockNode(blockNode: blockNode)
+            }
+        }
+        spawnRandomPiece()
+    }
     
     func touchUp(atPoint pos : CGPoint) {
         if movingNode == pieceNode.container {
             movingNode?.alpha = 1
             
+            // se ta pertinho, rotate
             if let startingPosition = startingDragPosition,
                startingPosition.distance(to: pos) < 40 {
                 pieceNode.rotate()
+                // se nao ta pertinho, tenta colocar
+            } else if canPlacePiece() {
+                placePiece()
+            } else if let startingDragPosition = startingDragPosition {
+                pieceNode.container.position = startingDragPosition
             }
             
             startingDragPosition = nil
-            
-//            placePiece()
             grid.setHighlightOff()
         }
-    }
-    
-    func placePiece() {
-        
     }
     
     
@@ -185,7 +284,7 @@ class GameScene: SKScene {
             pieceNode = PieceNode(piece: piece, container: container, startingZPosition: -5 + (Int(-createdPieces) * 4), blockSize: gridNodeSize)
         }
     }
-
+    
     
     func spawnCat() {
         let newCat = SKSpriteNode(imageNamed: "cat")
@@ -218,7 +317,7 @@ class GameScene: SKScene {
     func pickPotion() {
         if player.intersects(potion) {
             potion.removeFromParent()
-                // here i reduced the speed but idealy it will reduce the size of the enemy
+            // here i reduced the speed but idealy it will reduce the size of the enemy
             enemySpeed = -enemySpeed / 2
         }
     }
@@ -241,7 +340,7 @@ class GameScene: SKScene {
         }
     }
     
-
+    
     
     
     func moveEnemy() {
@@ -293,7 +392,7 @@ class GameScene: SKScene {
             }
         }
         
-//        moveEnemy()
+        //        moveEnemy()
         checkEnemyHitPlayer()
         updateEnemySpeed()
         rescueCat()

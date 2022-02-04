@@ -42,8 +42,9 @@ class Grid {
         }
     }
     
-    func generateGridRow(y: CGFloat) {
+    func generateGridRow(y: CGFloat) -> [GridNode] {
         let nodeSize = gridNodeSize
+        var generatedNodes: [GridNode] = []
         
         func calculateOffset(j: Int) -> (CGFloat) {
             let defaultWidthOffset = -CGFloat(nodeSize.width) * ((gridColumnCount - 1) / 2) // 1.5 is a full block plus half a block
@@ -56,7 +57,9 @@ class Grid {
         for j in 0..<Int(gridColumnCount) {
             let gridNode = GridNode(size: nodeSize, position: CGPoint(x: calculateOffset(j: j), y: y))
             gridContainer.addChild(gridNode)
+            generatedNodes.append(gridNode)
         }
+        return generatedNodes
     }
     
     var highlightedNodes: [GridNode] = []
@@ -110,6 +113,11 @@ class Grid {
 
 class GridNode: SKSpriteNode {
     
+    var blockNode: BlockNode?
+    var containsABlockNode: Bool {
+        return blockNode != nil 
+    }
+    
     internal init(size: CGSize, position: CGPoint) {
         super.init(texture: nil, color: .clear, size: .zero)
         self.size = size
@@ -141,6 +149,7 @@ class GridNode: SKSpriteNode {
             blockNode.removeFromParent()
         }
         blockNode.name = ""
+        self.blockNode = blockNode
         addChild(blockNode)
         blockNode.position = .zero
     }
