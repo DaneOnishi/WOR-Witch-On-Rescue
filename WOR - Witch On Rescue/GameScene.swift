@@ -28,10 +28,10 @@ class GameScene: SKScene {
     
     private var movingNode: SKNode?
     
-    private var playerSpeed: CGFloat = 304.23
-    private var enemySpeed: CGFloat = 30 // Speed per second
-    private var enemySpeedAcceleration: CGFloat = 0.04 // Adds to the enemy spee every tick
-    private var enemySpeedAccelerationIncrease: CGFloat = 0.0001 // Adds to the enemy acceleration every tick
+    private var enemySpeed: CGFloat = 20 // Speed per second
+    private var enemySpeedAcceleration: CGFloat = 0.001 // Adds to the enemy spee every tick
+    private var enemySpeedAccelerationIncrease: CGFloat = 0.00002 // Adds to the enemy acceleration every tick
+    private var maxEnemySpeed: CGFloat = 40
     
     private var maxCameraY: CGFloat = 0
     private var spawnPointCameraOffSet: CGFloat = 0
@@ -91,7 +91,6 @@ class GameScene: SKScene {
         initialEnemySpeed = enemySpeed
         initialEnemySpeedAcceleration = enemySpeedAcceleration
         
-        
         grid = Grid(in: self, playerHeight: player.size.height, playerPosition: player.position)
         gridNodeSize = grid.gridNodeSize
         
@@ -122,7 +121,7 @@ class GameScene: SKScene {
         let nodes = grid.generateGridRow(y: position.y, rowIndex: 0)
         
         for node in nodes {
-            let blockNode = BlockNode(blockSize: grid.gridNodeSize, category: .target, blockType: .grass)
+            let blockNode = BlockNode(blockSize: grid.gridNodeSize, category: .block, blockType: .grass)
             
             node.addBlockNode(blockNode: blockNode)
         }
@@ -180,6 +179,7 @@ class GameScene: SKScene {
         
         let nextPosition = nextPlayerMovements.removeFirst()
         previousPlayerMovements.append(nextPosition)
+        removeOldPieces()
         
         let moveAction = SKAction.move(to: nextPosition + playerFootDifference, duration: 1/blocksPerSecond)
         
@@ -206,6 +206,29 @@ class GameScene: SKScene {
             isPlayerWalking = true
             runLoopMoveAction(moveAction: moveAction)
         }
+    }
+    
+    func removeOldPieces() {
+        // olha o tamanho da lista de movimentos previos do player
+        // garanta que previousPlayerMovements.count é menor do que x
+        // se maior que X, remove tamanho - X peças'
+        let maxPieceCount = 5
+        guard previousPlayerMovements.count > maxPieceCount else { return }
+        
+        for i in 0..<(previousPlayerMovements.count - maxPieceCount) {
+            let position = previousPlayerMovements[i]
+            let gridNode = grid.getGridNode(for: convert(position, to: grid.gridContainer))
+            
+            print("Removing piece in \(position)")
+            
+            gridNode?.removeBlock(animated: true, index: i)
+        }
+        
+        previousPlayerMovements.removeFirst(previousPlayerMovements.count - maxPieceCount)
+        
+        // pra cada posicao que temos que tirar
+            // pega grid nessa posicao
+            // manda remover peça
     }
     
     fileprivate func placePiece() {
@@ -317,7 +340,7 @@ class GameScene: SKScene {
         if player.intersects(potion) {
             potion.removeFromParent()
             // here i reduced the speed but idealy it will reduce the size of the enemy
-            enemySpeed = -enemySpeed / 2
+            enemySpeed -= enemySpeed / 2
         }
     }
     
@@ -335,8 +358,7 @@ class GameScene: SKScene {
     }
     
     func updateEnemySpeed() {
-        
-        if enemySpeed < playerSpeed {
+        if enemySpeed < maxEnemySpeed {
             enemySpeed += enemySpeedAcceleration
             enemySpeedAcceleration += enemySpeedAccelerationIncrease
         }
@@ -352,9 +374,11 @@ class GameScene: SKScene {
         maxCameraY = initialCameraPosition.y
         
         player.position = initialPlayerPosition
-        enemy.position = initialEnemyPosition
         camera!.position = initialCameraPosition
         
+        print("Resetting...")
+        
+        enemy.position = initialEnemyPosition
         enemySpeed = initialEnemySpeed
         enemySpeedAcceleration = initialEnemySpeedAcceleration
         
@@ -364,20 +388,37 @@ class GameScene: SKScene {
         
         GameCenterManager.shared.updateScore(with: pointsCounter)
         
+        // Limpar grid
+        // Repositionar spawned piece
+        
+        grid.gridContainer.removeFromParent()
+        
+        grid = Grid(in: self, playerHeight: player.size.height, playerPosition: player.position)
+        gridNodeSize = grid.gridNodeSize
+        
+        pieceNode.container.removeFromParent()
+        pieceNode = nil
+        
+        spawnRandomPiece()
+        spawnBase()
+        spawnZeroRow()
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
         updateCamera(playerPosition: player.position)
-        //        moveEnemy()
-        checkEnemyHitPlayer()
+        moveEnemy()
         updateEnemySpeed()
+        
+        checkEnemyHitPlayer()
+        
         rescueCat()
         pickPotion()
         
     }
-    
+
     
     func animationSetup() {
         

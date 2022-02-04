@@ -178,7 +178,7 @@ class BlockNode: SKSpriteNode {
         self.category = category
         self.blockType = blockType
         
-        let blockTexture = blockType.randomBlockTexture()
+        let blockTexture = blockType.randomBlockTexture(for: category)
         
         let nodeHeight = blockSize.height
         let blockHeightProportion = blockTexture.heightPercentage
@@ -210,23 +210,37 @@ enum BlockType {
             return [.block]
         }
     }
+    var startTiles: [BlockTexture] {
+        switch self {
+        case .grass:
+            return [.start]
+        }
+    }
     var targetTiles: [BlockTexture] {
         switch self {
         case .grass:
-            return [.block]
+            return [.target]
         }
     }
     
-    func randomBlockTexture() -> BlockTexture {
-        let texture = blockTiles.randomElement()!
-        return texture
+    func randomBlockTexture(for category: BlockCategory) -> BlockTexture {
+        switch category {
+        case .empty:
+            return .block
+        case .block:
+            return blockTiles.randomElement()!
+        case .target:
+            return targetTiles.randomElement()!
+        case .start:
+            return startTiles.randomElement()!
+        }
     }
 }
 
 enum BlockTexture: String {
     case block = "block"
     case start = "start"
-    case target = "target"
+    case target = "end"
     
     var blockHeight: CGFloat {
         switch self {

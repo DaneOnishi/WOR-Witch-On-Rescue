@@ -17,7 +17,7 @@ class Grid {
     private let gridAspectRatio: CGFloat = 0.8 // graminha height / width
    
     lazy var initialGridRowCount: Int = {
-        return Int(sceneSize.height / gridNodeSize.height)
+        return Int(sceneSize.height / gridNodeSize.height) + 1000
     }()
     
     lazy var gridNodeSize: CGSize = {
@@ -97,10 +97,14 @@ class Grid {
         // pega a posicao na grid
         if let parent = blockNode.parent {
             let gridPosition = gridContainer.convert(blockPosition, from: parent)
-            return gridContainer.atPoint(gridPosition) as? GridNode
+            return getGridNode(for: gridPosition)
         }
         
         return nil
+    }
+    
+    func getGridNode(for position: CGPoint) -> GridNode? {
+        return gridContainer.atPoint(position) as? GridNode
     }
     
     func setHighlightOff() {
@@ -126,7 +130,7 @@ class GridNode: SKSpriteNode {
         self.size = size
         self.position = position
         self.color = .clear
-        self.zPosition = -10000000
+        self.zPosition = 0
         self.name = "grid_node"
     }
     
@@ -156,6 +160,35 @@ class GridNode: SKSpriteNode {
         blockNode.position = .zero
         self.blockNode = blockNode
         addChild(blockNode)
+    }
+    
+    func removeBlock(animated: Bool = true, index: Int) {
+        guard let blockNode = blockNode else {
+            return
+        }
+        
+        let newBlockNodePosition = convert(blockNode.position, to: scene!)
+        blockNode.removeFromParent()
+        blockNode.position = newBlockNodePosition
+        
+        if animated {
+            scene?.addChild(blockNode)
+            
+            let sequence = SKAction.sequence([
+                SKAction.wait(forDuration: Double(index) * 0.4),
+                SKAction.group([
+                    SKAction.fadeOut(withDuration: 2),
+                    SKAction.scale(to: 0.5, duration: 2)
+                ])
+            ])
+            
+            blockNode.run(sequence) {
+                blockNode.removeFromParent()
+            }
+            
+        }
+        
+        self.blockNode = nil
     }
     
     func isNeighbour(to other: GridNode) -> Bool {
