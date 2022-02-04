@@ -33,6 +33,8 @@
 		41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559327AB51FD00466D06 /* GameCenterManager.swift */; };
 		41E6559627AB7A5E00466D06 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559527AB7A5E00466D06 /* Grid.swift */; };
 		41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559727AC4FD700466D06 /* GameCenterViewController.swift */; };
+		E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F727AD99EF00943F0E /* StartViewController.swift */; };
+		E8AE49FA27AD99FF00943F0E /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		41E6559327AB51FD00466D06 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		41E6559527AB7A5E00466D06 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		41E6559727AC4FD700466D06 /* GameCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
+		E8AE49F727AD99EF00943F0E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,8 @@
 				41E6559727AC4FD700466D06 /* GameCenterViewController.swift */,
 				41842E4D27A72AE50092EF03 /* LevelViewController.swift */,
 				4161D7D527A371FA00191C83 /* GameViewController.swift */,
+				E8AE49F727AD99EF00943F0E /* StartViewController.swift */,
+				E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 				TargetAttributes = {
 					4161D7C927A371F900191C83 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 					4161D7E227A371FD00191C83 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -343,8 +350,10 @@
 				4161D7D427A371FA00191C83 /* GameScene.swift in Sources */,
 				41E6558D27AA3D6500466D06 /* PieceFactory.swift in Sources */,
 				41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */,
+				E8AE49FA27AD99FF00943F0E /* GameOverViewController.swift in Sources */,
 				4161D80427A3759200191C83 /* Piece.swift in Sources */,
 				41E6559627AB7A5E00466D06 /* Grid.swift in Sources */,
+				E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */,
 				4161D7D627A371FA00191C83 /* GameViewController.swift in Sources */,
 				41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */,
 				4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */,
@@ -527,6 +536,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U77829B9P3;
@@ -545,6 +555,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusiness;
 				PRODUCT_NAME = "WOR - Witch On Rescue ";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WOR - Witch On Rescue/Controller/WOR - Witch On Rescue-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -555,6 +567,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U77829B9P3;
@@ -573,6 +586,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusiness;
 				PRODUCT_NAME = "WOR - Witch On Rescue";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WOR - Witch On Rescue/Controller/WOR - Witch On Rescue-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
