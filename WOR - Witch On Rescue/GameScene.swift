@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameScene: SKScene {
     
@@ -62,6 +63,8 @@ class GameScene: SKScene {
     var nextPlayerMovements: [CGPoint] = []
     var isPlayerWalking = false
     let blocksPerSecond: Double = 3
+    
+    let generator = UINotificationFeedbackGenerator()
     
     // ===
     
@@ -247,12 +250,14 @@ class GameScene: SKScene {
                 // se nao ta pertinho, tenta colocar
             } else if canPlacePiece() {
                 placePiece()
+                generator.notificationOccurred(.success)
             } else if let startingDragPosition = startingDragPosition {
                 pieceNode.container.position = startingDragPosition
             }
             
             startingDragPosition = nil
             grid.setHighlightOff()
+            
         }
     }
     
