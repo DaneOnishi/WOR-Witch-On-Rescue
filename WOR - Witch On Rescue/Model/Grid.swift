@@ -38,11 +38,11 @@ class Grid {
     func generateInitialGrid(playerHeight: CGFloat, playerPosition: CGPoint) {
         for row in 0..<initialGridRowCount {
             let offset = CGFloat(row) * gridNodeSize.height
-            generateGridRow(y: playerPosition.y - playerHeight / 2 + offset)
+            _ = generateGridRow(y: playerPosition.y - playerHeight / 2 + offset, rowIndex: -(CGFloat(row + 1)))
         }
     }
     
-    func generateGridRow(y: CGFloat) -> [GridNode] {
+    func generateGridRow(y: CGFloat, rowIndex: CGFloat) -> [GridNode] {
         let nodeSize = gridNodeSize
         var generatedNodes: [GridNode] = []
         
@@ -55,7 +55,7 @@ class Grid {
         }
         
         for j in 0..<Int(gridColumnCount) {
-            let gridNode = GridNode(size: nodeSize, position: CGPoint(x: calculateOffset(j: j), y: y))
+            let gridNode = GridNode(size: nodeSize, position: CGPoint(x: calculateOffset(j: j), y: y), zPosition: 5, contentZPosition: rowIndex)
             gridContainer.addChild(gridNode)
             generatedNodes.append(gridNode)
         }
@@ -113,13 +113,16 @@ class Grid {
 
 class GridNode: SKSpriteNode {
     
+    let contentZPosition: CGFloat
     var blockNode: BlockNode?
     var containsABlockNode: Bool {
         return blockNode != nil 
     }
     
-    internal init(size: CGSize, position: CGPoint) {
+    internal init(size: CGSize, position: CGPoint, zPosition: CGFloat, contentZPosition: CGFloat) {
+        self.contentZPosition = contentZPosition
         super.init(texture: nil, color: .clear, size: .zero)
+        self.zPosition = zPosition
         self.size = size
         self.position = position
         self.color = .clear
@@ -149,9 +152,10 @@ class GridNode: SKSpriteNode {
             blockNode.removeFromParent()
         }
         blockNode.name = ""
+        blockNode.zPosition = contentZPosition
+        blockNode.position = .zero
         self.blockNode = blockNode
         addChild(blockNode)
-        blockNode.position = .zero
     }
     
     func isNeighbour(to other: GridNode) -> Bool {

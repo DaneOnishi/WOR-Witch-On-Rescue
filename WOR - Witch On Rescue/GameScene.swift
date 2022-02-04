@@ -27,7 +27,6 @@ class GameScene: SKScene {
     
     
     private var movingNode: SKNode?
-    private var lastTouchPosition: CGPoint?
     
     private var playerSpeed: CGFloat = 304.23
     private var enemySpeed: CGFloat = 30 // Speed per second
@@ -93,7 +92,6 @@ class GameScene: SKScene {
         initialEnemySpeedAcceleration = enemySpeedAcceleration
         
         
-        
         grid = Grid(in: self, playerHeight: player.size.height, playerPosition: player.position)
         gridNodeSize = grid.gridNodeSize
         
@@ -121,7 +119,7 @@ class GameScene: SKScene {
     fileprivate func spawnZeroRow() {
         let position = playerFootPosition -  CGPoint(x: grid.gridNodeSize.width, y: grid.gridNodeSize.height)
         
-        let nodes = grid.generateGridRow(y: position.y)
+        let nodes = grid.generateGridRow(y: position.y, rowIndex: 0)
         
         for node in nodes {
             let blockNode = BlockNode(blockSize: grid.gridNodeSize, category: .target, blockType: .grass)
@@ -165,8 +163,6 @@ class GameScene: SKScene {
         return false
     }
     
-    
-    
     func touchMoved(toPoint pos : CGPoint) {
         if let movingNode = movingNode {
             if movingNode == pieceNode.container {
@@ -176,8 +172,6 @@ class GameScene: SKScene {
                 
                 grid.highlightGrid(basedOn: pieceNode, canPlace: canPlace)
             }
-            
-            lastTouchPosition = pos
         }
     }
     
@@ -251,8 +245,8 @@ class GameScene: SKScene {
             } else if canPlacePiece() {
                 placePiece()
                 generator.notificationOccurred(.success)
-            } else if let startingDragPosition = startingDragPosition {
-                pieceNode.container.position = startingDragPosition
+            } else {
+                pieceNode.container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
             }
             
             startingDragPosition = nil
@@ -286,7 +280,7 @@ class GameScene: SKScene {
             container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
             addChild(container)
             
-            pieceNode = PieceNode(piece: piece, container: container, startingZPosition: -5 + (Int(-createdPieces) * 4), blockSize: gridNodeSize)
+            pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 3, blockSize: gridNodeSize)
         }
     }
     
@@ -328,25 +322,9 @@ class GameScene: SKScene {
     }
     
     func updateCamera(playerPosition: CGPoint) {
-        if playerPosition.y + playerCameraOffSet >= maxCameraY {
-            self.cameraNode.position.y = playerPosition.y + playerCameraOffSet
-            maxCameraY = self.cameraNode.position.y
-        }
+        self.cameraNode.position.y = playerPosition.y + playerCameraOffSet
     }
-    
-    func movePlayer(lastTouchPosition: CGPoint) {
-        let direction = lastTouchPosition - player.position
-        let normalized = direction.normalized()
-        let newPosition = player.position + (normalized * playerSpeed / 60)
-        
-        if nodes(at: newPosition).contains(where: { node in node.name == "base" || node.name == "cat" || node.name == "potion"}) {
-            player.position = newPosition
-            updateCamera(playerPosition: newPosition)
-        }
-    }
-    
-    
-    
+
     
     func moveEnemy() {
         let direction = CGPoint(x: 0, y: 1)
@@ -390,13 +368,8 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        if let movingNode = movingNode {
-            if movingNode.name == "player",
-               let lastTouchPosition = lastTouchPosition {
-                movePlayer(lastTouchPosition: lastTouchPosition)
-            }
-        }
         
+        updateCamera(playerPosition: player.position)
         //        moveEnemy()
         checkEnemyHitPlayer()
         updateEnemySpeed()

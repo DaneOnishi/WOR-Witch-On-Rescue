@@ -102,33 +102,47 @@ class PieceNode {
         
         orderedBlockNodes.append(startBlockNode)
         
+        
+        
         func getFirstNeighbourNotOrdered(blockNode: BlockNode) -> BlockNode {
             let center = blockNode.position
             
             let possibleRightBlockPosition = center + CGPoint(x: blockSize.width, y: 0)
             if let rightBlock = container.nodes(at: possibleRightBlockPosition)
-                .first(where: { $0.position.y == blockNode.position.y && $0 != blockNode }) as? BlockNode,
+                .filter({ $0.position.y == blockNode.position.y && $0 != blockNode })
+                .min(by: { current, other in
+                    current.position.distance(to: blockNode.position) < other.position.distance(to: blockNode.position)
+                }) as? BlockNode,
                !orderedBlockNodes.contains(rightBlock) {
                 return rightBlock
             }
             
             let possibleLeftBlockPosition = center + CGPoint(x: -blockSize.width, y: 0)
             if let leftBlock = container.nodes(at: possibleLeftBlockPosition)
-                .first(where: { $0.position.y == blockNode.position.y && $0 != blockNode }) as? BlockNode,
+                .filter({ $0.position.y == blockNode.position.y && $0 != blockNode })
+                .min(by: { current, other in
+                    current.position.distance(to: blockNode.position) < other.position.distance(to: blockNode.position)
+                }) as? BlockNode,
                !orderedBlockNodes.contains(leftBlock) {
                 return leftBlock
             }
             
             let possibleFrontBlockPosition = center + CGPoint(x: 0, y: blockSize.height)
             if let frontBlock = container.nodes(at: possibleFrontBlockPosition)
-                .first(where: {  $0.position.x == blockNode.position.x && $0 != blockNode })  as? BlockNode,
+                .filter({ $0.position.x == blockNode.position.x && $0 != blockNode })
+                .min(by: { current, other in
+                    current.position.distance(to: blockNode.position) < other.position.distance(to: blockNode.position)
+                }) as? BlockNode,
                !orderedBlockNodes.contains(frontBlock) {
                 return frontBlock
             }
             
             let possibleBackBlockPosition = center + CGPoint(x: 0, y: -blockSize.height)
             return container.nodes(at: possibleBackBlockPosition)
-                .first(where: { $0.position.x == blockNode.position.x && $0 != blockNode })  as! BlockNode
+                .filter({ $0.position.x == blockNode.position.x && $0 != blockNode })
+                .min(by: { current, other in
+                    current.position.distance(to: blockNode.position) < other.position.distance(to: blockNode.position)
+                })  as! BlockNode
         }
         
         while orderedBlockNodes.count < blockNodes.count {
@@ -211,31 +225,37 @@ enum BlockType {
 
 enum BlockTexture: String {
     case block = "block"
+    case start = "start"
+    case target = "target"
     
     var blockHeight: CGFloat {
         switch self {
         case .block:
+            return 43
+        case .start:
+            return 43
+        case .target:
             return 43
         }
     }
     
     var bottomBlockHeight: CGFloat {
         switch self {
-        case .block:
+        case .block, .target, .start:
             return 23
         }
     }
     
     var blockWidth: CGFloat {
         switch self {
-        case .block:
+        case .block, .target, .start:
             return 86.2
         }
     }
     
     var blockBorder: CGFloat {
         switch self {
-        case .block:
+        case .block, .target, .start:
             return 2.8
         }
     }
