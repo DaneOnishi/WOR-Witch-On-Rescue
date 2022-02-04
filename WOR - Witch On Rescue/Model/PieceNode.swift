@@ -245,25 +245,25 @@ enum BlockTexture: String {
     var blockHeight: CGFloat {
         switch self {
         case .block:
-            return 43
+            return 97
         case .start:
-            return 43
+            return 97
         case .target:
-            return 43
+            return 97
         }
     }
     
     var bottomBlockHeight: CGFloat {
         switch self {
         case .block, .target, .start:
-            return 23
+            return 45
         }
     }
     
     var blockWidth: CGFloat {
         switch self {
         case .block, .target, .start:
-            return 86.2
+            return 144
         }
     }
     

@@ -120,7 +120,7 @@ class GridNode: SKSpriteNode {
     let contentZPosition: CGFloat
     var blockNode: BlockNode?
     var containsABlockNode: Bool {
-        return blockNode != nil 
+        return blockNode != nil
     }
     
     internal init(size: CGSize, position: CGPoint, zPosition: CGFloat, contentZPosition: CGFloat) {
@@ -141,9 +141,10 @@ class GridNode: SKSpriteNode {
     func setHighlighted(highlightMode: HighlightMode) {
         switch highlightMode {
         case .placeable:
-            color = .green
+            color = .green.withAlphaComponent(0.6)
         case .hovering:
-            color = .yellow
+            color = .purple.withAlphaComponent(0.4)
+                
         }
     }
     

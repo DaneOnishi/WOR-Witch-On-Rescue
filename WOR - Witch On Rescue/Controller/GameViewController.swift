@@ -28,8 +28,8 @@ class GameViewController: UIViewController {
                 view.presentScene(scene)
             }
             
-            pointsCounterLabel.text = "\(gameScene?.pointsCounter)"
-            catsCounter.text = "x\(gameScene?.catsRescued)"
+            
+            
             
             view.ignoresSiblingOrder = true
             

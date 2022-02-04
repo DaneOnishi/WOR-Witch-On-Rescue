@@ -16,55 +16,9 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="85l-ml-iGa">
-                                <rect key="frame" x="20" y="59" width="374" height="100"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="Ativo 6" translatesAutoresizingMaskIntoConstraints="NO" id="1to-dp-HEN">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="R6W-xS-kRX"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsF-7U-zMj">
-                                        <rect key="frame" x="138" y="32.5" width="22.5" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="22.5" id="BSY-WA-6lJ"/>
-                                            <constraint firstAttribute="height" constant="35" id="XtH-Kz-GIQ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="28"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGU-6f-2CS">
-                                        <rect key="frame" x="248.5" y="32.5" width="125.5" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="iuy-XQ-5rk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="28"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="N9b-dS-TxN"/>
-                                    <constraint firstItem="1to-dp-HEN" firstAttribute="top" secondItem="85l-ml-iGa" secondAttribute="topMargin" id="PVv-jy-Cjl"/>
-                                    <constraint firstAttribute="height" constant="100" id="lAH-1b-QhR"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="85l-ml-iGa" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="W9Q-fZ-k6z"/>
-                            <constraint firstItem="85l-ml-iGa" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailingMargin" id="WD4-9D-s7Q"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="85l-ml-iGa" secondAttribute="bottom" constant="703" id="rdD-ZY-YDO"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="catsCounter" destination="hsF-7U-zMj" id="sU1-kr-Cq7"/>
-                        <outlet property="pointsCounterLabel" destination="WGU-6f-2CS" id="bEw-5y-0hk"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,7 +139,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Ativo 6" width="174" height="161.5"/>
         <image name="Background_SelectLevel" width="428" height="926"/>
         <image name="Journey Label" width="307.5" height="94"/>
         <image name="LEVEL DOOR 1" width="112" height="112"/>

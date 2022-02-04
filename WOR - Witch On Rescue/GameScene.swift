@@ -19,6 +19,8 @@ class GameScene: SKScene {
     
     private var cat: SKSpriteNode!
     private var potion: SKSpriteNode!
+    private var catLabelImage: SKSpriteNode!
+    private var pointsLabelImage: SKSpriteNode!
     
     private var pieceNames: [String] = ["piece_1", "piece_2", "piece_3"]
     private var pieceSpawnPoint: CGPoint!
@@ -28,10 +30,10 @@ class GameScene: SKScene {
     
     private var movingNode: SKNode?
     
-    private var enemySpeed: CGFloat = 20 // Speed per second
-    private var enemySpeedAcceleration: CGFloat = 0.001 // Adds to the enemy spee every tick
-    private var enemySpeedAccelerationIncrease: CGFloat = 0.00002 // Adds to the enemy acceleration every tick
-    private var maxEnemySpeed: CGFloat = 40
+    private var enemySpeed: CGFloat = 25 // Speed per second
+    private var enemySpeedAcceleration: CGFloat = 0.009 // Adds to the enemy spee every tick
+    private var enemySpeedAccelerationIncrease: CGFloat = 0.0006 // Adds to the enemy acceleration every tick
+    private var maxEnemySpeed: CGFloat = 45
     
     private var maxCameraY: CGFloat = 0
     private var spawnPointCameraOffSet: CGFloat = 0
@@ -72,11 +74,23 @@ class GameScene: SKScene {
     private var grid: Grid!
     var gridNodeSize: CGSize!
     
+    var catsRescuedLabel: SKLabelNode!
+    var pointsCounterLabel: SKLabelNode!
+    
     override func didMove(to view: SKView) {
         player = childNode(withName: "player") as? SKSpriteNode
         let pieceSpawnPointNode = childNode(withName: "pieceSpawn")!
-        enemy = childNode(withName: "enemy") as? SKSpriteNode
+        enemy = childNode(withName: "fog") as? SKSpriteNode
+        catLabelImage = childNode(withName: "cat label image") as? SKSpriteNode
+        pointsLabelImage = childNode(withName: "points label image") as? SKSpriteNode
+        
         cameraNode = camera!
+        catsRescuedLabel = cameraNode.childNode(withName: "catsRescuedLabel") as? SKLabelNode
+        pointsCounterLabel = cameraNode.childNode(withName: "pointsCounterLabel") as? SKLabelNode
+        
+       
+        
+        
         
         pieceSpawnPoint = pieceSpawnPointNode.position
         spawnPointCameraOffSet = pieceSpawnPoint.y - cameraNode.position.y
@@ -310,8 +324,10 @@ class GameScene: SKScene {
     
     func spawnCat() {
         let newCat = SKSpriteNode(imageNamed: "cat")
-        newCat.position = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
-        newCat.setScale(0.4)
+        let targetCatPosition = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
+        let catGridNode = grid.getGridNode(for: targetCatPosition)
+        newCat.position = convert(catGridNode!.position, from: grid.gridContainer)
+        newCat.setScale(0.8)
         cat = newCat
         newCat.name = "cat"
         addChild(cat)
@@ -322,15 +338,20 @@ class GameScene: SKScene {
             catsRescued += 1
             pointsCounter += 60
             cat.removeFromParent()
-            print("pegou")
             spawnCat()
+            updateScore()
         }
+    }
+    
+    func updateScore() {
+        catsRescuedLabel.text = "\(catsRescued)"
+        pointsCounterLabel.text = "\(pointsCounter)"
     }
     
     func spawnPotion() {
         let newPotion = SKSpriteNode(imageNamed: "potion")
         newPotion.position = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
-        newPotion.setScale(0.4)
+        newPotion.setScale(0.8)
         potion = newPotion
         newPotion.name = "potion"
         addChild(potion)
@@ -340,7 +361,7 @@ class GameScene: SKScene {
         if player.intersects(potion) {
             potion.removeFromParent()
             // here i reduced the speed but idealy it will reduce the size of the enemy
-            enemySpeed -= enemySpeed / 2
+            enemySpeed = 20
         }
     }
     
@@ -405,6 +426,12 @@ class GameScene: SKScene {
         
     }
     
+    func enemyHitsCat() {
+        if enemy .intersects(cat) {
+            resetGame()
+        }
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -416,6 +443,7 @@ class GameScene: SKScene {
         
         rescueCat()
         pickPotion()
+        enemyHitsCat()
         
     }
 
@@ -423,16 +451,16 @@ class GameScene: SKScene {
     func animationSetup() {
         
         var textures = [SKTexture]()
-        
+
         textures.append(SKTexture(imageNamed: "2"))
         textures.append(SKTexture(imageNamed: "3"))
         textures.append(SKTexture(imageNamed: "2"))
         textures.append(SKTexture(imageNamed: "1"))
-        
+
         let frames = SKAction.animate(with: textures, timePerFrame: 0.1, resize: false, restore: false)
-        
+
         let animation = SKAction.repeatForever(frames)
-        
+
         player.run(animation)
     }
 }
