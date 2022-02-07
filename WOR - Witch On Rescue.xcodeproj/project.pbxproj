@@ -25,6 +25,7 @@
 		4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80927A3AD6200191C83 /* SpriteKit+.swift */; };
 		41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41815EF827B0A6CF00D5ACA5 /* Cat.swift */; };
 		41815EFD27B0A74E00D5ACA5 /* Potion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41815EFC27B0A74E00D5ACA5 /* Potion.swift */; };
+		41815EFF27B1D47D00D5ACA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */; };
 		41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4D27A72AE50092EF03 /* LevelViewController.swift */; };
 		41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4F27A72CDB0092EF03 /* Configurations.swift */; };
 		41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */; };
@@ -57,7 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1129B46A41762B4D47C1BB78 /* Pods_WOR___Witch_On_RescueTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WOR___Witch_On_RescueTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1129B46A41762B4D47C1BB78 /* Pods_WOR___Witch_On_RescueTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_WOR___Witch_On_RescueTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FC0DE769D33FCA2446620D /* Pods-WOR - Witch On RescueTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On RescueTests.debug.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On RescueTests/Pods-WOR - Witch On RescueTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4161D7CA27A371FA00191C83 /* WOR - Witch On Rescue .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WOR - Witch On Rescue .app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4161D7CD27A371FA00191C83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 		4161D80927A3AD6200191C83 /* SpriteKit+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpriteKit+.swift"; sourceTree = "<group>"; };
 		41815EF827B0A6CF00D5ACA5 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		41815EFC27B0A74E00D5ACA5 /* Potion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Potion.swift; sourceTree = "<group>"; };
+		41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41842E4D27A72AE50092EF03 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		41842E4F27A72CDB0092EF03 /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				41E6559027AAFDF800466D06 /* Controller */,
 				41E6559227AAFE7E00466D06 /* Collection */,
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
+				41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
 			);
 			path = "WOR - Witch On Rescue";
@@ -222,7 +225,6 @@
 				22FC0DE769D33FCA2446620D /* Pods-WOR - Witch On RescueTests.debug.xcconfig */,
 				87D21DDF3041D12AA9864C36 /* Pods-WOR - Witch On RescueTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -342,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4161D7D927A371FA00191C83 /* Main.storyboard in Resources */,
+				41815EFF27B1D47D00D5ACA5 /* GoogleService-Info.plist in Resources */,
 				41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */,
 				4161D7D027A371FA00191C83 /* GameScene.sks in Resources */,
 				4161D7DB27A371FD00191C83 /* Assets.xcassets in Resources */,

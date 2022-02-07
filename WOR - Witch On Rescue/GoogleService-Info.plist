@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>365611442649-1kvjtj0rls1gmr1rl8g4op1lntuvlm7l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.365611442649-1kvjtj0rls1gmr1rl8g4op1lntuvlm7l</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDiVBfdc0kdcCuBrbu3lFEaTz-lbIzuAoQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>365611442649</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>br.com.daneonishi.NanoBusiness</string>
+	<key>PROJECT_ID</key>
+	<string>wor---witch-on-rescue</string>
+	<key>STORAGE_BUCKET</key>
+	<string>wor---witch-on-rescue.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:365611442649:ios:ea386e70f5b76385bcb9c8</string>
+</dict>
+</plist>
