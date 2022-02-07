@@ -19,15 +19,11 @@ class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func TryAgainOnClick(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let firstVC = storyboard.instantiateViewController(identifier: "GameViewController") as? GameViewController else {
-                    return
-                }
+                guard let firstVC = storyboard.instantiateViewController(identifier: "GameViewController") as? GameViewController else { return }
                 firstVC.modalPresentationStyle = .fullScreen
                 self.present(firstVC, animated: true, completion: nil)
             }
@@ -38,15 +34,4 @@ class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
                     GameCenterVC.gameCenterDelegate = self
                     present(GameCenterVC, animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

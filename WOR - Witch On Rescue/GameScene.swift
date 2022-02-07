@@ -10,57 +10,48 @@ import GameplayKit
 import AVFoundation
 
 protocol GameSceneDelegate: AnyObject {
+
     func presenteGameOver()
 }
 
 class GameScene: SKScene {
     
     private var player : SKSpriteNode!
-    
     private var cameraNode: SKCameraNode!
-    
     private var enemy: SKSpriteNode!
-    
+    private var movingNode: SKNode?
+   
     private var cat: SKSpriteNode!
     private var potion: SKSpriteNode!
     private var catLabelImage: SKSpriteNode!
     private var pointsLabelImage: SKSpriteNode!
-    
-    private var pieceNames: [String] = ["piece_1", "piece_2", "piece_3"]
     private var pieceSpawnPoint: CGPoint!
     private var catSpawnPoint: CGPoint!
     
-    
-    
-    private var movingNode: SKNode?
-    
     private var enemySpeed: CGFloat = 30 // Speed per second
-    private var enemySpeedAcceleration: CGFloat = 0.009 // Adds to the enemy spee every tick
-    private var enemySpeedAccelerationIncrease: CGFloat = 0.0006 // Adds to the enemy acceleration every tick
-    private var maxEnemySpeed: CGFloat = 45
+    private var enemySpeedAcceleration: CGFloat = 0.005 // Adds to the enemy spee every tick
+    private var enemySpeedAccelerationIncrease: CGFloat = 0.00005 // Adds to the enemy acceleration every tick
+    private var maxEnemySpeed: CGFloat = 80
     
     private var maxCameraY: CGFloat = 0
     private var spawnPointCameraOffSet: CGFloat = 0
     private var playerCameraOffSet: CGFloat = 0
-    
     var createdPieces: CGFloat = 2
+    
     var catsRescued = 0
     var pointsCounter: Int = 0
     
     private var initialPlayerPosition: CGPoint!
     private var initialCameraPosition: CGPoint!
     private var initialEnemyPosition: CGPoint!
+    var originalPlayerFootPosition: CGPoint!
     
     private var initialEnemySpeed: CGFloat!
     private var initialEnemySpeedAcceleration: CGFloat!
-    private var pieceNode: PieceNode!
     
+    private var pieceNode: PieceNode!
     private var gameCenterManager: GameCenterManager!
     
-    
-    var originalPlayerFootPosition: CGPoint!
-    
-    // TODO: Move to player later...
     var playerFootPosition: CGPoint {
         player.position - CGPoint(x: 0, y: player.size.height/2)
     }
@@ -71,20 +62,20 @@ class GameScene: SKScene {
     var nextPlayerMovements: [CGPoint] = []
     var isPlayerWalking = false
     let blocksPerSecond: Double = 3
-    // ===
     
     weak var gameSceneDelegate: GameSceneDelegate?
-    
-    let generator = UINotificationFeedbackGenerator()
-    
-    
     var lastTargetGridNode: GridNode!
-    
     private var grid: Grid!
+    
     var gridNodeSize: CGSize!
     
     var catsRescuedLabel: SKLabelNode!
     var pointsCounterLabel: SKLabelNode!
+    
+    let generator = UINotificationFeedbackGenerator()
+    
+    var endedGame = false
+    var placedFirstPiece = false
     
     override func didMove(to view: SKView) {
         player = childNode(withName: "player") as? SKSpriteNode
@@ -117,20 +108,19 @@ class GameScene: SKScene {
         grid.generateInitialGrid(playerFootPosition: playerFootPosition)
         gridNodeSize = grid.gridNodeSize
         
-        spawnRandomPiece()
+        spawnPiece(piece: PieceFactory.shared.build(type: .line)!)
         spawnZeroRow()
-        
         animationSetup()
         spawnCat()
         spawnPotion()
+        spawnBase()
         
         // Only do ONCE and at the end
         let newPlayerScale = (grid.gridNodeSize.height / player.size.height) * 1.2
         player.setScale(newPlayerScale)
-        
-        spawnBase()
     }
     
+    // gerar uma posicao ver se a possao intersects el gato e caso si gerar nova posicion 
     
     fileprivate func spawnBase() {
         let gridContainer = grid.gridContainer
@@ -154,7 +144,6 @@ class GameScene: SKScene {
             
             node.addBlockNode(blockNode: blockNode)
         }
-        
     }
     
     private var startingDragPosition: CGPoint?
@@ -187,20 +176,7 @@ class GameScene: SKScene {
            startGridNode.isNeighbour(to: lastTargetGridNode) {
             return true
         }
-        
         return false
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let movingNode = movingNode {
-            if movingNode == pieceNode.container {
-                pieceNode.container.position = pos
-                
-                let canPlace = canPlacePiece()
-                
-                grid.highlightGrid(basedOn: pieceNode, canPlace: canPlace)
-            }
-        }
     }
     
     func createNextMoveAction() -> SKAction? {
@@ -282,8 +258,22 @@ class GameScene: SKScene {
                 gridNode.addBlockNode(blockNode: blockNode)
             }
         }
+        placedFirstPiece = true
         spawnRandomPiece()
     }
+  
+    func touchMoved(toPoint pos : CGPoint) {
+        if let movingNode = movingNode {
+            if movingNode == pieceNode.container {
+                pieceNode.container.position = pos
+                
+                let canPlace = canPlacePiece()
+                
+                grid.highlightGrid(basedOn: pieceNode, canPlace: canPlace)
+            }
+        }
+    }
+    
     
     func touchUp(atPoint pos : CGPoint) {
         if movingNode == pieceNode.container {
@@ -307,7 +297,6 @@ class GameScene: SKScene {
         }
     }
     
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
@@ -325,15 +314,18 @@ class GameScene: SKScene {
     }
     
     fileprivate func spawnRandomPiece() {
+        if let piece = PieceFactory.shared.buildRandomPiece() {
+            spawnPiece(piece: piece)
+        }
+    }
+    
+    func spawnPiece(piece: Piece) {
         createdPieces += 1
         
-        if let piece = PieceFactory.shared.buildRandomPiece() {
-            let container = SKNode()
-            container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
-            addChild(container)
-            
-            pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 3, blockSize: gridNodeSize)
-        }
+        let container = SKNode()
+        container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
+        addChild(container)
+        pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 3, blockSize: gridNodeSize)
     }
     
     
@@ -346,6 +338,18 @@ class GameScene: SKScene {
         cat = newCat
         newCat.name = "cat"
         addChild(cat)
+    }
+    
+    
+    func spawnPotion() {
+        let newPotion = SKSpriteNode(imageNamed: "potion")
+        let targetPotionPosition = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
+        let potionGridNode = grid.getGridNode(for: targetPotionPosition)
+        newPotion.position = convert(potionGridNode!.position, from: grid.gridContainer)
+        newPotion.setScale(0.6)
+        potion = newPotion
+        newPotion.name = "potion"
+        addChild(potion)
     }
     
     func rescueCat() {
@@ -362,22 +366,14 @@ class GameScene: SKScene {
         catsRescuedLabel.text = "\(catsRescued)"
         pointsCounterLabel.text = "\(pointsCounter)"
     }
-    
-    func spawnPotion() {
-        let newPotion = SKSpriteNode(imageNamed: "potion")
-        let targetPotionPosition = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
-        let potionGridNode = grid.getGridNode(for: targetPotionPosition)
-        newPotion.setScale(0.6)
-        potion = newPotion
-        newPotion.name = "potion"
-        addChild(potion)
-    }
+   
     
     func pickPotion() {
         if player.intersects(potion) {
             potion.removeFromParent()
             // here i reduced the speed but idealy it will reduce the size of the enemy
             enemySpeed = 20
+            spawnPotion()
         }
     }
     
@@ -392,6 +388,8 @@ class GameScene: SKScene {
         let newPosition = enemy.position + (normalized * enemySpeed / 60)
         
         enemy.position = newPosition
+        
+        print("\(round(enemySpeed))")
     }
     
     func updateEnemySpeed() {
@@ -403,78 +401,79 @@ class GameScene: SKScene {
     
     func checkEnemyHitPlayer() {
         if enemy.intersects(player) {
-            gameOverScreen()
+            endGame()
         }
     }
     
-    func resetGame() {
-        maxCameraY = initialCameraPosition.y
-        
-        player.position = initialPlayerPosition
-        camera!.position = initialCameraPosition
-        
-        print("Resetting...")
-        
-        enemy.position = initialEnemyPosition
-        enemySpeed = initialEnemySpeed
-        enemySpeedAcceleration = initialEnemySpeedAcceleration
-        
-        cat.removeFromParent()
-        cat = nil
-        spawnCat()
-        
+//    func resetGame() {
+//        maxCameraY = initialCameraPosition.y
+//
+//        player.position = initialPlayerPosition
+//        camera!.position = initialCameraPosition
+//
+//        print("Resetting...")
+//
+//        enemy.position = initialEnemyPosition
+//        enemySpeed = initialEnemySpeed
+//        enemySpeedAcceleration = initialEnemySpeedAcceleration
+//
+//        cat.removeFromParent()
+//        cat = nil
+//        spawnCat()
+//
+//        GameCenterManager.shared.updateScore(with: pointsCounter)
+//
+//        // Limpar grid
+//        // Repositionar spawned piece
+//
+//        grid.gridContainer.removeFromParent()
+//
+//        grid = Grid(in: self)
+//        grid.generateInitialGrid(playerFootPosition: originalPlayerFootPosition)
+//        gridNodeSize = grid.gridNodeSize
+//
+//        pieceNode.container.removeFromParent()
+//        pieceNode = nil
+//        spawnRandomPiece()
+//        spawnBase()
+//        spawnZeroRow()
+//    }
+    
+    func endGame() {
         GameCenterManager.shared.updateScore(with: pointsCounter)
-        
-        // Limpar grid
-        // Repositionar spawned piece
-        
-        grid.gridContainer.removeFromParent()
-        
-        grid = Grid(in: self)
-        grid.generateInitialGrid(playerFootPosition: originalPlayerFootPosition)
-        gridNodeSize = grid.gridNodeSize
-        
-        pieceNode.container.removeFromParent()
-        pieceNode = nil
-        
-        spawnRandomPiece()
-        spawnBase()
-        spawnZeroRow()
-        
+        gameOverScreen()
+        endedGame = true
     }
     
     func enemyHitsCat() {
         if enemy .intersects(cat) {
-            gameOverScreen()
+            endGame()
+        }
+    }
+  
+    func gameOverScreen() {
+        gameSceneDelegate?.presenteGameOver()
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if endedGame {
+            return
+        }
+        // Called before each frame is rendered
+        updateCamera(playerPosition: player.position)
+        rescueCat()
+        pickPotion()
+        
+        if placedFirstPiece {
+            moveEnemy()
+            updateEnemySpeed()
+            checkEnemyHitPlayer()
+            enemyHitsCat()
+
         }
     }
     
-    func gameOverScreen() {
-        gameSceneDelegate?.presenteGameOver()
-        
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
-        updateCamera(playerPosition: player.position)
-        moveEnemy()
-        updateEnemySpeed()
-        
-        checkEnemyHitPlayer()
-        
-        rescueCat()
-        pickPotion()
-        enemyHitsCat()
-        
-    }
-    
-    
-
-    
     func animationSetup() {
-        
         var textures = [SKTexture]()
         
         textures.append(SKTexture(imageNamed: "2"))
@@ -483,9 +482,7 @@ class GameScene: SKScene {
         textures.append(SKTexture(imageNamed: "1"))
         
         let frames = SKAction.animate(with: textures, timePerFrame: 0.1, resize: false, restore: false)
-        
         let animation = SKAction.repeatForever(frames)
-        
         player.run(animation)
     }
 }

@@ -69,4 +69,8 @@ enum PieceType: CaseIterable {
     case line
     case l
     case mirrorL
+    case hook
+    case halfLine
+    case z
+    case c
 }
