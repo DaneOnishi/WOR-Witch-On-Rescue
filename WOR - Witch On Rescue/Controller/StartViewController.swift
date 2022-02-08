@@ -13,6 +13,7 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        GameCenterManager.shared.authenticateLocalPlayer(currentVC: self)
     }
     
     @IBAction func startButtonOnPress(_ sender: Any) {

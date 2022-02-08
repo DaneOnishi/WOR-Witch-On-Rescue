@@ -52,6 +52,5 @@ class GameCenterManager {
               GKLeaderboard.submitScore(value, context:0, player: GKLocalPlayer.local, leaderboardIDs: [self.gcDefaultLeaderBoard], completionHandler: {error in})
           }
       }
-    
 }
 

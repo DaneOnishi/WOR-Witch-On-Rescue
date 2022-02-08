@@ -9,28 +9,30 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
+// think -- camera follows cat when he dies
+// thonk -- fog delay after starting
+
 protocol GameSceneDelegate: AnyObject {
 
     func presenteGameOver()
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var player : SKSpriteNode!
     private var cameraNode: SKCameraNode!
     private var enemy: SKSpriteNode!
     private var movingNode: SKNode?
-   
-    private var cat: SKSpriteNode!
     private var potion: SKSpriteNode!
     private var catLabelImage: SKSpriteNode!
     private var pointsLabelImage: SKSpriteNode!
     private var pieceSpawnPoint: CGPoint!
     private var catSpawnPoint: CGPoint!
     
-    private var enemySpeed: CGFloat = 30 // Speed per second
-    private var enemySpeedAcceleration: CGFloat = 0.005 // Adds to the enemy spee every tick
-    private var enemySpeedAccelerationIncrease: CGFloat = 0.00005 // Adds to the enemy acceleration every tick
+    // think -- delay fog after starting
+    private var enemySpeed: CGFloat = 28 // Speed per second
+    private var enemySpeedAcceleration: CGFloat = 0.007 // Adds to the enemy spee every tick
+    private var enemySpeedAccelerationIncrease: CGFloat = 0.0005 // Adds to the enemy acceleration every tick
     private var maxEnemySpeed: CGFloat = 80
     
     private var maxCameraY: CGFloat = 0
@@ -38,8 +40,8 @@ class GameScene: SKScene {
     private var playerCameraOffSet: CGFloat = 0
     var createdPieces: CGFloat = 2
     
-    var catsRescued = 0
-    var pointsCounter: Int = 0
+    var catsRescued = SharedData.shared.catsRescued
+    var pointsCounter = SharedData.shared.pointsCounter
     
     private var initialPlayerPosition: CGPoint!
     private var initialCameraPosition: CGPoint!
@@ -77,6 +79,8 @@ class GameScene: SKScene {
     var endedGame = false
     var placedFirstPiece = false
     
+    var topY: CGPoint!
+    
     override func didMove(to view: SKView) {
         player = childNode(withName: "player") as? SKSpriteNode
         let pieceSpawnPointNode = childNode(withName: "pieceSpawn")!
@@ -111,10 +115,16 @@ class GameScene: SKScene {
         spawnPiece(piece: PieceFactory.shared.build(type: .line)!)
         spawnZeroRow()
         animationSetup()
-        spawnCat()
         spawnPotion()
         spawnBase()
         
+        physicsWorld.contactDelegate = self
+        
+        topY = camera?.position
+        
+        for _ in 0...10 {
+            spawnCat()
+        }
         // Only do ONCE and at the end
         let newPlayerScale = (grid.gridNodeSize.height / player.size.height) * 1.2
         player.setScale(newPlayerScale)
@@ -261,6 +271,29 @@ class GameScene: SKScene {
         placedFirstPiece = true
         spawnRandomPiece()
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.node?.name == "player" {
+            playerContact(object: contact.bodyB.node)
+        } else if contact.bodyB.node?.name == "player" {
+            playerContact(object: contact.bodyA.node)
+        } else if contact.bodyA.node?.name == "fog" {
+            endGame()
+        } else if contact.bodyB.node?.name == "fog" {
+            endGame()
+        }
+    }
+    
+    func playerContact(object: SKNode?) {
+        if object == nil {
+            return
+        }
+        if object!.name == "cat" {
+            rescueCat(node: object!)
+        } else if object!.name == "fog" {
+            endGame()
+        }
+    }
   
     func touchMoved(toPoint pos : CGPoint) {
         if let movingNode = movingNode {
@@ -328,16 +361,24 @@ class GameScene: SKScene {
         pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 3, blockSize: gridNodeSize)
     }
     
-    
+    // ao inves de usar a posicao dacamera, aumenta top y, atualiza top y
     func spawnCat() {
         let newCat = SKSpriteNode(imageNamed: "cat")
-        let targetCatPosition = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
+        let body = SKPhysicsBody(circleOfRadius: 30)
+        body.categoryBitMask = 2
+        body.collisionBitMask = 0
+        body.contactTestBitMask = 1
+        body.affectedByGravity = false
+        body.allowsRotation = false
+        body.isDynamic = true
+        newCat.physicsBody = body
+        let targetCatPosition = topY + CGPoint.randomPoint(totalLength: 100)
+        topY = topY + CGPoint(x: 0, y: 250)
         let catGridNode = grid.getGridNode(for: targetCatPosition)
         newCat.position = convert(catGridNode!.position, from: grid.gridContainer)
         newCat.setScale(0.6)
-        cat = newCat
         newCat.name = "cat"
-        addChild(cat)
+        addChild(newCat)
     }
     
     
@@ -352,14 +393,12 @@ class GameScene: SKScene {
         addChild(potion)
     }
     
-    func rescueCat() {
-        if player.intersects(cat) {
+    func rescueCat(node: SKNode) {
             catsRescued += 1
             pointsCounter += 60
-            cat.removeFromParent()
+            node.removeFromParent()
             spawnCat()
             updateScore()
-        }
     }
     
     func updateScore() {
@@ -446,9 +485,9 @@ class GameScene: SKScene {
     }
     
     func enemyHitsCat() {
-        if enemy .intersects(cat) {
-            endGame()
-        }
+//        if enemy .intersects(cat) {
+//            endGame()
+//        }
     }
   
     func gameOverScreen() {
@@ -461,13 +500,12 @@ class GameScene: SKScene {
         }
         // Called before each frame is rendered
         updateCamera(playerPosition: player.position)
-        rescueCat()
+        // rescueCat()
         pickPotion()
         
         if placedFirstPiece {
             moveEnemy()
             updateEnemySpeed()
-            checkEnemyHitPlayer()
             enemyHitsCat()
 
         }

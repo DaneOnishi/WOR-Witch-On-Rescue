@@ -16,9 +16,17 @@ class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
     @IBOutlet weak var TryAgainButton: UIButton!
     @IBOutlet weak var ContinueButton: UIButton!
     @IBOutlet weak var RankingButton: UIButton!
+    @IBOutlet weak var catsRescuedLabel: UILabel!
+    @IBOutlet weak var ponctuationLabel: UILabel!
+    @IBOutlet weak var recordLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        catsRescuedLabel.text = "\(SharedData.shared.catsRescued)"
+        ponctuationLabel.text = "\(SharedData.shared.pointsCounter)"
+        
+       
     }
 
     @IBAction func TryAgainOnClick(_ sender: Any) {

@@ -143,7 +143,6 @@ class GridNode: SKSpriteNode {
             color = .green.withAlphaComponent(0.6)
         case .hovering:
             color = .purple.withAlphaComponent(0.4)
-                
         }
     }
     
@@ -185,9 +184,7 @@ class GridNode: SKSpriteNode {
             blockNode.run(sequence) {
                 blockNode.removeFromParent()
             }
-            
         }
-        
         self.blockNode = nil
     }
     

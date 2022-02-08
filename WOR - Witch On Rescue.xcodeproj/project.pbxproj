@@ -24,6 +24,8 @@
 		4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80927A3AD6200191C83 /* SpriteKit+.swift */; };
 		416ABA4527B20FB400CA9A83 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */; };
 		416ABA4727B2127800CA9A83 /* SampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4627B2127800CA9A83 /* SampleClass.swift */; };
+		416ABA4B27B2BB4700CA9A83 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416ABA4A27B2BB4700CA9A83 /* GameKit.framework */; };
+		416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4C27B2C20500CA9A83 /* SharedData.swift */; };
 		41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41815EF827B0A6CF00D5ACA5 /* Cat.swift */; };
 		41815EFD27B0A74E00D5ACA5 /* Potion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41815EFC27B0A74E00D5ACA5 /* Potion.swift */; };
 		41815EFF27B1D47D00D5ACA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */; };
@@ -94,6 +96,9 @@
 		416ABA4227B1FEEA00CA9A83 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = Pods/GoogleUserMessagingPlatform/Frameworks/Release/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
 		416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		416ABA4627B2127800CA9A83 /* SampleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleClass.swift; sourceTree = "<group>"; };
+		416ABA4927B2B7BC00CA9A83 /* WOR---Witch-On-Rescue-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "WOR---Witch-On-Rescue-Info.plist"; sourceTree = SOURCE_ROOT; };
+		416ABA4A27B2BB4700CA9A83 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		416ABA4C27B2C20500CA9A83 /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		41815EF827B0A6CF00D5ACA5 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		41815EFC27B0A74E00D5ACA5 /* Potion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Potion.swift; sourceTree = "<group>"; };
 		41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C791BB91B66190B37DBADB0C /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */,
+				416ABA4B27B2BB4700CA9A83 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +149,6 @@
 		4161D7C127A371F900191C83 = {
 			isa = PBXGroup;
 			children = (
-				416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */,
 				4161D7CC27A371FA00191C83 /* WOR - Witch On Rescue */,
 				4161D7E627A371FD00191C83 /* NanoBusinessMechanicsTests */,
 				4161D7F027A371FE00191C83 /* NanoBusinessMechanicsUITests */,
@@ -166,6 +171,7 @@
 		4161D7CC27A371FA00191C83 /* WOR - Witch On Rescue */ = {
 			isa = PBXGroup;
 			children = (
+				416ABA4927B2B7BC00CA9A83 /* WOR---Witch-On-Rescue-Info.plist */,
 				4161D7CD27A371FA00191C83 /* AppDelegate.swift */,
 				4161D7CF27A371FA00191C83 /* GameScene.sks */,
 				4161D7D127A371FA00191C83 /* Actions.sks */,
@@ -179,8 +185,8 @@
 				41E6559127AAFE2E00466D06 /* Model */,
 				41E6559027AAFDF800466D06 /* Controller */,
 				41E6559227AAFE7E00466D06 /* Collection */,
+				416ABA4E27B2C74700CA9A83 /* Metrics */,
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
-				41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
 				416ABA4627B2127800CA9A83 /* SampleClass.swift */,
 			);
@@ -202,6 +208,14 @@
 				4161D7F327A371FE00191C83 /* NanoBusinessMechanicsUITestsLaunchTests.swift */,
 			);
 			path = NanoBusinessMechanicsUITests;
+			sourceTree = "<group>";
+		};
+		416ABA4E27B2C74700CA9A83 /* Metrics */ = {
+			isa = PBXGroup;
+			children = (
+				41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */,
+			);
+			path = Metrics;
 			sourceTree = "<group>";
 		};
 		41E6559027AAFDF800466D06 /* Controller */ = {
@@ -227,6 +241,7 @@
 				4161D80327A3759200191C83 /* Piece.swift */,
 				41815EF827B0A6CF00D5ACA5 /* Cat.swift */,
 				41815EFC27B0A74E00D5ACA5 /* Potion.swift */,
+				416ABA4C27B2C20500CA9A83 /* SharedData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,6 +249,7 @@
 		41E6559227AAFE7E00466D06 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */,
 				41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */,
 			);
 			path = Collection;
@@ -251,6 +267,7 @@
 		D2E5EC103972E7BC3103319E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				416ABA4A27B2BB4700CA9A83 /* GameKit.framework */,
 				416ABA2827B1FEEA00CA9A83 /* FirebaseAnalytics.xcframework */,
 				416ABA2A27B1FEEA00CA9A83 /* FirebaseCore.framework */,
 				416ABA2C27B1FEEA00CA9A83 /* FirebaseCoreDiagnostics.framework */,
@@ -489,6 +506,7 @@
 				4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */,
 				416ABA4727B2127800CA9A83 /* SampleClass.swift in Sources */,
 				4161D80827A3A64F00191C83 /* Base.swift in Sources */,
+				416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */,
 				41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */,
 				41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */,
 				4161D7CE27A371FA00191C83 /* AppDelegate.swift in Sources */,
@@ -671,16 +689,21 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = WOR;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -692,7 +715,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "WOR - Witch On Rescue/Controller/WOR - Witch On Rescue-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -704,15 +727,20 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = WOR;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -723,7 +751,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WOR - Witch On Rescue/Controller/WOR - Witch On Rescue-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
