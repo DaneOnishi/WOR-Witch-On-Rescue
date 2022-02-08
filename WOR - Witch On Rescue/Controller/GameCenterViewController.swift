@@ -14,9 +14,9 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
     }
     
     @IBAction func leaderboardOnClick(_ sender: Any) {
-        let GameCenterVC = GKGameCenterViewController(leaderboardID: GameCenterManager.shared.gcDefaultLeaderBoard, playerScope: .global, timeScope: .allTime)
-            GameCenterVC.gameCenterDelegate = self
-            present(GameCenterVC, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "GameViewCodcntroller") as! GameViewController
+        self.present(vc, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

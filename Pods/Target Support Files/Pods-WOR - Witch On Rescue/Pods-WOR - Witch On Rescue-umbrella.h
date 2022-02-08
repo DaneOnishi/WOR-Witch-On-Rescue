@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_WOR___Witch_On_RescueTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_WOR___Witch_On_RescueTestsVersionString[];
+FOUNDATION_EXPORT double Pods_WOR___Witch_On_RescueVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_WOR___Witch_On_RescueVersionString[];
 

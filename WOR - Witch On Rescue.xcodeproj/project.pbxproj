@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		126A956458DDB5D8D9583570 /* Pods_WOR___Witch_On_RescueTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1129B46A41762B4D47C1BB78 /* Pods_WOR___Witch_On_RescueTests.framework */; };
 		4161D7CE27A371FA00191C83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D7CD27A371FA00191C83 /* AppDelegate.swift */; };
 		4161D7D027A371FA00191C83 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4161D7CF27A371FA00191C83 /* GameScene.sks */; };
 		4161D7D227A371FA00191C83 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4161D7D127A371FA00191C83 /* Actions.sks */; };
@@ -23,6 +22,8 @@
 		4161D80427A3759200191C83 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80327A3759200191C83 /* Piece.swift */; };
 		4161D80827A3A64F00191C83 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80727A3A64E00191C83 /* Base.swift */; };
 		4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80927A3AD6200191C83 /* SpriteKit+.swift */; };
+		416ABA4527B20FB400CA9A83 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */; };
+		416ABA4727B2127800CA9A83 /* SampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4627B2127800CA9A83 /* SampleClass.swift */; };
 		41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41815EF827B0A6CF00D5ACA5 /* Cat.swift */; };
 		41815EFD27B0A74E00D5ACA5 /* Potion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41815EFC27B0A74E00D5ACA5 /* Potion.swift */; };
 		41815EFF27B1D47D00D5ACA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */; };
@@ -36,6 +37,7 @@
 		41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559327AB51FD00466D06 /* GameCenterManager.swift */; };
 		41E6559627AB7A5E00466D06 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559527AB7A5E00466D06 /* Grid.swift */; };
 		41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559727AC4FD700466D06 /* GameCenterViewController.swift */; };
+		C791BB91B66190B37DBADB0C /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */; };
 		E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F727AD99EF00943F0E /* StartViewController.swift */; };
 		E8AE49FA27AD99FF00943F0E /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */; };
 /* End PBXBuildFile section */
@@ -58,8 +60,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1129B46A41762B4D47C1BB78 /* Pods_WOR___Witch_On_RescueTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_WOR___Witch_On_RescueTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		22FC0DE769D33FCA2446620D /* Pods-WOR - Witch On RescueTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On RescueTests.debug.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On RescueTests/Pods-WOR - Witch On RescueTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4161D7CA27A371FA00191C83 /* WOR - Witch On Rescue .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WOR - Witch On Rescue .app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4161D7CD27A371FA00191C83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4161D7CF27A371FA00191C83 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -78,6 +78,22 @@
 		4161D80327A3759200191C83 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		4161D80727A3A64E00191C83 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		4161D80927A3AD6200191C83 /* SpriteKit+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpriteKit+.swift"; sourceTree = "<group>"; };
+		416ABA2827B1FEEA00CA9A83 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
+		416ABA2A27B1FEEA00CA9A83 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA2C27B1FEEA00CA9A83 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA2E27B1FEEA00CA9A83 /* FirebaseCrashlytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCrashlytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA3027B1FEEA00CA9A83 /* FirebaseInstallations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseInstallations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA3227B1FEEA00CA9A83 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = Pods/GoogleAppMeasurement/Frameworks/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
+		416ABA3427B1FEEA00CA9A83 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = Pods/GoogleAppMeasurement/Frameworks/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
+		416ABA3627B1FEEA00CA9A83 /* GoogleDataTransport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleDataTransport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA3827B1FEEA00CA9A83 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = "Pods/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current/GoogleMobileAds.xcframework"; sourceTree = "<group>"; };
+		416ABA3A27B1FEEA00CA9A83 /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA3C27B1FEEA00CA9A83 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA3E27B1FEEA00CA9A83 /* Pods_WOR___Witch_On_RescueTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = "Pods_WOR___Witch_On_RescueTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA4027B1FEEA00CA9A83 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		416ABA4227B1FEEA00CA9A83 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = Pods/GoogleUserMessagingPlatform/Frameworks/Release/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
+		416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		416ABA4627B2127800CA9A83 /* SampleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleClass.swift; sourceTree = "<group>"; };
 		41815EF827B0A6CF00D5ACA5 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		41815EFC27B0A74E00D5ACA5 /* Potion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Potion.swift; sourceTree = "<group>"; };
 		41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -91,9 +107,11 @@
 		41E6559327AB51FD00466D06 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		41E6559527AB7A5E00466D06 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		41E6559727AC4FD700466D06 /* GameCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
-		87D21DDF3041D12AA9864C36 /* Pods-WOR - Witch On RescueTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On RescueTests.release.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On RescueTests/Pods-WOR - Witch On RescueTests.release.xcconfig"; sourceTree = "<group>"; };
+		48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_WOR___Witch_On_Rescue.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.release.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.release.xcconfig"; sourceTree = "<group>"; };
 		E8AE49F727AD99EF00943F0E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		EDBB22CC8C4DE4017385F819 /* Pods-WOR - Witch On Rescue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.debug.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C791BB91B66190B37DBADB0C /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				126A956458DDB5D8D9583570 /* Pods_WOR___Witch_On_RescueTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,12 +143,13 @@
 		4161D7C127A371F900191C83 = {
 			isa = PBXGroup;
 			children = (
+				416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */,
 				4161D7CC27A371FA00191C83 /* WOR - Witch On Rescue */,
 				4161D7E627A371FD00191C83 /* NanoBusinessMechanicsTests */,
 				4161D7F027A371FE00191C83 /* NanoBusinessMechanicsUITests */,
 				4161D7CB27A371FA00191C83 /* Products */,
 				535F9FC2328D8004D40A4D7D /* Pods */,
-				580F5E247252AF9F35441986 /* Frameworks */,
+				D2E5EC103972E7BC3103319E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +182,7 @@
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
 				41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
+				416ABA4627B2127800CA9A83 /* SampleClass.swift */,
 			);
 			path = "WOR - Witch On Rescue";
 			sourceTree = "<group>";
@@ -222,16 +242,30 @@
 		535F9FC2328D8004D40A4D7D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				22FC0DE769D33FCA2446620D /* Pods-WOR - Witch On RescueTests.debug.xcconfig */,
-				87D21DDF3041D12AA9864C36 /* Pods-WOR - Witch On RescueTests.release.xcconfig */,
+				EDBB22CC8C4DE4017385F819 /* Pods-WOR - Witch On Rescue.debug.xcconfig */,
+				894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		580F5E247252AF9F35441986 /* Frameworks */ = {
+		D2E5EC103972E7BC3103319E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1129B46A41762B4D47C1BB78 /* Pods_WOR___Witch_On_RescueTests.framework */,
+				416ABA2827B1FEEA00CA9A83 /* FirebaseAnalytics.xcframework */,
+				416ABA2A27B1FEEA00CA9A83 /* FirebaseCore.framework */,
+				416ABA2C27B1FEEA00CA9A83 /* FirebaseCoreDiagnostics.framework */,
+				416ABA2E27B1FEEA00CA9A83 /* FirebaseCrashlytics.framework */,
+				416ABA3027B1FEEA00CA9A83 /* FirebaseInstallations.framework */,
+				416ABA3227B1FEEA00CA9A83 /* GoogleAppMeasurement.xcframework */,
+				416ABA3427B1FEEA00CA9A83 /* GoogleAppMeasurementIdentitySupport.xcframework */,
+				416ABA3627B1FEEA00CA9A83 /* GoogleDataTransport.framework */,
+				416ABA3827B1FEEA00CA9A83 /* GoogleMobileAds.xcframework */,
+				416ABA3A27B1FEEA00CA9A83 /* GoogleUtilities.framework */,
+				416ABA3C27B1FEEA00CA9A83 /* nanopb.framework */,
+				416ABA3E27B1FEEA00CA9A83 /* Pods_WOR___Witch_On_RescueTests.framework */,
+				416ABA4027B1FEEA00CA9A83 /* FBLPromises.framework */,
+				416ABA4227B1FEEA00CA9A83 /* UserMessagingPlatform.xcframework */,
+				48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -243,9 +277,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4161D7F727A371FE00191C83 /* Build configuration list for PBXNativeTarget "WOR - Witch On Rescue" */;
 			buildPhases = (
+				584729F8D1059BC90A3C4B95 /* [CP] Check Pods Manifest.lock */,
 				4161D7C627A371F900191C83 /* Sources */,
 				4161D7C727A371F900191C83 /* Frameworks */,
 				4161D7C827A371F900191C83 /* Resources */,
+				868BA57254DA1EB06121C98D /* [CP] Embed Pods Frameworks */,
+				416ABA4827B2168100CA9A83 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -260,11 +297,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4161D7FA27A371FE00191C83 /* Build configuration list for PBXNativeTarget "WOR - Witch On RescueTests" */;
 			buildPhases = (
-				05A7A7919D23A8D9DF331043 /* [CP] Check Pods Manifest.lock */,
 				4161D7DF27A371FD00191C83 /* Sources */,
 				4161D7E027A371FD00191C83 /* Frameworks */,
 				4161D7E127A371FD00191C83 /* Resources */,
-				869D5A814C4838BA51B51D8E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -371,7 +406,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05A7A7919D23A8D9DF331043 /* [CP] Check Pods Manifest.lock */ = {
+		416ABA4827B2168100CA9A83 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		584729F8D1059BC90A3C4B95 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -386,28 +440,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WOR - Witch On RescueTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WOR - Witch On Rescue-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		869D5A814C4838BA51B51D8E /* [CP] Embed Pods Frameworks */ = {
+		868BA57254DA1EB06121C98D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On RescueTests/Pods-WOR - Witch On RescueTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On RescueTests/Pods-WOR - Witch On RescueTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On RescueTests/Pods-WOR - Witch On RescueTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -429,9 +483,11 @@
 				4161D80427A3759200191C83 /* Piece.swift in Sources */,
 				41E6559627AB7A5E00466D06 /* Grid.swift in Sources */,
 				E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */,
+				416ABA4527B20FB400CA9A83 /* AnalyticsManager.swift in Sources */,
 				4161D7D627A371FA00191C83 /* GameViewController.swift in Sources */,
 				41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */,
 				4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */,
+				416ABA4727B2127800CA9A83 /* SampleClass.swift in Sources */,
 				4161D80827A3A64F00191C83 /* Base.swift in Sources */,
 				41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */,
 				41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */,
@@ -609,12 +665,14 @@
 		};
 		4161D7F827A371FE00191C83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDBB22CC8C4DE4017385F819 /* Pods-WOR - Witch On Rescue.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -640,6 +698,7 @@
 		};
 		4161D7F927A371FE00191C83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -670,7 +729,6 @@
 		};
 		4161D7FB27A371FE00191C83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22FC0DE769D33FCA2446620D /* Pods-WOR - Witch On RescueTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -691,7 +749,6 @@
 		};
 		4161D7FC27A371FE00191C83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87D21DDF3041D12AA9864C36 /* Pods-WOR - Witch On RescueTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

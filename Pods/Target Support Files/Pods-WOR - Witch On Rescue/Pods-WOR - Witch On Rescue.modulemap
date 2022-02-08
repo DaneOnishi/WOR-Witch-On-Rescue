@@ -1,0 +1,6 @@
+framework module Pods_WOR___Witch_On_Rescue {
+  umbrella header "Pods-WOR - Witch On Rescue-umbrella.h"
+
+  export *
+  module * { export * }
+}
