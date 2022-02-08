@@ -12,7 +12,7 @@ class GameCenterManager {
     private init() {}
     
     var gcEnabled = Bool() // Check if the user has Game Center enabled
-    var gcDefaultLeaderBoard = "grp.WOR"
+    var gcDefaultLeaderBoard = String() // Check the default leaderboardID
     
     func authenticateLocalPlayer(currentVC: UIViewController) {
         let localPlayer: GKLocalPlayer = GKLocalPlayer.local
