@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		415AAEA627B358C1000E6DD6 /* SFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AAEA527B358C1000E6DD6 /* SFX.swift */; };
 		4161D7CE27A371FA00191C83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D7CD27A371FA00191C83 /* AppDelegate.swift */; };
 		4161D7D027A371FA00191C83 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4161D7CF27A371FA00191C83 /* GameScene.sks */; };
 		4161D7D227A371FA00191C83 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4161D7D127A371FA00191C83 /* Actions.sks */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		415AAEA527B358C1000E6DD6 /* SFX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFX.swift; sourceTree = "<group>"; };
 		4161D7CA27A371FA00191C83 /* WOR - Witch On Rescue .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WOR - Witch On Rescue .app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4161D7CD27A371FA00191C83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4161D7CF27A371FA00191C83 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -146,6 +148,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		415AAEA727B358C8000E6DD6 /* Sound Effects */ = {
+			isa = PBXGroup;
+			children = (
+				415AAEA527B358C1000E6DD6 /* SFX.swift */,
+			);
+			path = "Sound Effects";
+			sourceTree = "<group>";
+		};
 		4161D7C127A371F900191C83 = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +196,7 @@
 				41E6559027AAFDF800466D06 /* Controller */,
 				41E6559227AAFE7E00466D06 /* Collection */,
 				416ABA4E27B2C74700CA9A83 /* Metrics */,
+				415AAEA727B358C8000E6DD6 /* Sound Effects */,
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
 				416ABA4627B2127800CA9A83 /* SampleClass.swift */,
@@ -506,6 +517,7 @@
 				4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */,
 				416ABA4727B2127800CA9A83 /* SampleClass.swift in Sources */,
 				4161D80827A3A64F00191C83 /* Base.swift in Sources */,
+				415AAEA627B358C1000E6DD6 /* SFX.swift in Sources */,
 				416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */,
 				41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */,
 				41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */,
@@ -689,7 +701,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -727,7 +739,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
