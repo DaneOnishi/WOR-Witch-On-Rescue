@@ -14,11 +14,12 @@ class GameViewController: UIViewController {
     var level: LevelData?
     @IBOutlet weak var catsCounter: UILabel!
     @IBOutlet weak var pointsCounterLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GameCenterManager.shared.updateScore(with: 0)
+        
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -36,6 +37,8 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
+    
+  
 
     override var shouldAutorotate: Bool {
         return true

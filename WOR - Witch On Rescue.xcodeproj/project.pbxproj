@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410D3E7A27B37428003D225E /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D3E7927B37428003D225E /* String+.swift */; };
+		410D3E7C27B374FD003D225E /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D3E7B27B374FD003D225E /* Score.swift */; };
 		415AAEA627B358C1000E6DD6 /* SFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AAEA527B358C1000E6DD6 /* SFX.swift */; };
 		4161D7CE27A371FA00191C83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D7CD27A371FA00191C83 /* AppDelegate.swift */; };
 		4161D7D027A371FA00191C83 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4161D7CF27A371FA00191C83 /* GameScene.sks */; };
@@ -63,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		410D3E7927B37428003D225E /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		410D3E7B27B374FD003D225E /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		415AAEA527B358C1000E6DD6 /* SFX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFX.swift; sourceTree = "<group>"; };
 		4161D7CA27A371FA00191C83 /* WOR - Witch On Rescue .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WOR - Witch On Rescue .app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4161D7CD27A371FA00191C83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +152,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		410D3E7D27B37ABB003D225E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				410D3E7927B37428003D225E /* String+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		415AAEA727B358C8000E6DD6 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +205,7 @@
 				41842E4F27A72CDB0092EF03 /* Configurations.swift */,
 				4161D80927A3AD6200191C83 /* SpriteKit+.swift */,
 				41E6559127AAFE2E00466D06 /* Model */,
+				410D3E7D27B37ABB003D225E /* Extensions */,
 				41E6559027AAFDF800466D06 /* Controller */,
 				41E6559227AAFE7E00466D06 /* Collection */,
 				416ABA4E27B2C74700CA9A83 /* Metrics */,
@@ -253,6 +266,7 @@
 				41815EF827B0A6CF00D5ACA5 /* Cat.swift */,
 				41815EFC27B0A74E00D5ACA5 /* Potion.swift */,
 				416ABA4C27B2C20500CA9A83 /* SharedData.swift */,
+				410D3E7B27B374FD003D225E /* Score.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -502,6 +516,7 @@
 				41E6558F27AA40D400466D06 /* PieceNode.swift in Sources */,
 				4161D80127A3757200191C83 /* Player.swift in Sources */,
 				41815EFD27B0A74E00D5ACA5 /* Potion.swift in Sources */,
+				410D3E7C27B374FD003D225E /* Score.swift in Sources */,
 				41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */,
 				41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */,
 				4161D7D427A371FA00191C83 /* GameScene.swift in Sources */,
@@ -509,6 +524,7 @@
 				41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */,
 				E8AE49FA27AD99FF00943F0E /* GameOverViewController.swift in Sources */,
 				4161D80427A3759200191C83 /* Piece.swift in Sources */,
+				410D3E7A27B37428003D225E /* String+.swift in Sources */,
 				41E6559627AB7A5E00466D06 /* Grid.swift in Sources */,
 				E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */,
 				416ABA4527B20FB400CA9A83 /* AnalyticsManager.swift in Sources */,

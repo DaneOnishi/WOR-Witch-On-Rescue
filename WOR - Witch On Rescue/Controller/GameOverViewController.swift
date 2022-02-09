@@ -20,15 +20,22 @@ class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
     @IBOutlet weak var ponctuationLabel: UILabel!
     @IBOutlet weak var recordLabel: UILabel!
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        catsRescuedLabel.text = "\(SharedData.shared.catsRescued)"
-        ponctuationLabel.text = "\(SharedData.shared.pointsCounter)"
-        
-       
+    let pointsList = SharedData.shared.fetchPoints()
+    var record: Score? {
+        pointsList.max()
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        catsRescuedLabel.text = "\(SharedData.shared.catsRescued.description)"
+        ponctuationLabel.text = "\(SharedData.shared.pointsCounter.description)"
+        recordLabel.text = record?.points.description ?? ""
+    }
+
+    func reloadPoints() {
+        SharedData.shared.fetchPoints()
+    }
+    
     @IBAction func TryAgainOnClick(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 guard let firstVC = storyboard.instantiateViewController(identifier: "GameViewController") as? GameViewController else { return }

@@ -396,6 +396,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func rescueCat(node: SKNode) {
             catsRescued += 1
             pointsCounter += 60
+        SharedData.shared.pointsCounter = pointsCounter
+        SharedData.shared.catsRescued = catsRescued
             node.removeFromParent()
             spawnCat()
             updateScore()
@@ -479,9 +481,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    }
     
     func endGame() {
-        GameCenterManager.shared.updateScore(with: pointsCounter)
-        gameOverScreen()
         endedGame = true
+        
+        GameCenterManager.shared.updateScore(with: pointsCounter)
+        SharedData.shared.savePoints(points: Score(points: pointsCounter))
+        
+        gameOverScreen()
+        
+        // Salva pontos no user defaults
     }
     
     func enemyHitsCat() {
