@@ -73,6 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var catsRescuedLabel: SKLabelNode!
     var pointsCounterLabel: SKLabelNode!
+    var enemyDistanceLabel: SKLabelNode!
     
     let generator = UINotificationFeedbackGenerator()
     
@@ -80,6 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var placedFirstPiece = false
     
     var topY: CGPoint!
+    var enemyDistance: CGFloat!
     
     override func didMove(to view: SKView) {
         player = childNode(withName: "player") as? SKSpriteNode
@@ -92,6 +94,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         catsRescuedLabel = cameraNode.childNode(withName: "catsRescuedLabel") as? SKLabelNode
         pointsCounterLabel = cameraNode.childNode(withName: "pointsCounterLabel") as? SKLabelNode
         
+        calculateEnemyDistance()
+        enemyDistanceLabel = cameraNode.childNode(withName: "Enemy distance") as? SKLabelNode
+        
+        
+       
         
         originalPlayerFootPosition = playerFootPosition
         
@@ -221,6 +228,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             isPlayerWalking = true
             runLoopMoveAction(moveAction: moveAction)
         }
+    }
+    
+    func calculateEnemyDistance() {
+        enemyDistance = round(player.position.y - enemy.position.y)
     }
     
     func removeOldPieces() {
@@ -517,6 +528,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             enemyHitsCat()
 
         }
+        calculateEnemyDistance()
+        enemyDistanceLabel.text = enemyDistance.description
     }
     
     func animationSetup() {
