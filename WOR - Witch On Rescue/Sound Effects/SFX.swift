@@ -54,12 +54,19 @@ class SFXMusicSingleton: NSObject, AVAudioPlayerDelegate {
         currentPlayer?.numberOfLoops = 100
     }
     
+    func playIntroMusic() {
+        playSound(soundFileName: "")
+    }
     
     func playMainMusic() {
         playSound(soundFileName: "")
     }
     
-    func soundPopPops() {
+    func pickCatSFX() {
+        playSound(soundFileName: "")
+    }
+    
+    func gameOverMusic() {
         playSound(soundFileName: "")
     }
 }

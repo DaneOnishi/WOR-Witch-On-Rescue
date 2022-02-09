@@ -8,6 +8,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameViewController: UIViewController {
     var gameScene: GameScene?
@@ -19,7 +20,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        SFXMusicSingleton.shared.playMainMusic()
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'

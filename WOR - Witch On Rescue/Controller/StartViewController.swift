@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class StartViewController: UIViewController {
     
@@ -14,6 +15,8 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         GameCenterManager.shared.authenticateLocalPlayer(currentVC: self)
+        
+        SFXMusicSingleton.shared.playIntroMusic()
     }
     
     @IBAction func startButtonOnPress(_ sender: Any) {

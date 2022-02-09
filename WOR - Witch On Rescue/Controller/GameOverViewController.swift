@@ -7,6 +7,7 @@
 
 import UIKit
 import GameKit
+import AVFoundation
 
 class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
@@ -30,6 +31,8 @@ class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
         catsRescuedLabel.text = "\(SharedData.shared.catsRescued.description)"
         ponctuationLabel.text = "\(SharedData.shared.pointsCounter.description)"
         recordLabel.text = record?.points.description ?? ""
+        
+        SFXMusicSingleton.shared.gameOverMusic()
     }
 
     func reloadPoints() {

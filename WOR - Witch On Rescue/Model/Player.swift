@@ -32,4 +32,7 @@ class Player {
         node.run(animation)
         
     }
+    
+ 
+    
 }

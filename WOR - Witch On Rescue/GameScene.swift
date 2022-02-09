@@ -373,7 +373,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         body.isDynamic = true
         newCat.physicsBody = body
         let targetCatPosition = topY + CGPoint.randomPoint(totalLength: 100)
-        topY = topY + CGPoint(x: 0, y: 250)
+        topY = topY + CGPoint(x: 0, y: 400)
         let catGridNode = grid.getGridNode(for: targetCatPosition)
         newCat.position = convert(catGridNode!.position, from: grid.gridContainer)
         newCat.setScale(0.6)
@@ -401,6 +401,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.removeFromParent()
             spawnCat()
             updateScore()
+        SFXMusicSingleton.shared.pickCatSFX()
     }
     
     func updateScore() {
