@@ -19,13 +19,11 @@ protocol GameSceneDelegate: AnyObject {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var player : SKSpriteNode!
+    private var player : PlayerNode!
     private var cameraNode: SKCameraNode!
     private var enemy: SKSpriteNode!
     private var movingNode: SKNode?
-    private var potion: SKSpriteNode!
-    private var catLabelImage: SKSpriteNode!
-    private var pointsLabelImage: SKSpriteNode!
+    private var potion: PotionNode!
     private var pieceSpawnPoint: CGPoint!
     private var catSpawnPoint: CGPoint!
     
@@ -53,22 +51,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var pieceNode: PieceNode!
     private var gameCenterManager: GameCenterManager!
-    
-    var playerFootPosition: CGPoint {
-        player.position - CGPoint(x: 0, y: player.size.height/2)
-    }
-    var playerFootDifference: CGPoint {
-        player.position - playerFootPosition
-    }
-    var previousPlayerMovements: [CGPoint] = []
-    var nextPlayerMovements: [CGPoint] = []
-    var isPlayerWalking = false
-    let blocksPerSecond: Double = 3
-    
     weak var gameSceneDelegate: GameSceneDelegate?
+    
     var lastTargetGridNode: GridNode!
     private var grid: Grid!
-    
     var gridNodeSize: CGSize!
     
     var catsRescuedLabel: SKLabelNode!
@@ -84,12 +70,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var enemyDistance: CGFloat!
     
     override func didMove(to view: SKView) {
-        player = childNode(withName: "player") as? SKSpriteNode
+        let playerSpawn = childNode(withName: "playerSpawn") as? SKSpriteNode
+        player = PlayerNode()
+        player.delegate = self
+        player.position = playerSpawn!.position
+        addChild(player)
         let pieceSpawnPointNode = childNode(withName: "pieceSpawn")!
         enemy = childNode(withName: "fog") as? SKSpriteNode
-        catLabelImage = childNode(withName: "cat label image") as? SKSpriteNode
-        pointsLabelImage = childNode(withName: "points label image") as? SKSpriteNode
-        
         cameraNode = camera!
         catsRescuedLabel = cameraNode.childNode(withName: "catsRescuedLabel") as? SKLabelNode
         pointsCounterLabel = cameraNode.childNode(withName: "pointsCounterLabel") as? SKLabelNode
@@ -97,10 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         calculateEnemyDistance()
         enemyDistanceLabel = cameraNode.childNode(withName: "Enemy distance") as? SKLabelNode
         
-        
-       
-        
-        originalPlayerFootPosition = playerFootPosition
+        originalPlayerFootPosition = player.playerFootPosition
         
         pieceSpawnPoint = pieceSpawnPointNode.position
         spawnPointCameraOffSet = pieceSpawnPoint.y - cameraNode.position.y
@@ -116,12 +100,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         initialEnemySpeedAcceleration = enemySpeedAcceleration
         
         grid = Grid(in: self)
-        grid.generateInitialGrid(playerFootPosition: playerFootPosition)
+        grid.generateInitialGrid(playerFootPosition: player.playerFootPosition)
         gridNodeSize = grid.gridNodeSize
         
         spawnPiece(piece: PieceFactory.shared.build(type: .line)!)
         spawnZeroRow()
-        animationSetup()
+        player.animationSetup()
         spawnPotion()
         spawnBase()
         
@@ -137,22 +121,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.setScale(newPlayerScale)
     }
     
-    // gerar uma posicao ver se a possao intersects el gato e caso si gerar nova posicion 
-    
     fileprivate func spawnBase() {
         let gridContainer = grid.gridContainer
         
-        if let playerGridNode = gridContainer.atPoint(convert(playerFootPosition, to: gridContainer)) as? GridNode {
+        if let playerGridNode = gridContainer.atPoint(convert(player.playerFootPosition, to: gridContainer)) as? GridNode {
             let blockNode = BlockNode(blockSize: grid.gridNodeSize, category: .target, blockType: .grass)
             lastTargetGridNode = playerGridNode
             playerGridNode.addBlockNode(blockNode: blockNode)
             
-            player.position = convert(playerGridNode.position, to: self) + playerFootDifference
+            player.position = convert(playerGridNode.position, to: self) + player.playerFootDifference / 2
         }
     }
     
     fileprivate func spawnZeroRow() {
-        let position = playerFootPosition -  CGPoint(x: grid.gridNodeSize.width, y: grid.gridNodeSize.height)
+        let position = player.playerFootPosition -  CGPoint(x: grid.gridNodeSize.width, y: grid.gridNodeSize.height)
         
         let nodes = grid.generateGridRow(y: position.y, rowIndex: 0)
         
@@ -196,53 +178,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return false
     }
     
-    func createNextMoveAction() -> SKAction? {
-        guard !nextPlayerMovements.isEmpty else { return nil }
-        
-        let nextPosition = nextPlayerMovements.removeFirst()
-        previousPlayerMovements.append(nextPosition)
-        removeOldPieces()
-        
-        let moveAction = SKAction.move(to: nextPosition + playerFootDifference, duration: 1/blocksPerSecond)
-        
-        return moveAction
-    }
-    
-    func runLoopMoveAction(moveAction: SKAction) {
-        player.run(moveAction) { [weak self] in
-            if let nextMoveAction = self?.createNextMoveAction() {
-                self?.runLoopMoveAction(moveAction: nextMoveAction)
-            } else {
-                self?.isPlayerWalking = false
-            }
-        }
-    }
-    
-    func addPositionsPlayerQueue(positions: [CGPoint]) {
-        print("Current position: \(player.position)")
-        print("Adding positions: \(positions)")
-        
-        nextPlayerMovements.append(contentsOf: positions)
-        if !isPlayerWalking,
-           let moveAction = createNextMoveAction() {
-            isPlayerWalking = true
-            runLoopMoveAction(moveAction: moveAction)
-        }
-    }
-    
     func calculateEnemyDistance() {
         enemyDistance = round(player.position.y - enemy.position.y)
     }
     
     func removeOldPieces() {
-        // olha o tamanho da lista de movimentos previos do player
-        // garanta que previousPlayerMovements.count é menor do que x
-        // se maior que X, remove tamanho - X peças'
         let maxPieceCount = 5
-        guard previousPlayerMovements.count > maxPieceCount else { return }
+        guard player.previousPlayerMovements.count > maxPieceCount else { return }
         
-        for i in 0..<(previousPlayerMovements.count - maxPieceCount) {
-            let position = previousPlayerMovements[i]
+        for i in 0..<(player.previousPlayerMovements.count - maxPieceCount) {
+            let position = player.previousPlayerMovements[i]
             let gridNode = grid.getGridNode(for: convert(position, to: grid.gridContainer))
             
             print("Removing piece in \(position)")
@@ -250,11 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gridNode?.removeBlock(animated: true, index: i)
         }
         
-        previousPlayerMovements.removeFirst(previousPlayerMovements.count - maxPieceCount)
-        
-        // pra cada posicao que temos que tirar
-        // pega grid nessa posicao
-        // manda remover peça
+        player.previousPlayerMovements.removeFirst(player.previousPlayerMovements.count - maxPieceCount)
     }
     
     fileprivate func placePiece() {
@@ -268,7 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             convert(gridNode.position, from: grid.gridContainer)
         }
         
-        addPositionsPlayerQueue(positions: playerPositions)
+        player.addPositionsPlayerQueue(positions: playerPositions)
         
         for blockNode in pieceNode.getBlockNodes() {
             if let gridNode = grid.getGridNode(for: blockNode) {
@@ -292,6 +233,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             endGame()
         } else if contact.bodyB.node?.name == "fog" {
             endGame()
+        } else if contact.bodyA.node?.name == "potion" {
+            playerContact(object: contact.bodyB.node)
+        } else if contact.bodyB.node?.name == "potion" {
+            playerContact(object: contact.bodyA.node)
         }
     }
     
@@ -303,6 +248,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             rescueCat(node: object!)
         } else if object!.name == "fog" {
             endGame()
+        } else if object!.name == "potion" {
+            pickPotion(node: object!)
         }
     }
   
@@ -372,36 +319,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 3, blockSize: gridNodeSize)
     }
     
-    // ao inves de usar a posicao dacamera, aumenta top y, atualiza top y
     func spawnCat() {
-        let newCat = SKSpriteNode(imageNamed: "cat")
-        let body = SKPhysicsBody(circleOfRadius: 30)
-        body.categoryBitMask = 2
-        body.collisionBitMask = 0
-        body.contactTestBitMask = 1
-        body.affectedByGravity = false
-        body.allowsRotation = false
-        body.isDynamic = true
-        newCat.physicsBody = body
+        let newCat = CatNode()
         let targetCatPosition = topY + CGPoint.randomPoint(totalLength: 100)
         topY = topY + CGPoint(x: 0, y: 400)
         let catGridNode = grid.getGridNode(for: targetCatPosition)
         newCat.position = convert(catGridNode!.position, from: grid.gridContainer)
-        newCat.setScale(0.6)
-        newCat.name = "cat"
         addChild(newCat)
     }
     
-    
     func spawnPotion() {
-        let newPotion = SKSpriteNode(imageNamed: "potion")
+        let newPotion = PotionNode()
         let targetPotionPosition = cameraNode.position + CGPoint.randomPoint(totalLength: 100)
         let potionGridNode = grid.getGridNode(for: targetPotionPosition)
         newPotion.position = convert(potionGridNode!.position, from: grid.gridContainer)
         newPotion.setScale(0.6)
-        potion = newPotion
-        newPotion.name = "potion"
-        addChild(potion)
+        addChild(newPotion)
     }
     
     func rescueCat(node: SKNode) {
@@ -420,20 +353,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pointsCounterLabel.text = "\(pointsCounter)"
     }
    
-    
-    func pickPotion() {
-        if player.intersects(potion) {
-            potion.removeFromParent()
-            // here i reduced the speed but idealy it will reduce the size of the enemy
+    func pickPotion(node: SKNode) {
+            node.removeFromParent()
             enemySpeed = 20
             spawnPotion()
-        }
     }
     
     func updateCamera(playerPosition: CGPoint) {
         self.cameraNode.position.y = playerPosition.y + playerCameraOffSet
     }
-    
     
     func moveEnemy() {
         let direction = CGPoint(x: 0, y: 1)
@@ -493,7 +421,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    }
     
     func endGame() {
+        guard !endedGame else { return }
         endedGame = true
+    
         
         GameCenterManager.shared.updateScore(with: pointsCounter)
         SharedData.shared.savePoints(points: Score(points: pointsCounter))
@@ -502,13 +432,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Salva pontos no user defaults
     }
-    
-    func enemyHitsCat() {
-//        if enemy .intersects(cat) {
-//            endGame()
-//        }
-    }
-  
+      
     func gameOverScreen() {
         gameSceneDelegate?.presenteGameOver()
     }
@@ -520,28 +444,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         updateCamera(playerPosition: player.position)
         // rescueCat()
-        pickPotion()
-        
         if placedFirstPiece {
             moveEnemy()
             updateEnemySpeed()
-            enemyHitsCat()
 
         }
         calculateEnemyDistance()
         enemyDistanceLabel.text = enemyDistance.description
     }
-    
-    func animationSetup() {
-        var textures = [SKTexture]()
-        
-        textures.append(SKTexture(imageNamed: "2"))
-        textures.append(SKTexture(imageNamed: "3"))
-        textures.append(SKTexture(imageNamed: "2"))
-        textures.append(SKTexture(imageNamed: "1"))
-        
-        let frames = SKAction.animate(with: textures, timePerFrame: 0.1, resize: false, restore: false)
-        let animation = SKAction.repeatForever(frames)
-        player.run(animation)
+}
+
+extension GameScene: PlayerNodeDelegate {
+    func moveDone() {
+        removeOldPieces()
     }
 }

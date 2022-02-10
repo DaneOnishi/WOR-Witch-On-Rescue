@@ -21,7 +21,7 @@
 		4161D7E827A371FD00191C83 /* NanoBusinessMechanicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D7E727A371FD00191C83 /* NanoBusinessMechanicsTests.swift */; };
 		4161D7F227A371FE00191C83 /* NanoBusinessMechanicsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D7F127A371FE00191C83 /* NanoBusinessMechanicsUITests.swift */; };
 		4161D7F427A371FE00191C83 /* NanoBusinessMechanicsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D7F327A371FE00191C83 /* NanoBusinessMechanicsUITestsLaunchTests.swift */; };
-		4161D80127A3757200191C83 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80027A3757200191C83 /* Player.swift */; };
+		4161D80127A3757200191C83 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80027A3757200191C83 /* PlayerNode.swift */; };
 		4161D80427A3759200191C83 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80327A3759200191C83 /* Piece.swift */; };
 		4161D80827A3A64F00191C83 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80727A3A64E00191C83 /* Base.swift */; };
 		4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80927A3AD6200191C83 /* SpriteKit+.swift */; };
@@ -82,7 +82,7 @@
 		4161D7ED27A371FE00191C83 /* WOR - Witch On RescueUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WOR - Witch On RescueUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4161D7F127A371FE00191C83 /* NanoBusinessMechanicsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoBusinessMechanicsUITests.swift; sourceTree = "<group>"; };
 		4161D7F327A371FE00191C83 /* NanoBusinessMechanicsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoBusinessMechanicsUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		4161D80027A3757200191C83 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4161D80027A3757200191C83 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
 		4161D80327A3759200191C83 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		4161D80727A3A64E00191C83 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		4161D80927A3AD6200191C83 /* SpriteKit+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpriteKit+.swift"; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 				41E6559527AB7A5E00466D06 /* Grid.swift */,
 				41E6558C27AA3D6500466D06 /* PieceFactory.swift */,
 				41E6558E27AA40D400466D06 /* PieceNode.swift */,
-				4161D80027A3757200191C83 /* Player.swift */,
+				4161D80027A3757200191C83 /* PlayerNode.swift */,
 				4161D80727A3A64E00191C83 /* Base.swift */,
 				4161D80327A3759200191C83 /* Piece.swift */,
 				41815EF827B0A6CF00D5ACA5 /* Cat.swift */,
@@ -514,7 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41E6558F27AA40D400466D06 /* PieceNode.swift in Sources */,
-				4161D80127A3757200191C83 /* Player.swift in Sources */,
+				4161D80127A3757200191C83 /* PlayerNode.swift in Sources */,
 				41815EFD27B0A74E00D5ACA5 /* Potion.swift in Sources */,
 				410D3E7C27B374FD003D225E /* Score.swift in Sources */,
 				41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */,
@@ -644,7 +644,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -699,7 +699,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -717,7 +717,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -731,7 +731,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -755,7 +755,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
@@ -768,7 +768,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
