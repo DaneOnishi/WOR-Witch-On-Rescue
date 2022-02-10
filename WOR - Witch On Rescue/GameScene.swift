@@ -109,8 +109,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnPotion()
         spawnBase()
         
-        physicsWorld.contactDelegate = self
+        SharedData.shared.pointsCounter = 0
+        SharedData.shared.catsRescued = 0
         
+        physicsWorld.contactDelegate = self
         topY = camera?.position
         
         for _ in 0...10 {
@@ -230,13 +232,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if contact.bodyB.node?.name == "player" {
             playerContact(object: contact.bodyA.node)
         } else if contact.bodyA.node?.name == "fog" {
-            endGame()
+            enemyContact(object: contact.bodyB.node)
         } else if contact.bodyB.node?.name == "fog" {
-            endGame()
-        } else if contact.bodyA.node?.name == "potion" {
-            playerContact(object: contact.bodyB.node)
-        } else if contact.bodyB.node?.name == "potion" {
-            playerContact(object: contact.bodyA.node)
+            enemyContact(object: contact.bodyA.node)
         }
     }
     
@@ -250,6 +248,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             endGame()
         } else if object!.name == "potion" {
             pickPotion(node: object!)
+        }
+    }
+    
+    func enemyContact(object: SKNode?) {
+        if object == nil {
+            return
+        }
+        if object!.name == "cat" {
+            endGame()
+        } else if object!.name == "player" {
+            endGame()
         }
     }
   
