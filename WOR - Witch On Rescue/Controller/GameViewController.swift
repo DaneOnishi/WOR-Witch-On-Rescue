@@ -9,14 +9,25 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import AVFoundation
+import GoogleMobileAds
 
 class GameViewController: UIViewController {
+    
+    enum GameState: NSInteger {
+       case notStarted
+       case playing
+       case paused
+       case ended
+     }
+    
     var gameScene: GameScene?
+    var rewardedAd: GADRewardedAd?
     var level: LevelData?
     @IBOutlet weak var catsCounter: UILabel!
     @IBOutlet weak var pointsCounterLabel: UILabel!
     
-
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

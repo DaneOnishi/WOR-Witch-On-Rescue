@@ -35,6 +35,8 @@
 		41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4D27A72AE50092EF03 /* LevelViewController.swift */; };
 		41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4F27A72CDB0092EF03 /* Configurations.swift */; };
 		41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */; };
+		41DF64D327B59907006AAF35 /* ContinueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D227B59907006AAF35 /* ContinueCardView.swift */; };
+		41DF64D527B5AC44006AAF35 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */; };
 		41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 41E6558827A9BD4000466D06 /* TileMapScene.sks */; };
 		41E6558B27A9BFC000466D06 /* TileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 41E6558A27A9BFC000466D06 /* TileSet.sks */; };
 		41E6558D27AA3D6500466D06 /* PieceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6558C27AA3D6500466D06 /* PieceFactory.swift */; };
@@ -111,6 +113,8 @@
 		41842E4D27A72AE50092EF03 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		41842E4F27A72CDB0092EF03 /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		41DF64D227B59907006AAF35 /* ContinueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueCardView.swift; sourceTree = "<group>"; };
+		41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		41E6558827A9BD4000466D06 /* TileMapScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileMapScene.sks; sourceTree = "<group>"; };
 		41E6558A27A9BFC000466D06 /* TileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileSet.sks; sourceTree = "<group>"; };
 		41E6558C27AA3D6500466D06 /* PieceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceFactory.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				41842E4F27A72CDB0092EF03 /* Configurations.swift */,
 				4161D80927A3AD6200191C83 /* SpriteKit+.swift */,
 				41E6559127AAFE2E00466D06 /* Model */,
+				41DF64CF27B5985B006AAF35 /* Views */,
 				410D3E7D27B37ABB003D225E /* Extensions */,
 				41E6559027AAFDF800466D06 /* Controller */,
 				41E6559227AAFE7E00466D06 /* Collection */,
@@ -213,6 +218,7 @@
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
 				416ABA4627B2127800CA9A83 /* SampleClass.swift */,
+				41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */,
 			);
 			path = "WOR - Witch On Rescue";
 			sourceTree = "<group>";
@@ -240,6 +246,14 @@
 				41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */,
 			);
 			path = Metrics;
+			sourceTree = "<group>";
+		};
+		41DF64CF27B5985B006AAF35 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				41DF64D227B59907006AAF35 /* ContinueCardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		41E6559027AAFDF800466D06 /* Controller */ = {
@@ -518,6 +532,7 @@
 				41815EFD27B0A74E00D5ACA5 /* Potion.swift in Sources */,
 				410D3E7C27B374FD003D225E /* Score.swift in Sources */,
 				41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */,
+				41DF64D327B59907006AAF35 /* ContinueCardView.swift in Sources */,
 				41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */,
 				4161D7D427A371FA00191C83 /* GameScene.swift in Sources */,
 				41E6558D27AA3D6500466D06 /* PieceFactory.swift in Sources */,
@@ -532,6 +547,7 @@
 				41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */,
 				4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */,
 				416ABA4727B2127800CA9A83 /* SampleClass.swift in Sources */,
+				41DF64D527B5AC44006AAF35 /* SplashScreenView.swift in Sources */,
 				4161D80827A3A64F00191C83 /* Base.swift in Sources */,
 				415AAEA627B358C1000E6DD6 /* SFX.swift in Sources */,
 				416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */,
@@ -717,7 +733,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -755,7 +771,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
