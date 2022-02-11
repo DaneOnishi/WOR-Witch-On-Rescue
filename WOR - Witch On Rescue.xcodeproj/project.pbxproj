@@ -35,6 +35,7 @@
 		41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4D27A72AE50092EF03 /* LevelViewController.swift */; };
 		41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4F27A72CDB0092EF03 /* Configurations.swift */; };
 		41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */; };
+		41B3C97927B70DB5009647EB /* splashScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 41B3C97827B70DB5009647EB /* splashScreen.json */; };
 		41DF64D327B59907006AAF35 /* ContinueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D227B59907006AAF35 /* ContinueCardView.swift */; };
 		41DF64D527B5AC44006AAF35 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */; };
 		41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 41E6558827A9BD4000466D06 /* TileMapScene.sks */; };
@@ -45,9 +46,6 @@
 		41E6559627AB7A5E00466D06 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559527AB7A5E00466D06 /* Grid.swift */; };
 		41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559727AC4FD700466D06 /* GameCenterViewController.swift */; };
 		907641DF27B6965000CE877F /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907641DE27B6965000CE877F /* SplashScreenViewController.swift */; };
-		907641E627B69B3E00CE877F /* light.json in Resources */ = {isa = PBXBuildFile; fileRef = 907641E327B69B3E00CE877F /* light.json */; };
-		907641E727B69B3E00CE877F /* splashScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 907641E427B69B3E00CE877F /* splashScreen.json */; };
-		907641E827B69B3E00CE877F /* cat.json in Resources */ = {isa = PBXBuildFile; fileRef = 907641E527B69B3E00CE877F /* cat.json */; };
 		C791BB91B66190B37DBADB0C /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */; };
 		E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F727AD99EF00943F0E /* StartViewController.swift */; };
 		E8AE49FA27AD99FF00943F0E /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */; };
@@ -117,6 +115,7 @@
 		41842E4D27A72AE50092EF03 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		41842E4F27A72CDB0092EF03 /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		41B3C97827B70DB5009647EB /* splashScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splashScreen.json; sourceTree = "<group>"; };
 		41DF64D227B59907006AAF35 /* ContinueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueCardView.swift; sourceTree = "<group>"; };
 		41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		41E6558827A9BD4000466D06 /* TileMapScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileMapScene.sks; sourceTree = "<group>"; };
@@ -129,9 +128,6 @@
 		48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_WOR___Witch_On_Rescue.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.release.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.release.xcconfig"; sourceTree = "<group>"; };
 		907641DE27B6965000CE877F /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
-		907641E327B69B3E00CE877F /* light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = light.json; path = ../../../JSON/light.json; sourceTree = "<group>"; };
-		907641E427B69B3E00CE877F /* splashScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splashScreen.json; path = ../../../JSON/splashScreen.json; sourceTree = "<group>"; };
-		907641E527B69B3E00CE877F /* cat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = cat.json; path = ../../../JSON/cat.json; sourceTree = "<group>"; };
 		E8AE49F727AD99EF00943F0E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		EDBB22CC8C4DE4017385F819 /* Pods-WOR - Witch On Rescue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.debug.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +201,7 @@
 		4161D7CC27A371FA00191C83 /* WOR - Witch On Rescue */ = {
 			isa = PBXGroup;
 			children = (
+				41B3C97727B6FDB7009647EB /* Assets */,
 				416ABA4927B2B7BC00CA9A83 /* WOR---Witch-On-Rescue-Info.plist */,
 				4161D7CD27A371FA00191C83 /* AppDelegate.swift */,
 				4161D7CF27A371FA00191C83 /* GameScene.sks */,
@@ -219,12 +216,12 @@
 				41E6559127AAFE2E00466D06 /* Model */,
 				41DF64CF27B5985B006AAF35 /* Views */,
 				410D3E7D27B37ABB003D225E /* Extensions */,
-				907641E227B69AFD00CE877F /* Assets */,
 				41E6559027AAFDF800466D06 /* Controller */,
 				41E6559227AAFE7E00466D06 /* Collection */,
 				416ABA4E27B2C74700CA9A83 /* Metrics */,
 				415AAEA727B358C8000E6DD6 /* Sound Effects */,
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
+				41B3C97827B70DB5009647EB /* splashScreen.json */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
 				416ABA4627B2127800CA9A83 /* SampleClass.swift */,
 				41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */,
@@ -255,6 +252,13 @@
 				41815EFE27B1D47D00D5ACA5 /* GoogleService-Info.plist */,
 			);
 			path = Metrics;
+			sourceTree = "<group>";
+		};
+		41B3C97727B6FDB7009647EB /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		41DF64CF27B5985B006AAF35 /* Views */ = {
@@ -311,16 +315,6 @@
 				894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		907641E227B69AFD00CE877F /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				907641E527B69B3E00CE877F /* cat.json */,
-				907641E327B69B3E00CE877F /* light.json */,
-				907641E427B69B3E00CE877F /* splashScreen.json */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		D2E5EC103972E7BC3103319E /* Frameworks */ = {
@@ -454,14 +448,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				907641E727B69B3E00CE877F /* splashScreen.json in Resources */,
 				4161D7D927A371FA00191C83 /* Main.storyboard in Resources */,
 				41815EFF27B1D47D00D5ACA5 /* GoogleService-Info.plist in Resources */,
-				907641E627B69B3E00CE877F /* light.json in Resources */,
 				41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */,
 				4161D7D027A371FA00191C83 /* GameScene.sks in Resources */,
+				41B3C97927B70DB5009647EB /* splashScreen.json in Resources */,
 				4161D7DB27A371FD00191C83 /* Assets.xcassets in Resources */,
-				907641E827B69B3E00CE877F /* cat.json in Resources */,
 				41E6558B27A9BFC000466D06 /* TileSet.sks in Resources */,
 				4161D7DE27A371FD00191C83 /* LaunchScreen.storyboard in Resources */,
 				4161D7D227A371FA00191C83 /* Actions.sks in Resources */,

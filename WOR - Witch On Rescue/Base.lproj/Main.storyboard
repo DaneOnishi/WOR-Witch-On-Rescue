@@ -539,6 +539,10 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
             <point key="canvasLocation" x="2156.521739130435" y="87.723214285714278"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Pmp-CR-muU"/>
+        <designable name="U5N-cv-NZD"/>
+    </designables>
     <resources>
         <image name="Ativo 19" width="852" height="493"/>
         <image name="Ativo 2" width="766" height="229"/>
