@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Zg-ay-rmd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -110,31 +111,33 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vf-PK-YCs">
-                                        <rect key="frame" x="80" y="522" width="254" height="71"/>
+                                        <rect key="frame" x="80" y="572" width="254" height="71"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5vf-PK-YCs" secondAttribute="height" multiplier="75:21" id="HyG-W9-Ga3"/>
                                         </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background" image="Ativo 14"/>
+                                            <backgroundConfiguration key="background" image="rescue the cats button"/>
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98D-Mf-XGs">
-                                        <rect key="frame" x="80" y="625" width="254" height="71"/>
+                                        <rect key="frame" x="80" y="675" width="254" height="71"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="98D-Mf-XGs" secondAttribute="height" multiplier="75:21" id="lW9-qo-YAq"/>
                                         </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="Ativo 3"/>
                                         </buttonConfiguration>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1125696356" green="0.1125696356" blue="0.1125696356" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5vf-PK-YCs" secondAttribute="trailing" constant="80" id="2Wp-k1-QaS"/>
                                     <constraint firstItem="5vf-PK-YCs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4za-5u-JNz" secondAttribute="bottom" constant="40" id="9Ab-0c-xhk"/>
-                                    <constraint firstAttribute="bottom" secondItem="98D-Mf-XGs" secondAttribute="bottom" constant="200" id="9Tm-dl-g2I"/>
+                                    <constraint firstAttribute="bottom" secondItem="98D-Mf-XGs" secondAttribute="bottom" constant="150" id="9Tm-dl-g2I"/>
                                     <constraint firstItem="5vf-PK-YCs" firstAttribute="leading" secondItem="E8j-Gc-Api" secondAttribute="leading" constant="80" id="BKE-Uj-WlF"/>
                                     <constraint firstItem="98D-Mf-XGs" firstAttribute="leading" secondItem="E8j-Gc-Api" secondAttribute="leading" constant="80" id="DCv-t4-hm2"/>
                                     <constraint firstItem="4za-5u-JNz" firstAttribute="top" secondItem="E8j-Gc-Api" secondAttribute="top" constant="120" id="LGn-1x-tup"/>
@@ -235,7 +238,7 @@
                                         </buttonConfiguration>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.11256963556463073" green="0.11256963556463073" blue="0.11256963556463073" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <constraints>
                                     <constraint firstItem="JIc-ZV-tEg" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="129" id="26K-hm-okf"/>
                                     <constraint firstItem="BJi-ug-zAW" firstAttribute="top" secondItem="FcV-xu-094" secondAttribute="bottom" constant="32" id="2Wr-CA-awp"/>
@@ -277,7 +280,7 @@
                             <constraint firstItem="1dN-TB-hjp" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="20" id="seC-d8-Xsh"/>
                             <constraint firstAttribute="top" secondItem="U5N-cv-NZD" secondAttribute="top" id="v26-Em-UuU"/>
                             <constraint firstItem="E8j-Gc-Api" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="veH-3V-svh"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="top" secondItem="E8j-Gc-Api" secondAttribute="top" constant="44" id="wnL-IB-h13"/>
+                            <constraint firstAttribute="top" secondItem="E8j-Gc-Api" secondAttribute="top" id="wnL-IB-h13"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -495,7 +498,6 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
         </scene>
     </scenes>
     <resources>
-        <image name="Ativo 14" width="766" height="229"/>
         <image name="Ativo 19" width="852" height="493"/>
         <image name="Ativo 2" width="766" height="229"/>
         <image name="Ativo 3" width="766" height="229"/>
@@ -510,6 +512,10 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
         <image name="GameOver" width="761.34002685546875" height="446.26998901367188"/>
         <image name="Wor" width="623.6099853515625" height="281.70999145507812"/>
         <image name="cat label" width="80" height="75"/>
+        <image name="rescue the cats button" width="766" height="229"/>
+        <namedColor name="Color">
+            <color red="0.033022125329526225" green="0.037769214901640383" blue="0.13984849717881942" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
