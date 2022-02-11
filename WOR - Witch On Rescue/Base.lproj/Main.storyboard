@@ -97,9 +97,12 @@
                                     <constraint firstItem="GRY-kg-L7g" firstAttribute="bottom" secondItem="ein-7I-Ch0" secondAttribute="bottom" constant="-40" id="uXH-Mi-Icf"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-cv-NZD" userLabel="SplashScreen View">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-cv-NZD" userLabel="SplashScreen View" customClass="AnimationView" customModule="Lottie">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="spashScreen"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8j-Gc-Api" userLabel="Start Screen View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -302,6 +305,31 @@
                 <exit id="Pub-Fw-Lxo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="88.392857142857139"/>
+        </scene>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="k6l-oG-Ax5">
+            <objects>
+                <viewController id="sbL-Kz-i2R" customClass="SplashScreenViewController" customModule="WOR___Witch_On_Rescue" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZR1-zL-cSP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pmp-CR-muU" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="L6n-9z-xbY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="splashScreen" destination="Pmp-CR-muU" id="4SC-nn-Yv7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5HX-kV-tAK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="788.40579710144937" y="80.357142857142847"/>
         </scene>
         <!--StartViewController-->
         <scene sceneID="LCu-1a-pZx">
@@ -528,7 +556,7 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
         <image name="cat label" width="80" height="75"/>
         <image name="rescue the cats button" width="766" height="229"/>
         <namedColor name="Color">
-            <color red="0.033022125329526225" green="0.037769214901640383" blue="0.13984849717881942" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.032999999821186066" green="0.037999998778104782" blue="0.14000000059604645" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

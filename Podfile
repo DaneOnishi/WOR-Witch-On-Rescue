@@ -9,4 +9,3 @@ target 'WOR - Witch On Rescue' do
 	pod 'Google-Mobile-Ads-SDK'
 	pod 'lottie-ios'
 end
-
