@@ -20,16 +20,37 @@ class GameViewController: UIViewController {
        case ended
      }
     
+    // Main Views
+    @IBOutlet weak var splashScreenView: UIView!
+    @IBOutlet weak var startScreenView: UIView!
+    @IBOutlet weak var gameOverView: UIView!
+    @IBOutlet weak var continueCardView: ContinueCardView!
+    
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var rankingButton: UIButton!
+    
+    // Splash Screen View Stuff
+    
+    // Game View stuff
     var gameScene: GameScene?
     var rewardedAd: GADRewardedAd?
     var level: LevelData?
+    
+    lazy var viewsForState: [GameViewControllerViewState: UIView] = [
+        .splash: splashScreenView,
+        .start: startScreenView,
+        .gameOver: gameOverView,
+        .reward: continueCardView,
+        .game: self.view
+    ]
+    
     @IBOutlet weak var catsCounter: UILabel!
     @IBOutlet weak var pointsCounterLabel: UILabel!
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        show(state: .splash)
         
         SFXMusicSingleton.shared.playMainMusic()
         
@@ -50,12 +71,17 @@ class GameViewController: UIViewController {
         }
     }
     
-  
-
+    @IBAction func startButtonOnPress(_ sender: Any) {
+        show(state: .game)
+    }
+    
+    @IBAction func rankingButtonOnPress(_ sender: Any) {
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -79,4 +105,31 @@ extension GameViewController: GameSceneDelegate {
         firstVC.modalPresentationStyle = .fullScreen
         self.present(firstVC, animated: true, completion: nil)
     }
+}
+
+// Navigation
+extension GameViewController {
+    func show(state: GameViewControllerViewState) {
+        let allNonHiddenViews = viewsForState.values.filter { view in
+            view.alpha != 0 && view  != self.view
+        }
+        
+        allNonHiddenViews.forEach { view in
+            UIView.animate(withDuration: 0.15) {
+                view.alpha = 0
+            }
+        }
+        
+        UIView.animate(withDuration: 0.15) {
+            self.viewsForState[state]?.alpha = 1
+        }
+    }
+}
+
+enum GameViewControllerViewState {
+    case splash
+    case start
+    case game
+    case reward
+    case gameOver
 }

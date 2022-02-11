@@ -120,6 +120,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="rescue the cats button"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="startButtonOnPress:" destination="BV1-FR-VrT" eventType="touchUpInside" id="ohM-iQ-Tjj"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98D-Mf-XGs">
                                         <rect key="frame" x="80" y="675" width="254" height="71"/>
@@ -131,6 +134,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="Ativo 3"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="rankingButtonOnPress:" destination="BV1-FR-VrT" eventType="touchUpInside" id="gOk-hM-MAs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Color"/>
@@ -283,6 +289,14 @@
                             <constraint firstAttribute="top" secondItem="E8j-Gc-Api" secondAttribute="top" id="wnL-IB-h13"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="continueCardView" destination="1dN-TB-hjp" id="8z8-Ed-ssd"/>
+                        <outlet property="gameOverView" destination="Ru6-Nc-cdd" id="Cng-BF-rlt"/>
+                        <outlet property="rankingButton" destination="98D-Mf-XGs" id="qKw-rX-OX5"/>
+                        <outlet property="splashScreenView" destination="U5N-cv-NZD" id="SIk-zT-6Ma"/>
+                        <outlet property="startButton" destination="5vf-PK-YCs" id="jqb-KO-LHi"/>
+                        <outlet property="startScreenView" destination="Ru6-Nc-cdd" id="ZgZ-0Q-4wL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <exit id="Pub-Fw-Lxo" userLabel="Exit" sceneMemberID="exit"/>
