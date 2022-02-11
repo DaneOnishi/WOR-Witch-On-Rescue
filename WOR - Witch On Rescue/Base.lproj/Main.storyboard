@@ -17,18 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-cv-NZD" userLabel="SplashScreen View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8j-Gc-Api" userLabel="Start Screen View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-Nc-cdd" userLabel="Game Over Screen View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-TB-hjp" userLabel="Continue Card View" customClass="ContinueCardView" customModule="WOR___Witch_On_Rescue" customModuleProvider="target">
                                 <rect key="frame" x="20" y="273" width="374" height="365"/>
                                 <subviews>
@@ -108,6 +96,168 @@
                                     <constraint firstItem="GRY-kg-L7g" firstAttribute="bottom" secondItem="ein-7I-Ch0" secondAttribute="bottom" constant="-40" id="uXH-Mi-Icf"/>
                                 </constraints>
                             </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-cv-NZD" userLabel="SplashScreen View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8j-Gc-Api" userLabel="Start Screen View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 19" translatesAutoresizingMaskIntoConstraints="NO" id="4za-5u-JNz">
+                                        <rect key="frame" x="50" y="120" width="314" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="Bpt-7v-fnv"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vf-PK-YCs">
+                                        <rect key="frame" x="80" y="522" width="254" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="5vf-PK-YCs" secondAttribute="height" multiplier="75:21" id="HyG-W9-Ga3"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="Ativo 14"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98D-Mf-XGs">
+                                        <rect key="frame" x="80" y="625" width="254" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="98D-Mf-XGs" secondAttribute="height" multiplier="75:21" id="lW9-qo-YAq"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="Ativo 3"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1125696356" green="0.1125696356" blue="0.1125696356" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5vf-PK-YCs" secondAttribute="trailing" constant="80" id="2Wp-k1-QaS"/>
+                                    <constraint firstItem="5vf-PK-YCs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4za-5u-JNz" secondAttribute="bottom" constant="40" id="9Ab-0c-xhk"/>
+                                    <constraint firstAttribute="bottom" secondItem="98D-Mf-XGs" secondAttribute="bottom" constant="200" id="9Tm-dl-g2I"/>
+                                    <constraint firstItem="5vf-PK-YCs" firstAttribute="leading" secondItem="E8j-Gc-Api" secondAttribute="leading" constant="80" id="BKE-Uj-WlF"/>
+                                    <constraint firstItem="98D-Mf-XGs" firstAttribute="leading" secondItem="E8j-Gc-Api" secondAttribute="leading" constant="80" id="DCv-t4-hm2"/>
+                                    <constraint firstItem="4za-5u-JNz" firstAttribute="top" secondItem="E8j-Gc-Api" secondAttribute="top" constant="120" id="LGn-1x-tup"/>
+                                    <constraint firstItem="98D-Mf-XGs" firstAttribute="top" secondItem="5vf-PK-YCs" secondAttribute="bottom" constant="32" id="UPt-ls-Hdx"/>
+                                    <constraint firstItem="4za-5u-JNz" firstAttribute="leading" secondItem="E8j-Gc-Api" secondAttribute="leading" constant="50" id="UpE-0Z-EXp"/>
+                                    <constraint firstAttribute="trailing" secondItem="4za-5u-JNz" secondAttribute="trailing" constant="50" id="Vf2-kQ-5uM"/>
+                                    <constraint firstAttribute="trailing" secondItem="98D-Mf-XGs" secondAttribute="trailing" constant="80" id="WWq-WA-Dei"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-Nc-cdd" userLabel="Game Over Screen View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 4" translatesAutoresizingMaskIntoConstraints="NO" id="g0n-Jb-3jv">
+                                        <rect key="frame" x="87" y="133" width="240" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="bdY-vg-d0c"/>
+                                            <constraint firstAttribute="width" constant="240" id="kjV-a1-3a8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqK-q0-RdX">
+                                        <rect key="frame" x="172" y="243" width="67" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIc-ZV-tEg">
+                                        <rect key="frame" x="129" y="283.5" width="163" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="y3q-hM-JQn">
+                                        <rect key="frame" x="50" y="385.5" width="314" height="106.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 5" translatesAutoresizingMaskIntoConstraints="NO" id="aVJ-bv-zI2">
+                                                <rect key="frame" x="0.0" y="0.0" width="314" height="10.5"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="CIC-Z5-lYG">
+                                                <rect key="frame" x="0.0" y="15.5" width="314" height="27.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rescues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMr-38-HNw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="85" height="27.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mif-Bb-5S7">
+                                                        <rect key="frame" x="284.5" y="0.0" width="29.5" height="27.5"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 5" translatesAutoresizingMaskIntoConstraints="NO" id="iBz-fB-VE1">
+                                                <rect key="frame" x="0.0" y="48" width="314" height="10.5"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ueG-d1-b9A">
+                                                <rect key="frame" x="0.0" y="63.5" width="314" height="27.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o27-Vx-yvK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="114" height="27.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAb-mk-U7m">
+                                                        <rect key="frame" x="254" y="0.0" width="60" height="27.5"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 5" translatesAutoresizingMaskIntoConstraints="NO" id="dmd-pX-AgQ">
+                                                <rect key="frame" x="0.0" y="96" width="314" height="10.5"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FcV-xu-094">
+                                        <rect key="frame" x="80" y="658" width="254" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="FcV-xu-094" secondAttribute="height" multiplier="75:21" id="9hU-NO-gR9"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="Ativo 2"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJi-ug-zAW">
+                                        <rect key="frame" x="80" y="761" width="254" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="BJi-ug-zAW" secondAttribute="height" multiplier="75:21" id="s5Q-zK-Dc9"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="Ativo 3"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.11256963556463073" green="0.11256963556463073" blue="0.11256963556463073" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="JIc-ZV-tEg" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="129" id="26K-hm-okf"/>
+                                    <constraint firstItem="BJi-ug-zAW" firstAttribute="top" secondItem="FcV-xu-094" secondAttribute="bottom" constant="32" id="2Wr-CA-awp"/>
+                                    <constraint firstItem="FcV-xu-094" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3q-hM-JQn" secondAttribute="bottom" constant="40" id="5zI-mN-VFx"/>
+                                    <constraint firstItem="JIc-ZV-tEg" firstAttribute="top" secondItem="WqK-q0-RdX" secondAttribute="bottom" constant="7" id="EJu-v6-D4i"/>
+                                    <constraint firstAttribute="trailing" secondItem="FcV-xu-094" secondAttribute="trailing" constant="80" id="FfN-1Y-rb4"/>
+                                    <constraint firstItem="y3q-hM-JQn" firstAttribute="top" secondItem="JIc-ZV-tEg" secondAttribute="bottom" constant="30" id="GLc-cI-eY6"/>
+                                    <constraint firstItem="WqK-q0-RdX" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="172" id="MSX-DS-nty"/>
+                                    <constraint firstItem="FcV-xu-094" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="80" id="QD9-7N-Zsb"/>
+                                    <constraint firstAttribute="trailing" secondItem="g0n-Jb-3jv" secondAttribute="trailing" constant="87" id="W8h-X7-wRQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="JIc-ZV-tEg" secondAttribute="trailing" constant="122" id="Wvy-ze-E00"/>
+                                    <constraint firstItem="y3q-hM-JQn" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="50" id="ZKG-85-cWW"/>
+                                    <constraint firstItem="BJi-ug-zAW" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="80" id="bD3-ZT-L31"/>
+                                    <constraint firstItem="g0n-Jb-3jv" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="87" id="dHe-zV-zsp"/>
+                                    <constraint firstItem="g0n-Jb-3jv" firstAttribute="top" secondItem="Ru6-Nc-cdd" secondAttribute="top" constant="133" id="h37-tv-fpb"/>
+                                    <constraint firstAttribute="bottom" secondItem="BJi-ug-zAW" secondAttribute="bottom" constant="64" id="hGo-7m-9P3"/>
+                                    <constraint firstAttribute="trailing" secondItem="WqK-q0-RdX" secondAttribute="trailing" constant="175" id="ijS-Qx-TlY"/>
+                                    <constraint firstItem="WqK-q0-RdX" firstAttribute="top" secondItem="g0n-Jb-3jv" secondAttribute="bottom" constant="40" id="kdN-5I-2IN"/>
+                                    <constraint firstAttribute="trailing" secondItem="y3q-hM-JQn" secondAttribute="trailing" constant="50" id="qyH-3S-ezX"/>
+                                    <constraint firstAttribute="trailing" secondItem="BJi-ug-zAW" secondAttribute="trailing" constant="80" id="vSJ-OJ-P5S"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -121,8 +271,8 @@
                             <constraint firstItem="E8j-Gc-Api" firstAttribute="bottom" secondItem="4qk-I5-YsI" secondAttribute="bottom" constant="34" id="O0x-hR-bnA"/>
                             <constraint firstAttribute="trailing" secondItem="U5N-cv-NZD" secondAttribute="trailing" id="S7f-sy-ceV"/>
                             <constraint firstItem="1dN-TB-hjp" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="229" id="V9C-Rn-zYh"/>
-                            <constraint firstItem="Ru6-Nc-cdd" firstAttribute="bottom" secondItem="4qk-I5-YsI" secondAttribute="bottom" constant="34" id="hnB-QV-JZn"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="top" secondItem="Ru6-Nc-cdd" secondAttribute="top" constant="44" id="kQx-Yf-8jw"/>
+                            <constraint firstItem="Ru6-Nc-cdd" firstAttribute="bottom" secondItem="3se-qz-xqx" secondAttribute="bottom" id="hnB-QV-JZn"/>
+                            <constraint firstAttribute="top" secondItem="Ru6-Nc-cdd" secondAttribute="top" id="kQx-Yf-8jw"/>
                             <constraint firstItem="U5N-cv-NZD" firstAttribute="bottom" secondItem="3se-qz-xqx" secondAttribute="bottom" id="scn-zp-ivV"/>
                             <constraint firstItem="1dN-TB-hjp" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="20" id="seC-d8-Xsh"/>
                             <constraint firstAttribute="top" secondItem="U5N-cv-NZD" secondAttribute="top" id="v26-Em-UuU"/>
@@ -345,6 +495,12 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
         </scene>
     </scenes>
     <resources>
+        <image name="Ativo 14" width="766" height="229"/>
+        <image name="Ativo 19" width="852" height="493"/>
+        <image name="Ativo 2" width="766" height="229"/>
+        <image name="Ativo 3" width="766" height="229"/>
+        <image name="Ativo 4" width="764.5" height="167"/>
+        <image name="Ativo 5" width="774" height="10.5"/>
         <image name="Ativo 6" width="358" height="201.5"/>
         <image name="Ativo 7" width="358" height="201.5"/>
         <image name="Ativo 8" width="665" height="209.5"/>
