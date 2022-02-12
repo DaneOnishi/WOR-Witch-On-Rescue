@@ -17,7 +17,7 @@ class Grid {
     private let gridAspectRatio: CGFloat = 0.8 // graminha height / width
    
     lazy var initialGridRowCount: Int = {
-        return Int(sceneSize.height / gridNodeSize.height) + 1000
+        return Int(sceneSize.height / gridNodeSize.height) + 100
     }()
     
     lazy var gridNodeSize: CGSize = {

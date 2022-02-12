@@ -26,7 +26,6 @@
 		4161D80827A3A64F00191C83 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80727A3A64E00191C83 /* Base.swift */; };
 		4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80927A3AD6200191C83 /* SpriteKit+.swift */; };
 		416ABA4527B20FB400CA9A83 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */; };
-		416ABA4727B2127800CA9A83 /* SampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4627B2127800CA9A83 /* SampleClass.swift */; };
 		416ABA4B27B2BB4700CA9A83 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416ABA4A27B2BB4700CA9A83 /* GameKit.framework */; };
 		416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4C27B2C20500CA9A83 /* SharedData.swift */; };
 		41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41815EF827B0A6CF00D5ACA5 /* Cat.swift */; };
@@ -35,6 +34,9 @@
 		41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4D27A72AE50092EF03 /* LevelViewController.swift */; };
 		41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4F27A72CDB0092EF03 /* Configurations.swift */; };
 		41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */; };
+		41B3C97927B70DB5009647EB /* splashScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 41B3C97827B70DB5009647EB /* splashScreen.json */; };
+		41DF64D327B59907006AAF35 /* ContinueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D227B59907006AAF35 /* ContinueCardView.swift */; };
+		41DF64D527B5AC44006AAF35 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */; };
 		41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 41E6558827A9BD4000466D06 /* TileMapScene.sks */; };
 		41E6558B27A9BFC000466D06 /* TileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 41E6558A27A9BFC000466D06 /* TileSet.sks */; };
 		41E6558D27AA3D6500466D06 /* PieceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6558C27AA3D6500466D06 /* PieceFactory.swift */; };
@@ -42,6 +44,7 @@
 		41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559327AB51FD00466D06 /* GameCenterManager.swift */; };
 		41E6559627AB7A5E00466D06 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559527AB7A5E00466D06 /* Grid.swift */; };
 		41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559727AC4FD700466D06 /* GameCenterViewController.swift */; };
+		907641DF27B6965000CE877F /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907641DE27B6965000CE877F /* SplashScreenViewController.swift */; };
 		C791BB91B66190B37DBADB0C /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */; };
 		E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F727AD99EF00943F0E /* StartViewController.swift */; };
 		E8AE49FA27AD99FF00943F0E /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */; };
@@ -101,7 +104,6 @@
 		416ABA4027B1FEEA00CA9A83 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		416ABA4227B1FEEA00CA9A83 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = Pods/GoogleUserMessagingPlatform/Frameworks/Release/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
 		416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
-		416ABA4627B2127800CA9A83 /* SampleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleClass.swift; sourceTree = "<group>"; };
 		416ABA4927B2B7BC00CA9A83 /* WOR---Witch-On-Rescue-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "WOR---Witch-On-Rescue-Info.plist"; sourceTree = SOURCE_ROOT; };
 		416ABA4A27B2BB4700CA9A83 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		416ABA4C27B2C20500CA9A83 /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
@@ -111,6 +113,9 @@
 		41842E4D27A72AE50092EF03 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		41842E4F27A72CDB0092EF03 /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		41B3C97827B70DB5009647EB /* splashScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splashScreen.json; sourceTree = "<group>"; };
+		41DF64D227B59907006AAF35 /* ContinueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueCardView.swift; sourceTree = "<group>"; };
+		41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		41E6558827A9BD4000466D06 /* TileMapScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileMapScene.sks; sourceTree = "<group>"; };
 		41E6558A27A9BFC000466D06 /* TileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileSet.sks; sourceTree = "<group>"; };
 		41E6558C27AA3D6500466D06 /* PieceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceFactory.swift; sourceTree = "<group>"; };
@@ -120,6 +125,7 @@
 		41E6559727AC4FD700466D06 /* GameCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
 		48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_WOR___Witch_On_Rescue.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.release.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.release.xcconfig"; sourceTree = "<group>"; };
+		907641DE27B6965000CE877F /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		E8AE49F727AD99EF00943F0E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		EDBB22CC8C4DE4017385F819 /* Pods-WOR - Witch On Rescue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.debug.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +199,7 @@
 		4161D7CC27A371FA00191C83 /* WOR - Witch On Rescue */ = {
 			isa = PBXGroup;
 			children = (
+				41B3C97727B6FDB7009647EB /* Assets */,
 				416ABA4927B2B7BC00CA9A83 /* WOR---Witch-On-Rescue-Info.plist */,
 				4161D7CD27A371FA00191C83 /* AppDelegate.swift */,
 				4161D7CF27A371FA00191C83 /* GameScene.sks */,
@@ -205,14 +212,16 @@
 				41842E4F27A72CDB0092EF03 /* Configurations.swift */,
 				4161D80927A3AD6200191C83 /* SpriteKit+.swift */,
 				41E6559127AAFE2E00466D06 /* Model */,
+				41DF64CF27B5985B006AAF35 /* Views */,
 				410D3E7D27B37ABB003D225E /* Extensions */,
 				41E6559027AAFDF800466D06 /* Controller */,
 				41E6559227AAFE7E00466D06 /* Collection */,
 				416ABA4E27B2C74700CA9A83 /* Metrics */,
 				415AAEA727B358C8000E6DD6 /* Sound Effects */,
 				4161D7DA27A371FD00191C83 /* Assets.xcassets */,
+				41B3C97827B70DB5009647EB /* splashScreen.json */,
 				4161D7DC27A371FD00191C83 /* LaunchScreen.storyboard */,
-				416ABA4627B2127800CA9A83 /* SampleClass.swift */,
+				41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */,
 			);
 			path = "WOR - Witch On Rescue";
 			sourceTree = "<group>";
@@ -242,6 +251,21 @@
 			path = Metrics;
 			sourceTree = "<group>";
 		};
+		41B3C97727B6FDB7009647EB /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		41DF64CF27B5985B006AAF35 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				41DF64D227B59907006AAF35 /* ContinueCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		41E6559027AAFDF800466D06 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +274,7 @@
 				4161D7D527A371FA00191C83 /* GameViewController.swift */,
 				E8AE49F727AD99EF00943F0E /* StartViewController.swift */,
 				E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */,
+				907641DE27B6965000CE877F /* SplashScreenViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -424,6 +449,7 @@
 				41815EFF27B1D47D00D5ACA5 /* GoogleService-Info.plist in Resources */,
 				41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */,
 				4161D7D027A371FA00191C83 /* GameScene.sks in Resources */,
+				41B3C97927B70DB5009647EB /* splashScreen.json in Resources */,
 				4161D7DB27A371FD00191C83 /* Assets.xcassets in Resources */,
 				41E6558B27A9BFC000466D06 /* TileSet.sks in Resources */,
 				4161D7DE27A371FD00191C83 /* LaunchScreen.storyboard in Resources */,
@@ -518,6 +544,7 @@
 				41815EFD27B0A74E00D5ACA5 /* Potion.swift in Sources */,
 				410D3E7C27B374FD003D225E /* Score.swift in Sources */,
 				41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */,
+				41DF64D327B59907006AAF35 /* ContinueCardView.swift in Sources */,
 				41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */,
 				4161D7D427A371FA00191C83 /* GameScene.swift in Sources */,
 				41E6558D27AA3D6500466D06 /* PieceFactory.swift in Sources */,
@@ -529,9 +556,10 @@
 				E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */,
 				416ABA4527B20FB400CA9A83 /* AnalyticsManager.swift in Sources */,
 				4161D7D627A371FA00191C83 /* GameViewController.swift in Sources */,
+				907641DF27B6965000CE877F /* SplashScreenViewController.swift in Sources */,
 				41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */,
 				4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */,
-				416ABA4727B2127800CA9A83 /* SampleClass.swift in Sources */,
+				41DF64D527B5AC44006AAF35 /* SplashScreenView.swift in Sources */,
 				4161D80827A3A64F00191C83 /* Base.swift in Sources */,
 				415AAEA627B358C1000E6DD6 /* SFX.swift in Sources */,
 				416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */,
@@ -717,9 +745,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = U77829B9P3;
+				DEVELOPMENT_TEAM = H988DFAXFF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = WOR;
@@ -737,7 +765,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusiness;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusinessLarissa;
 				PRODUCT_NAME = "WOR - Witch On Rescue ";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WOR - Witch On Rescue/Controller/WOR - Witch On Rescue-Bridging-Header.h";
@@ -755,7 +783,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
@@ -774,7 +802,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusiness;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusinessLarissa;
 				PRODUCT_NAME = "WOR - Witch On Rescue";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WOR - Witch On Rescue/Controller/WOR - Witch On Rescue-Bridging-Header.h";

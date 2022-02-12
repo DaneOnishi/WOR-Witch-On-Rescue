@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Zg-ay-rmd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,24 +18,327 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-cv-NZD" userLabel="SplashScreen View">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-TB-hjp" userLabel="Continue Card View" customClass="ContinueCardView" customModule="WOR___Witch_On_Rescue" customModuleProvider="target">
+                                <rect key="frame" x="20" y="268" width="374" height="370"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Continue Card Bckground" translatesAutoresizingMaskIntoConstraints="NO" id="ein-7I-Ch0">
+                                        <rect key="frame" x="8" y="17" width="358" height="370"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat label" translatesAutoresizingMaskIntoConstraints="NO" id="nq7-DY-fxv">
+                                        <rect key="frame" x="97" y="-79.5" width="180" height="159"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="nq7-DY-fxv" secondAttribute="height" multiplier="60:53" id="CCB-K8-zvu"/>
+                                            <constraint firstAttribute="width" constant="180" id="hni-dp-Ekp"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 8" translatesAutoresizingMaskIntoConstraints="NO" id="YiX-f7-K72">
+                                        <rect key="frame" x="8" y="99.5" width="358" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="1aO-qQ-6gy"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GRY-kg-L7g">
+                                        <rect key="frame" x="50" y="199.5" width="274" height="147.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-Zl-BqU">
+                                                <rect key="frame" x="0.0" y="44" width="130" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="6Cw-0A-TbT"/>
+                                                    <constraint firstAttribute="width" constant="130" id="B4B-wu-ABy"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain">
+                                                    <backgroundConfiguration key="background" image="Ativo 7"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="noButtonOnPress:" destination="Pub-Fw-Lxo" eventType="touchUpInside" id="QZM-aE-7Pk"/>
+                                                    <action selector="noButtonOnPress:" destination="1dN-TB-hjp" eventType="touchUpInside" id="ikk-Ln-Y1m"/>
+                                                    <action selector="refuseAdButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="QIa-Ph-a6J"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOn-h4-WS2">
+                                                <rect key="frame" x="144" y="44" width="130" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="130" id="Zle-dh-bwk"/>
+                                                    <constraint firstAttribute="height" constant="60" id="jMt-A3-nfN"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain">
+                                                    <backgroundConfiguration key="background" image="Ativo 6"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="presentAd:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Dlq-Ck-x48"/>
+                                                    <action selector="yesButtonOnPress:" destination="1dN-TB-hjp" eventType="touchUpInside" id="qip-NX-cmX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="GRY-kg-L7g" firstAttribute="top" secondItem="YiX-f7-K72" secondAttribute="bottom" constant="20" id="7HP-db-YPO"/>
+                                    <constraint firstAttribute="trailing" secondItem="GRY-kg-L7g" secondAttribute="trailing" constant="50" id="CRE-Q2-Kbf"/>
+                                    <constraint firstItem="ein-7I-Ch0" firstAttribute="leading" secondItem="1dN-TB-hjp" secondAttribute="leading" constant="8" id="EY8-Ep-TDJ"/>
+                                    <constraint firstItem="nq7-DY-fxv" firstAttribute="leading" secondItem="1dN-TB-hjp" secondAttribute="leading" constant="97" id="FlQ-43-oiT"/>
+                                    <constraint firstItem="YiX-f7-K72" firstAttribute="leading" secondItem="ein-7I-Ch0" secondAttribute="leading" id="Jhe-ZU-uTo"/>
+                                    <constraint firstItem="YiX-f7-K72" firstAttribute="trailing" secondItem="ein-7I-Ch0" secondAttribute="trailing" id="MNc-ts-ITc"/>
+                                    <constraint firstItem="GRY-kg-L7g" firstAttribute="leading" secondItem="1dN-TB-hjp" secondAttribute="leading" constant="50" id="QAc-QD-bBo"/>
+                                    <constraint firstItem="YiX-f7-K72" firstAttribute="top" secondItem="nq7-DY-fxv" secondAttribute="bottom" constant="20" id="RoW-9x-eGG"/>
+                                    <constraint firstAttribute="bottom" secondItem="ein-7I-Ch0" secondAttribute="bottom" constant="-17" id="ZuJ-dn-mj6"/>
+                                    <constraint firstAttribute="centerX" secondItem="ein-7I-Ch0" secondAttribute="centerX" id="dpR-vp-naV"/>
+                                    <constraint firstAttribute="trailing" secondItem="ein-7I-Ch0" secondAttribute="trailing" constant="8" id="e6m-va-7H7"/>
+                                    <constraint firstAttribute="trailing" secondItem="nq7-DY-fxv" secondAttribute="trailing" constant="97" id="gSO-Ky-BdQ"/>
+                                    <constraint firstItem="nq7-DY-fxv" firstAttribute="centerY" secondItem="1dN-TB-hjp" secondAttribute="top" id="qOp-fH-pv7"/>
+                                    <constraint firstItem="ein-7I-Ch0" firstAttribute="top" secondItem="1dN-TB-hjp" secondAttribute="top" constant="17" id="quN-M9-fmr"/>
+                                    <constraint firstItem="GRY-kg-L7g" firstAttribute="bottom" secondItem="ein-7I-Ch0" secondAttribute="bottom" constant="-40" id="uXH-Mi-Icf"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5N-cv-NZD" userLabel="SplashScreen View" customClass="AnimationView" customModule="Lottie">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="spashScreen"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8j-Gc-Api" userLabel="Start Screen View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 19" translatesAutoresizingMaskIntoConstraints="NO" id="4za-5u-JNz">
+                                        <rect key="frame" x="50" y="120" width="314" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="Bpt-7v-fnv"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vf-PK-YCs">
+                                        <rect key="frame" x="80" y="572" width="254" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="5vf-PK-YCs" secondAttribute="height" multiplier="75:21" id="HyG-W9-Ga3"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="rescue the cats button"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="startButtonOnPress:" destination="BV1-FR-VrT" eventType="touchUpInside" id="ohM-iQ-Tjj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98D-Mf-XGs">
+                                        <rect key="frame" x="80" y="675" width="254" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="98D-Mf-XGs" secondAttribute="height" multiplier="75:21" id="lW9-qo-YAq"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="Ativo 3"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="rankingButtonOnPress:" destination="BV1-FR-VrT" eventType="touchUpInside" id="On6-yo-e8l"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5vf-PK-YCs" secondAttribute="trailing" constant="80" id="2Wp-k1-QaS"/>
+                                    <constraint firstItem="5vf-PK-YCs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4za-5u-JNz" secondAttribute="bottom" constant="40" id="9Ab-0c-xhk"/>
+                                    <constraint firstAttribute="bottom" secondItem="98D-Mf-XGs" secondAttribute="bottom" constant="150" id="9Tm-dl-g2I"/>
+                                    <constraint firstItem="5vf-PK-YCs" firstAttribute="leading" secondItem="E8j-Gc-Api" secondAttribute="leading" constant="80" id="BKE-Uj-WlF"/>
+                                    <constraint firstItem="98D-Mf-XGs" firstAttribute="leading" secondItem="E8j-Gc-Api" secondAttribute="leading" constant="80" id="DCv-t4-hm2"/>
+                                    <constraint firstItem="4za-5u-JNz" firstAttribute="top" secondItem="E8j-Gc-Api" secondAttribute="top" constant="120" id="LGn-1x-tup"/>
+                                    <constraint firstItem="98D-Mf-XGs" firstAttribute="top" secondItem="5vf-PK-YCs" secondAttribute="bottom" constant="32" id="UPt-ls-Hdx"/>
+                                    <constraint firstItem="4za-5u-JNz" firstAttribute="leading" secondItem="E8j-Gc-Api" secondAttribute="leading" constant="50" id="UpE-0Z-EXp"/>
+                                    <constraint firstAttribute="trailing" secondItem="4za-5u-JNz" secondAttribute="trailing" constant="50" id="Vf2-kQ-5uM"/>
+                                    <constraint firstAttribute="trailing" secondItem="98D-Mf-XGs" secondAttribute="trailing" constant="80" id="WWq-WA-Dei"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-Nc-cdd" userLabel="Game Over Screen View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 4" translatesAutoresizingMaskIntoConstraints="NO" id="g0n-Jb-3jv">
+                                        <rect key="frame" x="87" y="133" width="240" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="bdY-vg-d0c"/>
+                                            <constraint firstAttribute="width" constant="240" id="kjV-a1-3a8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqK-q0-RdX">
+                                        <rect key="frame" x="50" y="243" width="314" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIc-ZV-tEg">
+                                        <rect key="frame" x="50" y="283.5" width="314" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="y3q-hM-JQn">
+                                        <rect key="frame" x="50" y="385.5" width="314" height="106.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 5" translatesAutoresizingMaskIntoConstraints="NO" id="aVJ-bv-zI2">
+                                                <rect key="frame" x="0.0" y="0.0" width="314" height="10.5"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="CIC-Z5-lYG">
+                                                <rect key="frame" x="0.0" y="15.5" width="314" height="27.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rescues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMr-38-HNw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="85" height="27.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mif-Bb-5S7">
+                                                        <rect key="frame" x="284.5" y="0.0" width="29.5" height="27.5"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 5" translatesAutoresizingMaskIntoConstraints="NO" id="iBz-fB-VE1">
+                                                <rect key="frame" x="0.0" y="48" width="314" height="10.5"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ueG-d1-b9A">
+                                                <rect key="frame" x="0.0" y="63.5" width="314" height="27.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o27-Vx-yvK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="114" height="27.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAb-mk-U7m">
+                                                        <rect key="frame" x="254" y="0.0" width="60" height="27.5"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 5" translatesAutoresizingMaskIntoConstraints="NO" id="dmd-pX-AgQ">
+                                                <rect key="frame" x="0.0" y="96" width="314" height="10.5"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FcV-xu-094">
+                                        <rect key="frame" x="80" y="658" width="254" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="FcV-xu-094" secondAttribute="height" multiplier="75:21" id="9hU-NO-gR9"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="Ativo 2"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tryAgainButtonOnPress:" destination="BV1-FR-VrT" eventType="touchUpInside" id="S90-Of-T6n"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJi-ug-zAW">
+                                        <rect key="frame" x="80" y="761" width="254" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="BJi-ug-zAW" secondAttribute="height" multiplier="75:21" id="s5Q-zK-Dc9"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="Ativo 3"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="rankingButtonGameOverScreenOnPress:" destination="BV1-FR-VrT" eventType="touchUpInside" id="PMS-gl-3v9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Color"/>
+                                <constraints>
+                                    <constraint firstItem="WqK-q0-RdX" firstAttribute="centerX" secondItem="Ru6-Nc-cdd" secondAttribute="centerX" id="23E-jO-QNq"/>
+                                    <constraint firstItem="BJi-ug-zAW" firstAttribute="top" secondItem="FcV-xu-094" secondAttribute="bottom" constant="32" id="2Wr-CA-awp"/>
+                                    <constraint firstItem="JIc-ZV-tEg" firstAttribute="trailing" secondItem="y3q-hM-JQn" secondAttribute="trailing" id="5nu-th-N18"/>
+                                    <constraint firstItem="FcV-xu-094" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3q-hM-JQn" secondAttribute="bottom" constant="40" id="5zI-mN-VFx"/>
+                                    <constraint firstItem="JIc-ZV-tEg" firstAttribute="leading" secondItem="y3q-hM-JQn" secondAttribute="leading" id="CUR-Mc-6Nm"/>
+                                    <constraint firstItem="JIc-ZV-tEg" firstAttribute="top" secondItem="WqK-q0-RdX" secondAttribute="bottom" constant="7" id="EJu-v6-D4i"/>
+                                    <constraint firstAttribute="trailing" secondItem="FcV-xu-094" secondAttribute="trailing" constant="80" id="FfN-1Y-rb4"/>
+                                    <constraint firstItem="y3q-hM-JQn" firstAttribute="top" secondItem="JIc-ZV-tEg" secondAttribute="bottom" constant="30" id="GLc-cI-eY6"/>
+                                    <constraint firstItem="WqK-q0-RdX" firstAttribute="leading" secondItem="y3q-hM-JQn" secondAttribute="leading" id="L2v-qo-8OM"/>
+                                    <constraint firstItem="JIc-ZV-tEg" firstAttribute="centerX" secondItem="Ru6-Nc-cdd" secondAttribute="centerX" id="Map-m0-rid"/>
+                                    <constraint firstItem="FcV-xu-094" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="80" id="QD9-7N-Zsb"/>
+                                    <constraint firstAttribute="trailing" secondItem="g0n-Jb-3jv" secondAttribute="trailing" constant="87" id="W8h-X7-wRQ"/>
+                                    <constraint firstItem="y3q-hM-JQn" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="50" id="ZKG-85-cWW"/>
+                                    <constraint firstItem="BJi-ug-zAW" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="80" id="bD3-ZT-L31"/>
+                                    <constraint firstItem="g0n-Jb-3jv" firstAttribute="leading" secondItem="Ru6-Nc-cdd" secondAttribute="leading" constant="87" id="dHe-zV-zsp"/>
+                                    <constraint firstItem="g0n-Jb-3jv" firstAttribute="top" secondItem="Ru6-Nc-cdd" secondAttribute="top" constant="133" id="h37-tv-fpb"/>
+                                    <constraint firstAttribute="bottom" secondItem="BJi-ug-zAW" secondAttribute="bottom" constant="64" id="hGo-7m-9P3"/>
+                                    <constraint firstItem="WqK-q0-RdX" firstAttribute="top" secondItem="g0n-Jb-3jv" secondAttribute="bottom" constant="40" id="kdN-5I-2IN"/>
+                                    <constraint firstAttribute="trailing" secondItem="y3q-hM-JQn" secondAttribute="trailing" constant="50" id="qyH-3S-ezX"/>
+                                    <constraint firstItem="WqK-q0-RdX" firstAttribute="trailing" secondItem="y3q-hM-JQn" secondAttribute="trailing" id="sjs-MD-Mfq"/>
+                                    <constraint firstAttribute="trailing" secondItem="BJi-ug-zAW" secondAttribute="trailing" constant="80" id="vSJ-OJ-P5S"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="Ru6-Nc-cdd" secondAttribute="trailing" id="Asf-sf-8nq"/>
                             <constraint firstItem="U5N-cv-NZD" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="IZq-N0-cul"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="1dN-TB-hjp" secondAttribute="bottom" constant="224" id="JcF-mR-UA1"/>
+                            <constraint firstItem="Ru6-Nc-cdd" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="K3Z-PR-BWN"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="E8j-Gc-Api" secondAttribute="trailing" id="Lbx-1f-k3A"/>
+                            <constraint firstItem="E8j-Gc-Api" firstAttribute="bottom" secondItem="4qk-I5-YsI" secondAttribute="bottom" constant="34" id="O0x-hR-bnA"/>
                             <constraint firstAttribute="trailing" secondItem="U5N-cv-NZD" secondAttribute="trailing" id="S7f-sy-ceV"/>
+                            <constraint firstItem="1dN-TB-hjp" firstAttribute="centerY" secondItem="4qk-I5-YsI" secondAttribute="centerY" id="YsS-xK-opm"/>
+                            <constraint firstItem="Ru6-Nc-cdd" firstAttribute="bottom" secondItem="3se-qz-xqx" secondAttribute="bottom" id="hnB-QV-JZn"/>
+                            <constraint firstAttribute="top" secondItem="Ru6-Nc-cdd" secondAttribute="top" id="kQx-Yf-8jw"/>
                             <constraint firstItem="U5N-cv-NZD" firstAttribute="bottom" secondItem="3se-qz-xqx" secondAttribute="bottom" id="scn-zp-ivV"/>
                             <constraint firstAttribute="top" secondItem="U5N-cv-NZD" secondAttribute="top" id="v26-Em-UuU"/>
+                            <constraint firstItem="E8j-Gc-Api" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="veH-3V-svh"/>
+                            <constraint firstAttribute="top" secondItem="E8j-Gc-Api" secondAttribute="top" id="wnL-IB-h13"/>
+                            <constraint firstItem="1dN-TB-hjp" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="ys4-IL-OaE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="continueCardView" destination="1dN-TB-hjp" id="8z8-Ed-ssd"/>
+                        <outlet property="gameOverView" destination="Ru6-Nc-cdd" id="Cng-BF-rlt"/>
+                        <outlet property="rankingButton" destination="98D-Mf-XGs" id="qKw-rX-OX5"/>
+                        <outlet property="rankingButtonGameOverScreen" destination="BJi-ug-zAW" id="K38-jS-N4m"/>
+                        <outlet property="splashScreen" destination="U5N-cv-NZD" id="lrT-iu-m35"/>
+                        <outlet property="startButton" destination="5vf-PK-YCs" id="jqb-KO-LHi"/>
+                        <outlet property="startScreenView" destination="E8j-Gc-Api" id="JUO-NY-GTJ"/>
+                        <outlet property="tryAgainButton" destination="FcV-xu-094" id="UeV-i1-SiV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <exit id="Pub-Fw-Lxo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="88.392857142857139"/>
+        </scene>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="k6l-oG-Ax5">
+            <objects>
+                <viewController id="sbL-Kz-i2R" customClass="SplashScreenViewController" customModule="WOR___Witch_On_Rescue" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZR1-zL-cSP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pmp-CR-muU" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="L6n-9z-xbY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="splashScreen" destination="Pmp-CR-muU" id="4SC-nn-Yv7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5HX-kV-tAK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="788.40579710144937" y="80.357142857142847"/>
         </scene>
         <!--StartViewController-->
         <scene sceneID="LCu-1a-pZx">
@@ -244,11 +548,29 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
             <point key="canvasLocation" x="2156.521739130435" y="87.723214285714278"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Pmp-CR-muU"/>
+        <designable name="U5N-cv-NZD"/>
+    </designables>
     <resources>
+        <image name="Ativo 19" width="852" height="493"/>
+        <image name="Ativo 2" width="766" height="229"/>
+        <image name="Ativo 3" width="766" height="229"/>
+        <image name="Ativo 4" width="764.5" height="167"/>
+        <image name="Ativo 5" width="774" height="10.5"/>
+        <image name="Ativo 6" width="358" height="201.5"/>
+        <image name="Ativo 7" width="358" height="201.5"/>
+        <image name="Ativo 8" width="665" height="209.5"/>
         <image name="BackgroundGameOver" width="1126" height="2437"/>
         <image name="BackgroundStart" width="1129" height="2436"/>
+        <image name="Continue Card Bckground" width="934" height="899.5"/>
         <image name="GameOver" width="761.34002685546875" height="446.26998901367188"/>
         <image name="Wor" width="623.6099853515625" height="281.70999145507812"/>
+        <image name="cat label" width="80" height="75"/>
+        <image name="rescue the cats button" width="766" height="229"/>
+        <namedColor name="Color">
+            <color red="0.032999999821186066" green="0.037999998778104782" blue="0.14000000059604645" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

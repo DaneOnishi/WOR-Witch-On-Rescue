@@ -65,7 +65,7 @@ enum BlockCategory {
 //    }
 }
 
-enum PieceType: CaseIterable {
+enum PieceType: String, CaseIterable {
     case line
     case l
     case mirrorL

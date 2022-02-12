@@ -6,5 +6,6 @@ target 'WOR - Witch On Rescue' do
   # Lugar onde colocamos os Pods
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Crashlytics'
+	pod 'Google-Mobile-Ads-SDK'
+	pod 'lottie-ios'
 end
-

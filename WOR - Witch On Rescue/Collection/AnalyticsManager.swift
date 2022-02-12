@@ -25,43 +25,57 @@ class AnalyticsManager {
 
 
 enum AnalyticsEvent {
-    case gameRestart
-    case levelUp(Int)
+    case levelStart
+    case levelEnd(Int,Bool,Int) // score, viewedad, placed pieces
+    case placedPiece(String, Int, Bool) //piece type, attempts until place, rotated
+    case screenView(String, String)
     
     var name: String {
         switch self {
-        case .gameRestart:
-            return "game_restart"
-        case .levelUp:
-            return "level_up"
+        case .levelStart:
+            return AnalyticsEventLevelStart
+        case .levelEnd:
+            return AnalyticsEventLevelEnd
+        case .placedPiece:
+            return "placed_piece"
+        case .screenView:
+            return AnalyticsEventScreenView
         }
     }
     
     var asDict: [String: NSObject] {
         switch self {
-        case .gameRestart:
+        case .levelStart:
             return [:]
-        case .levelUp(let newLevel):
-            return ["new_level": newLevel as NSObject]
+        case .levelEnd(let score, let viewedAd, let placedPieces):
+            return [
+                "score": score as NSObject,
+                "viewed_ad": viewedAd as NSObject,
+                "placed_pieces": placedPieces as NSObject
+            ]
+        case .placedPiece(let pieceType, let attempts, let rotated):
+            return [
+                "piece_type": pieceType as NSObject,
+                "attempts_to_place": attempts as NSObject,
+                "rotated": rotated as NSObject
+            ]
+        case .screenView(let screenName, let screenClass) :
+            return [
+                AnalyticsParameterScreenName: screenName as NSObject,
+                AnalyticsParameterScreenClass: screenClass
+            ]
         }
     }
 }
 
 
 enum AnalyticsUserProperty {
-    case age(Int)
     var name: String {
-        switch self {
-        case .age:
-            return "user_age"
-        }
+        return ""
     }
     
     var value: String {
-        switch self {
-        case .age(let age):
-            return age.description
-        }
+        return ""
     }
 }
 
