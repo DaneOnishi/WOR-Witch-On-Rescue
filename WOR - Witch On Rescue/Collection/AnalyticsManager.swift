@@ -28,15 +28,18 @@ enum AnalyticsEvent {
     case levelStart
     case levelEnd(Int,Bool,Int) // score, viewedad, placed pieces
     case placedPiece(String, Int, Bool) //piece type, attempts until place, rotated
+    case screenView(String, String)
     
     var name: String {
         switch self {
         case .levelStart:
-            return "levelStart"
+            return AnalyticsEventLevelStart
         case .levelEnd:
-            return "levelEnd"
+            return AnalyticsEventLevelEnd
         case .placedPiece:
-            return "placedPiece"
+            return "placed_piece"
+        case .screenView:
+            return AnalyticsEventScreenView
         }
     }
     
@@ -55,6 +58,11 @@ enum AnalyticsEvent {
                 "piece_type": pieceType as NSObject,
                 "attempts_to_place": attempts as NSObject,
                 "rotated": rotated as NSObject
+            ]
+        case .screenView(let screenName, let screenClass) :
+            return [
+                AnalyticsParameterScreenName: screenName as NSObject,
+                AnalyticsParameterScreenClass: screenClass
             ]
         }
     }
