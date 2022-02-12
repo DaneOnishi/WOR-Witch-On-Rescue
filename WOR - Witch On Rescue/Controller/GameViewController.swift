@@ -11,7 +11,7 @@ import GameplayKit
 import AVFoundation
 import GoogleMobileAds
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GADFullScreenContentDelegate {
     
     enum GameState: NSInteger {
        case notStarted
@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        show(state: .splash)
+        show(state: .start)
         
         SFXMusicSingleton.shared.playMainMusic()
         
@@ -69,6 +69,7 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        loadRewardedAd()
     }
     
     @IBAction func startButtonOnPress(_ sender: Any) {
@@ -76,6 +77,75 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func rankingButtonOnPress(_ sender: Any) {
+    }
+    
+    @IBAction func presentAd(_ sender: Any) {
+        if let ad = rewardedAd {
+             ad.present(fromRootViewController: self) {
+               let reward = ad.adReward
+               print("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
+               // TODO: Reward the user.
+             }
+           } else {
+             let alert = UIAlertController(
+               title: "Rewarded ad isn't available yet.",
+               message: "The rewarded ad cannot be shown at this time",
+               preferredStyle: .alert)
+             let alertAction = UIAlertAction(
+               title: "OK",
+               style: .cancel,
+               handler: { [weak self] action in
+                   self?.show(state: .gameOver)
+               })
+             alert.addAction(alertAction)
+             self.present(alert, animated: true, completion: nil)
+           }
+    }
+    
+    fileprivate func loadRewardedAd() {
+        GADRewardedAd.load(
+            withAdUnitID: "ca-app-pub-3940256099942544/1712485313", request: GADRequest()
+        ) { (ad, error) in
+            if let error = error {
+                print("Rewarded ad failed to load with error: \(error.localizedDescription)")
+                return
+            }
+            print("Loading Succeeded")
+            self.rewardedAd = ad
+            self.rewardedAd?.fullScreenContentDelegate = self
+        }
+    }
+    
+    func ad(
+        _ ad: GADFullScreenPresentingAd,
+        didFailToPresentFullScreenContentWithError error: Error
+      ) {
+        print("Rewarded ad failed to present with error: \(error.localizedDescription).")
+        let alert = UIAlertController(
+          title: "Rewarded ad failed to present",
+          message: "The reward ad could not be presented.",
+          preferredStyle: .alert)
+        let alertAction = UIAlertAction(
+          title: "Drat",
+          style: .cancel,
+          handler: { [weak self] action in
+              self?.show(state: .gameOver)
+          })
+        alert.addAction(alertAction)
+        self.present(alert, animated: true, completion: nil)
+      }
+
+      deinit {
+        NotificationCenter.default.removeObserver(
+          self,
+          name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(
+          self,
+          name: UIApplication.didBecomeActiveNotification, object: nil)
+      }
+    
+    @IBAction func refuseAdButton(_ sender: Any) {
+        show(state: .gameOver)
     }
     
     override var shouldAutorotate: Bool {
@@ -98,12 +168,7 @@ class GameViewController: UIViewController {
 extension GameViewController: GameSceneDelegate {
     func presenteGameOver() {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let firstVC = storyboard.instantiateViewController(identifier: "GameOverViewController") as? GameOverViewController else {
-            return
-        }
-        firstVC.modalPresentationStyle = .fullScreen
-        self.present(firstVC, animated: true, completion: nil)
+        show(state: .reward)
     }
 }
 
@@ -115,13 +180,20 @@ extension GameViewController {
         }
         
         allNonHiddenViews.forEach { view in
+            
             UIView.animate(withDuration: 0.15) {
                 view.alpha = 0
+            } completion: { _ in
+                
+//                view.isHidden = true
             }
+
         }
         
         UIView.animate(withDuration: 0.15) {
-            self.viewsForState[state]?.alpha = 1
+            let view = self.viewsForState[state]
+//            view?.isHidden = false
+            view?.alpha = 1
         }
     }
 }
@@ -132,4 +204,11 @@ enum GameViewControllerViewState {
     case game
     case reward
     case gameOver
+}
+
+enum GameState: NSInteger {
+  case notStarted
+  case playing
+  case paused
+  case ended
 }

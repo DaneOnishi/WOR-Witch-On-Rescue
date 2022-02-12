@@ -55,6 +55,7 @@
                                         <connections>
                                             <action selector="noButtonOnPress:" destination="Pub-Fw-Lxo" eventType="touchUpInside" id="QZM-aE-7Pk"/>
                                             <action selector="noButtonOnPress:" destination="1dN-TB-hjp" eventType="touchUpInside" id="ikk-Ln-Y1m"/>
+                                            <action selector="refuseAdButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="QIa-Ph-a6J"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOn-h4-WS2">
@@ -69,6 +70,7 @@
                                             <backgroundConfiguration key="background" image="Ativo 6"/>
                                         </buttonConfiguration>
                                         <connections>
+                                            <action selector="presentAd:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Dlq-Ck-x48"/>
                                             <action selector="yesButtonOnPress:" destination="1dN-TB-hjp" eventType="touchUpInside" id="qip-NX-cmX"/>
                                         </connections>
                                     </button>
@@ -104,7 +106,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="spashScreen"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8j-Gc-Api" userLabel="Start Screen View">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8j-Gc-Api" userLabel="Start Screen View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ativo 19" translatesAutoresizingMaskIntoConstraints="NO" id="4za-5u-JNz">
@@ -298,7 +300,7 @@
                         <outlet property="rankingButton" destination="98D-Mf-XGs" id="qKw-rX-OX5"/>
                         <outlet property="splashScreenView" destination="U5N-cv-NZD" id="SIk-zT-6Ma"/>
                         <outlet property="startButton" destination="5vf-PK-YCs" id="jqb-KO-LHi"/>
-                        <outlet property="startScreenView" destination="Ru6-Nc-cdd" id="ZgZ-0Q-4wL"/>
+                        <outlet property="startScreenView" destination="E8j-Gc-Api" id="JUO-NY-GTJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
