@@ -63,7 +63,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let generator = UINotificationFeedbackGenerator()
     
-    var endedGame = false
+    var isGameEnded = false
+    var isGamePaused = false
     var placedFirstPiece = false
     
     var topY: CGPoint!
@@ -149,6 +150,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var startingDragPosition: CGPoint?
     func touchDown(atPoint pos : CGPoint) {
+        guard !isGamePaused, !isGameEnded else { return }
+        
         if let node = nodes(at: pos).first {
             if node.name == "rotatable_piece" {
                 movingNode = pieceNode.container
@@ -181,7 +184,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func calculateEnemyDistance() {
-        enemyDistance = round(player.position.y - enemy.position.y)
+        enemyDistance = max(round((player.position.y - player.size.height/2) - (enemy.position.y + enemy.size.height/2)) / 10, 0)
     }
     
     func removeOldPieces() {
@@ -430,8 +433,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    }
     
     func endGame() {
-        guard !endedGame else { return }
-        endedGame = true
+        guard !isGameEnded else { return }
+        isGameEnded = true
     
         
         GameCenterManager.shared.updateScore(with: pointsCounter)
@@ -447,7 +450,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        if endedGame {
+        if isGameEnded || isGamePaused {
             return
         }
         // Called before each frame is rendered
@@ -459,7 +462,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         }
         calculateEnemyDistance()
-        enemyDistanceLabel.text = enemyDistance.description
+        enemyDistanceLabel.text = Int(enemyDistance).description
+    }
+    
+    func pauseGame() {
+        scene?.isPaused = true
+        isGamePaused = true
+    }
+    
+    func unpauseGame() {
+        scene?.isPaused = false
+        isGamePaused = false
+    }
+    
+    func revive() {
+        enemy.position = enemy.position - CGPoint(x: 0, y: 1000)
+        enemySpeed = initialEnemySpeed
+        enemySpeedAcceleration = initialEnemySpeedAcceleration
+        isGameEnded = false
     }
 }
 
