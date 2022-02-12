@@ -7,13 +7,14 @@
 
 
 // splashscreen transicao do final feia
-// ranking button -> fazer redirecionamento para a leaderboard
-// ranking button -> o mesmo c o da gameover
-// tela de pause OU fodase so pausa sozinho
-// logica de pause
-// arrumar o contador de distância
-// gato intersecta pocao
-// depois de ver ad, voltar o jogo para onde estava jogado
+// gato intersecta poca
+// analytics funcionando bein
+// animacoes
+// rever usabilidade
+// ver se vamos ter duaspeca
+// ver se vamos poder clicar em qq lugar da tela
+// lugares em que a peca nao se encaixa
+// rever opcoes de jogabilidade 
 
 import UIKit
 import SpriteKit
@@ -128,6 +129,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate, GKGame
     
     @IBAction func startButtonOnPress(_ sender: Any) {
         show(state: .game)
+        AnalyticsManager.shared.log(event: .levelStart)
     }
     
     var shouldGrantRewardedAdRewards = false
