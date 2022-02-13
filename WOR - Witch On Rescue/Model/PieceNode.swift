@@ -25,6 +25,9 @@ class PieceNode {
     let matrixSize = 4 // Static, might need to be changed if pieces change size
     let blockSize: CGSize // The width and height of an individual block
     
+    var didRotate = false
+    var placeAttempts = 0
+    
     func render() { // Builds SKSpriteNodes from the `piece`
         
         func calculateOffset(i: Int, j: Int) -> (CGFloat, CGFloat) {
@@ -71,6 +74,8 @@ class PieceNode {
         
         print("[rotate] Rotating piece...")
         piece = piece.rotated()
+        
+        didRotate = true
         
         print("[rotate] Rotated piece!")
         

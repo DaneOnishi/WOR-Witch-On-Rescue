@@ -38,8 +38,6 @@ class GameViewController: UIViewController {
     @IBOutlet weak var rankingButtonGameOverScreen: UIButton!
     
     // End Game Control stuff
-    var shouldGrantRewardedAdRewards = false
-    var viewedRewardedAdOnce = false
     var placedPieces: Int = 0
     
     // Game View stufxaf
@@ -129,11 +127,11 @@ class GameViewController: UIViewController {
 extension GameViewController: GameSceneDelegate {
     func playerLost(placedPieces: Int) {
         self.placedPieces = placedPieces
-        if !viewedRewardedAdOnce {
+        if !(gameScene!.viewedRewardedAdOnce){
             show(state: .reward)
         } else {
             triggerGameOver()
-            viewedRewardedAdOnce = false
+            gameScene!.viewedRewardedAdOnce = false
         }
     }
 }
@@ -204,14 +202,14 @@ extension GameViewController {
     }
     
     @IBAction func presentAd(_ sender: Any) {
-        viewedRewardedAdOnce = true
+        gameScene!.viewedRewardedAdOnce = true
         
         if let ad = rewardedAd {
             ad.present(fromRootViewController: self) {
                 let reward = ad.adReward
                 print("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
                 // TODO: Reward the user.
-                self.shouldGrantRewardedAdRewards = true
+                self.gameScene!.shouldGrantRewardedAdRewards = true
             }
         } else {
             let alert = UIAlertController(
@@ -283,11 +281,7 @@ extension GameViewController {
     
     func triggerGameOver() {
         // Fazer evento do analytics
-        AnalyticsManager.shared.log(event: .levelEnd(SharedData.shared.pointsCounter, viewedRewardedAdOnce, placedPieces))
-        
-        // Resetar variaveis
-        viewedRewardedAdOnce = false
-        placedPieces = 0
+        AnalyticsManager.shared.log(event: .levelEnd(SharedData.shared.pointsCounter, gameScene!.viewedRewardedAdOnce, gameScene!.placedPieces))
         
         // Apresentar tela
         show(state: .gameOver)
@@ -300,11 +294,11 @@ extension GameViewController {
 
 extension GameViewController: GADFullScreenContentDelegate {
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-        if shouldGrantRewardedAdRewards {
+        if gameScene!.shouldGrantRewardedAdRewards {
             self.loadRewardedAd()
             gameScene?.revive()
             show(state: .game)
-            shouldGrantRewardedAdRewards = false
+            gameScene?.shouldGrantRewardedAdRewards = false
         }
     }
     

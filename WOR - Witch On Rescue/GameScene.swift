@@ -22,17 +22,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var player : PlayerNode!
     private var cameraNode: SKCameraNode!
-    private var enemy: SKSpriteNode!
+    private var enemy: EnemyNode!
     private var movingNode: SKNode?
     private var potion: PotionNode!
     private var pieceSpawnPoint: CGPoint!
+    private var enemySpawnPoint: CGPoint!
     private var catSpawnPoint: CGPoint!
     
-    // think -- delay fog after starting
-    private var enemySpeed: CGFloat = 28 // Speed per second
-    private var enemySpeedAcceleration: CGFloat = 0.007 // Adds to the enemy spee every tick
-    private var enemySpeedAccelerationIncrease: CGFloat = 0.0005 // Adds to the enemy acceleration every tick
-    private var maxEnemySpeed: CGFloat = 80
+    
     
     private var maxCameraY: CGFloat = 0
     private var spawnPointCameraOffSet: CGFloat = 0
@@ -42,17 +39,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pointsCounter = SharedData.shared.pointsCounter
     
     private var initialPlayerPosition: CGPoint!
-    private var initialCameraPosition: CGPoint!
     private var initialEnemyPosition: CGPoint!
+    private var initialCameraPosition: CGPoint!
     var originalPlayerFootPosition: CGPoint!
     
-    private var initialEnemySpeed: CGFloat!
-    private var initialEnemySpeedAcceleration: CGFloat!
+   
     
     private var pieceNode: PieceNode!
-    var didRotate = false
-    var placeAttempts = 0
     var createdPieces: CGFloat = 0
+    
+    var placedPieces: Int {
+        Int(createdPieces - 1)
+    }
     
     
     private var gameCenterManager: GameCenterManager!
@@ -72,6 +70,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isGamePaused = false
     var placedFirstPiece = false
     
+    var shouldGrantRewardedAdRewards = false
+    var viewedRewardedAdOnce = false
+    
     var topY: CGPoint!
     var enemyDistance: CGFloat!
     
@@ -82,11 +83,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = playerSpawn!.position
         addChild(player)
         let pieceSpawnPointNode = childNode(withName: "pieceSpawn")!
-        enemy = childNode(withName: "fog") as? SKSpriteNode
+        let enemySpawnPointNode = childNode(withName: "enemySpawn")!
         cameraNode = camera!
         catsRescuedLabel = cameraNode.childNode(withName: "catsRescuedLabel") as? SKLabelNode
         pointsCounterLabel = cameraNode.childNode(withName: "pointsCounterLabel") as? SKLabelNode
         
+        enemy = EnemyNode()
+        enemy.position = enemySpawnPointNode.position
+        addChild(enemy)
         calculateEnemyDistance()
         enemyDistanceLabel = cameraNode.childNode(withName: "Enemy distance") as? SKLabelNode
         
@@ -95,6 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pieceSpawnPoint = pieceSpawnPointNode.position
         spawnPointCameraOffSet = pieceSpawnPoint.y - cameraNode.position.y
         playerCameraOffSet = cameraNode.position.y - player.position.y
+    
         
         maxCameraY = cameraNode.position.y
         
@@ -102,8 +107,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         initialEnemyPosition = enemy.position
         initialCameraPosition = camera?.position
         
-        initialEnemySpeed = enemySpeed
-        initialEnemySpeedAcceleration = enemySpeedAcceleration
+        enemy.initialEnemySpeed = enemy.enemySpeed
+        enemy.initialEnemySpeedAcceleration = enemy.enemySpeedAcceleration
         
         grid = Grid(in: self)
         grid.generateInitialGrid(playerFootPosition: player.playerFootPosition)
@@ -232,7 +237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         placedFirstPiece = true
         
-        AnalyticsManager.shared.log(event: .placedPiece(pieceNode.piece.type.rawValue, placeAttempts, didRotate))
+        AnalyticsManager.shared.log(event: .placedPiece(pieceNode.piece.type.rawValue, pieceNode.placeAttempts, pieceNode.didRotate))
         
         spawnRandomPiece()
     }
@@ -294,13 +299,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let startingPosition = startingDragPosition,
                startingPosition.distance(to: pos) < 40 {
                 pieceNode.rotate()
-                didRotate = true
                 // se nao ta pertinho, tenta colocar
             } else if canPlacePiece() {
                 placePiece()
                 generator.notificationOccurred(.success)
             } else {
-                placeAttempts += 1
+                pieceNode.placeAttempts += 1
                 pieceNode.container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
             }
             
@@ -339,9 +343,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
         addChild(container)
         pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 3, blockSize: gridNodeSize)
-        
-        didRotate = false
-        placeAttempts = 0
     }
     
     func spawnCat() {
@@ -380,7 +381,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     func pickPotion(node: SKNode) {
             node.removeFromParent()
-            enemySpeed = 20
+            enemy.enemySpeed = 20
             spawnPotion()
     }
     
@@ -388,20 +389,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.cameraNode.position.y = playerPosition.y + playerCameraOffSet
     }
     
-    func moveEnemy() {
-        let direction = CGPoint(x: 0, y: 1)
-        let normalized = direction.normalized()
-        let newPosition = enemy.position + (normalized * enemySpeed / 60)
-        
-        enemy.position = newPosition
-    }
     
-    func updateEnemySpeed() {
-        if enemySpeed < maxEnemySpeed {
-            enemySpeed += enemySpeedAcceleration
-            enemySpeedAcceleration += enemySpeedAccelerationIncrease
-        }
-    }
     
     func checkEnemyHitPlayer() {
         if enemy.intersects(player) {
@@ -468,8 +456,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         updateCamera(playerPosition: player.position)
         // rescueCat()
         if placedFirstPiece {
-            moveEnemy()
-            updateEnemySpeed()
+            enemy.moveEnemy()
+            enemy.updateEnemySpeed()
 
         }
         calculateEnemyDistance()
@@ -488,8 +476,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func revive() {
         enemy.position = enemy.position - CGPoint(x: 0, y: 1000)
-        enemySpeed = initialEnemySpeed
-        enemySpeedAcceleration = initialEnemySpeedAcceleration
+        enemy.enemySpeed = enemy.initialEnemySpeed
+        enemy.enemySpeedAcceleration = enemy.initialEnemySpeedAcceleration
         isGameEnded = false
     }
 }

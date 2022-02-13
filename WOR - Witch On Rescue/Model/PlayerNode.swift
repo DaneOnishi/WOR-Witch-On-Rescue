@@ -39,7 +39,7 @@ class PlayerNode: SKSpriteNode {
         physicsBody?.categoryBitMask = 1
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = 2
-        
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,7 +85,6 @@ class PlayerNode: SKSpriteNode {
     
     func addPositionsPlayerQueue(positions: [CGPoint]) {
         print("Current position: \(position)")
-        print("Adding positions: \(positions)")
         
         nextPlayerMovements.append(contentsOf: positions)
         if !isPlayerWalking,

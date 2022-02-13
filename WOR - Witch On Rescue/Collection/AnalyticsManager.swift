@@ -62,7 +62,7 @@ enum AnalyticsEvent {
         case .screenView(let screenName, let screenClass) :
             return [
                 AnalyticsParameterScreenName: screenName as NSObject,
-                AnalyticsParameterScreenClass: screenClass
+                AnalyticsParameterScreenClass: screenClass as NSObject
             ]
         }
     }

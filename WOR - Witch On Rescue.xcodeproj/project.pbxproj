@@ -23,7 +23,7 @@
 		4161D7F427A371FE00191C83 /* NanoBusinessMechanicsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D7F327A371FE00191C83 /* NanoBusinessMechanicsUITestsLaunchTests.swift */; };
 		4161D80127A3757200191C83 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80027A3757200191C83 /* PlayerNode.swift */; };
 		4161D80427A3759200191C83 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80327A3759200191C83 /* Piece.swift */; };
-		4161D80827A3A64F00191C83 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80727A3A64E00191C83 /* Base.swift */; };
+		4161D80827A3A64F00191C83 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80727A3A64E00191C83 /* Enemy.swift */; };
 		4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80927A3AD6200191C83 /* SpriteKit+.swift */; };
 		416ABA4527B20FB400CA9A83 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */; };
 		416ABA4B27B2BB4700CA9A83 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416ABA4A27B2BB4700CA9A83 /* GameKit.framework */; };
@@ -87,7 +87,7 @@
 		4161D7F327A371FE00191C83 /* NanoBusinessMechanicsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoBusinessMechanicsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4161D80027A3757200191C83 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
 		4161D80327A3759200191C83 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
-		4161D80727A3A64E00191C83 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		4161D80727A3A64E00191C83 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		4161D80927A3AD6200191C83 /* SpriteKit+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpriteKit+.swift"; sourceTree = "<group>"; };
 		416ABA2827B1FEEA00CA9A83 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
 		416ABA2A27B1FEEA00CA9A83 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,7 +286,7 @@
 				41E6558C27AA3D6500466D06 /* PieceFactory.swift */,
 				41E6558E27AA40D400466D06 /* PieceNode.swift */,
 				4161D80027A3757200191C83 /* PlayerNode.swift */,
-				4161D80727A3A64E00191C83 /* Base.swift */,
+				4161D80727A3A64E00191C83 /* Enemy.swift */,
 				4161D80327A3759200191C83 /* Piece.swift */,
 				41815EF827B0A6CF00D5ACA5 /* Cat.swift */,
 				41815EFC27B0A74E00D5ACA5 /* Potion.swift */,
@@ -560,7 +560,7 @@
 				41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */,
 				4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */,
 				41DF64D527B5AC44006AAF35 /* SplashScreenView.swift in Sources */,
-				4161D80827A3A64F00191C83 /* Base.swift in Sources */,
+				4161D80827A3A64F00191C83 /* Enemy.swift in Sources */,
 				415AAEA627B358C1000E6DD6 /* SFX.swift in Sources */,
 				416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */,
 				41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */,
