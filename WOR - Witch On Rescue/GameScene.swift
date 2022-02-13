@@ -132,6 +132,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Only do ONCE and at the end
         let newPlayerScale = (grid.gridNodeSize.height / player.size.height) * 1.2
         player.setScale(newPlayerScale)
+        
+        let magic = MagicNode(startingZPosition: 10)
+        addChild(magic)
     }
     
     fileprivate func spawnBase() {

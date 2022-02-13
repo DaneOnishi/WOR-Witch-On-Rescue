@@ -25,6 +25,7 @@
 		4161D80427A3759200191C83 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80327A3759200191C83 /* Piece.swift */; };
 		4161D80827A3A64F00191C83 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80727A3A64E00191C83 /* Enemy.swift */; };
 		4161D80A27A3AD6200191C83 /* SpriteKit+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161D80927A3AD6200191C83 /* SpriteKit+.swift */; };
+		41647D5327B8E90F00288A43 /* MagicNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41647D5227B8E90F00288A43 /* MagicNode.swift */; };
 		416ABA4527B20FB400CA9A83 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */; };
 		416ABA4B27B2BB4700CA9A83 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416ABA4A27B2BB4700CA9A83 /* GameKit.framework */; };
 		416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416ABA4C27B2C20500CA9A83 /* SharedData.swift */; };
@@ -89,6 +90,7 @@
 		4161D80327A3759200191C83 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		4161D80727A3A64E00191C83 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		4161D80927A3AD6200191C83 /* SpriteKit+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpriteKit+.swift"; sourceTree = "<group>"; };
+		41647D5227B8E90F00288A43 /* MagicNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicNode.swift; sourceTree = "<group>"; };
 		416ABA2827B1FEEA00CA9A83 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
 		416ABA2A27B1FEEA00CA9A83 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		416ABA2C27B1FEEA00CA9A83 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +294,7 @@
 				41815EFC27B0A74E00D5ACA5 /* Potion.swift */,
 				416ABA4C27B2C20500CA9A83 /* SharedData.swift */,
 				410D3E7B27B374FD003D225E /* Score.swift */,
+				41647D5227B8E90F00288A43 /* MagicNode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				415AAEA627B358C1000E6DD6 /* SFX.swift in Sources */,
 				416ABA4D27B2C20500CA9A83 /* SharedData.swift in Sources */,
 				41815EF927B0A6CF00D5ACA5 /* Cat.swift in Sources */,
+				41647D5327B8E90F00288A43 /* MagicNode.swift in Sources */,
 				41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */,
 				4161D7CE27A371FA00191C83 /* AppDelegate.swift in Sources */,
 			);
