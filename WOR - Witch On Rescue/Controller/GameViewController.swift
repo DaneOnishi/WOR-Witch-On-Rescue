@@ -37,6 +37,13 @@ class GameViewController: UIViewController {
     @IBOutlet weak var tryAgainButton: UIButton!
     @IBOutlet weak var rankingButtonGameOverScreen: UIButton!
     
+    
+     @IBOutlet weak var ponctuationLabel: UILabel!
+    
+     @IBOutlet weak var catsRescuedCounterLabel: UILabel!
+     
+     @IBOutlet weak var recordLabel: UILabel!
+    
     // End Game Control stuff
     var placedPieces: Int = 0
     
@@ -44,6 +51,10 @@ class GameViewController: UIViewController {
     var gameScene: GameScene?
     var rewardedAd: GADRewardedAd?
     var level: LevelData?
+    let pointsList = SharedData.shared.fetchPoints()
+    var record: Score? {
+        pointsList.max()
+    }
     
     lazy var viewsForState: [GameViewControllerViewState: UIView] = [
         .splash: splashScreen,
@@ -53,13 +64,9 @@ class GameViewController: UIViewController {
         .game: self.view
     ]
     
-    @IBOutlet weak var catsCounter: UILabel!
-    @IBOutlet weak var pointsCounterLabel: UILabel!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        GameCenterManager.shared.authenticateLocalPlayer(currentVC: self)
         show(state: .splash)
         setupSplashAnimation()
         
@@ -67,6 +74,10 @@ class GameViewController: UIViewController {
         
         createGameScene()
         loadRewardedAd()
+        
+        catsRescuedCounterLabel.text = "\(SharedData.shared.catsRescued.description)"
+        ponctuationLabel.text = "\(SharedData.shared.pointsCounter.description)"
+        recordLabel.text = record?.points.description ?? ""
         
         // Pause game when application is backgrounded.
         NotificationCenter.default.addObserver(
@@ -125,6 +136,11 @@ class GameViewController: UIViewController {
 
 // MARK: GameViewController: GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
+    func updateScore(catsRescued: Int, pointsCounter: Int) {
+        catsRescuedCounterLabel.text = "\(catsRescued)"
+        ponctuationLabel.text = "\(pointsCounter)"
+    }
+    
     func playerLost(placedPieces: Int) {
         self.placedPieces = placedPieces
         if !(gameScene!.viewedRewardedAdOnce){
@@ -134,6 +150,7 @@ extension GameViewController: GameSceneDelegate {
             gameScene!.viewedRewardedAdOnce = false
         }
     }
+
 }
 
 // MARK: SplashScreen

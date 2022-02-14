@@ -17,9 +17,7 @@ class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
     @IBOutlet weak var TryAgainButton: UIButton!
     @IBOutlet weak var ContinueButton: UIButton!
     @IBOutlet weak var RankingButton: UIButton!
-    @IBOutlet weak var catsRescuedLabel: UILabel!
-    @IBOutlet weak var ponctuationLabel: UILabel!
-    @IBOutlet weak var recordLabel: UILabel!
+ 
     
     let pointsList = SharedData.shared.fetchPoints()
     var record: Score? {
@@ -28,9 +26,7 @@ class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        catsRescuedLabel.text = "\(SharedData.shared.catsRescued.description)"
-        ponctuationLabel.text = "\(SharedData.shared.pointsCounter.description)"
-        recordLabel.text = record?.points.description ?? ""
+       
         
         SFXMusicSingleton.shared.gameOverMusic()
     }

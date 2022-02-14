@@ -43,12 +43,12 @@ class PieceFactory {
             [.empty, .block, .start, .empty],
             [.empty, .empty, .empty, .empty],
         ],
-        .hook: [
-            [.empty, .block, .target, .empty],
-            [.empty, .block, .empty, .empty],
-            [.empty, .block, .block, .start],
-            [.empty, .empty, .empty, .empty],
-        ],
+//        .hook: [
+//            [.empty, .block, .target, .empty],
+//            [.empty, .block, .empty, .empty],
+//            [.empty, .block, .block, .start],
+//            [.empty, .empty, .empty, .empty],
+//        ],
         .z: [
             [.empty, .target, .empty, .empty],
             [.empty, .block, .block, .empty],

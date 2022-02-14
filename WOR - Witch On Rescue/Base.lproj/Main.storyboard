@@ -167,14 +167,14 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqK-q0-RdX">
                                         <rect key="frame" x="50" y="243" width="314" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" red="0.91372549020000005" green="0.85882352939999995" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="highlightedColor" red="0.97635287049999997" green="0.76414013619999999" blue="0.52661102100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIc-ZV-tEg">
                                         <rect key="frame" x="50" y="283.5" width="314" height="72"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" red="0.91372549020000005" green="0.85882352939999995" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="highlightedColor" red="0.97635287049999997" green="0.76414013619999999" blue="0.52661102100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="y3q-hM-JQn">
                                         <rect key="frame" x="50" y="385.5" width="314" height="106.5"/>
@@ -188,14 +188,14 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rescues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMr-38-HNw">
                                                         <rect key="frame" x="0.0" y="0.0" width="85" height="27.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
+                                                        <color key="textColor" red="0.9137254901960784" green="0.85882352941176465" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="highlightedColor" red="0.97647058823529409" green="0.76470588235294112" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mif-Bb-5S7">
                                                         <rect key="frame" x="284.5" y="0.0" width="29.5" height="27.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
+                                                        <color key="textColor" red="0.9137254901960784" green="0.85882352941176465" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="highlightedColor" red="0.97647058823529409" green="0.76470588235294112" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
@@ -208,14 +208,14 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o27-Vx-yvK">
                                                         <rect key="frame" x="0.0" y="0.0" width="114" height="27.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
+                                                        <color key="textColor" red="0.9137254901960784" green="0.85882352941176465" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="highlightedColor" red="0.97647058823529409" green="0.76470588235294112" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAb-mk-U7m">
                                                         <rect key="frame" x="254" y="0.0" width="60" height="27.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
+                                                        <color key="textColor" red="0.9137254901960784" green="0.85882352941176465" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="highlightedColor" red="0.97647058823529409" green="0.76470588235294112" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
@@ -300,10 +300,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="catsRescuedCounterLabel" destination="mif-Bb-5S7" id="2OB-Iw-OFy"/>
                         <outlet property="continueCardView" destination="1dN-TB-hjp" id="8z8-Ed-ssd"/>
                         <outlet property="gameOverView" destination="Ru6-Nc-cdd" id="Cng-BF-rlt"/>
+                        <outlet property="ponctuationLabel" destination="JIc-ZV-tEg" id="ZUy-3z-JQ3"/>
                         <outlet property="rankingButton" destination="98D-Mf-XGs" id="qKw-rX-OX5"/>
                         <outlet property="rankingButtonGameOverScreen" destination="BJi-ug-zAW" id="K38-jS-N4m"/>
+                        <outlet property="recordLabel" destination="GAb-mk-U7m" id="bf4-0z-EWW"/>
                         <outlet property="splashScreen" destination="U5N-cv-NZD" id="lrT-iu-m35"/>
                         <outlet property="startButton" destination="5vf-PK-YCs" id="jqb-KO-LHi"/>
                         <outlet property="startScreenView" destination="E8j-Gc-Api" id="JUO-NY-GTJ"/>

@@ -13,8 +13,9 @@ import AVFoundation
 // thonk -- fog delay after starting
 
 protocol GameSceneDelegate: AnyObject {
-
+    
     func playerLost(placedPieces: Int)
+    func updateScore(catsRescued: Int, pointsCounter: Int)
     
 }
 
@@ -30,6 +31,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var catSpawnPoint: CGPoint!
     private var magicOffNode: SKSpriteNode!
     private var tapToRotate: SKSpriteNode!
+    
+    private var catsRescuedLabel: SKLabelNode!
+    var pointsCounterLabel: SKLabelNode!
+    var enemyDistanceLabel: SKLabelNode!
     
     
     
@@ -60,9 +65,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var grid: Grid!
     var gridNodeSize: CGSize!
     
-    var catsRescuedLabel: SKLabelNode!
-    var pointsCounterLabel: SKLabelNode!
-    var enemyDistanceLabel: SKLabelNode!
     
     let generator = UINotificationFeedbackGenerator()
     
@@ -85,8 +87,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let pieceSpawnPointNode = childNode(withName: "pieceSpawn")!
         let enemySpawnPointNode = childNode(withName: "enemySpawn")!
         cameraNode = camera!
-        catsRescuedLabel = cameraNode.childNode(withName: "catsRescuedLabel") as? SKLabelNode
         pointsCounterLabel = cameraNode.childNode(withName: "pointsCounterLabel") as? SKLabelNode
+        catsRescuedLabel = cameraNode.childNode(withName: "catsRescuedLabel") as? SKLabelNode
+        
         magicOffNode = childNode(withName: "magicOff") as? SKSpriteNode
         tapToRotate = childNode(withName: "tapToRotate") as? SKSpriteNode
         
@@ -101,6 +104,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tapToRotate.scale(to: CGSize(width: 300, height: 175))
         
         
+        
+        
         print("Enemy created and added...")
         
         calculateEnemyDistance()
@@ -111,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pieceSpawnPoint = pieceSpawnPointNode.position
         spawnPointCameraOffSet = pieceSpawnPoint.y - cameraNode.position.y
         playerCameraOffSet = cameraNode.position.y - player.position.y
-    
+        
         
         maxCameraY = cameraNode.position.y
         
@@ -309,7 +314,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-  
+    
     func touchMoved(toPoint pos : CGPoint) {
         if let movingNode = movingNode {
             if movingNode == pieceNode.container {
@@ -400,25 +405,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func rescueCat(node: SKNode) {
-            catsRescued += 1
-            pointsCounter += 60
+        catsRescued += 1
+        pointsCounter += 60
         SharedData.shared.pointsCounter = pointsCounter
         SharedData.shared.catsRescued = catsRescued
-            node.removeFromParent()
-            spawnCat()
-            updateScore()
+        node.removeFromParent()
+        spawnCat()
+        updateScore()
         SFXMusicSingleton.shared.pickCatSFX()
     }
     
     func updateScore() {
-        catsRescuedLabel.text = "\(catsRescued)"
-        pointsCounterLabel.text = "\(pointsCounter)"
+        gameSceneDelegate?.updateScore(catsRescued: catsRescued, pointsCounter: pointsCounter)
+        
+        catsRescuedLabel.text = catsRescued.description
+        pointsCounterLabel.text = pointsCounter.description
     }
-   
+    
+    
     func pickPotion(node: SKNode) {
-            node.removeFromParent()
-            enemy.enemySpeed = 20
-            spawnPotion()
+        node.removeFromParent()
+        enemy.enemySpeed = 20
+        spawnPotion()
     }
     
     func updateCamera(playerPosition: CGPoint) {
@@ -433,44 +441,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-//    func resetGame() {
-//        maxCameraY = initialCameraPosition.y
-//
-//        player.position = initialPlayerPosition
-//        camera!.position = initialCameraPosition
-//
-//        print("Resetting...")
-//
-//        enemy.position = initialEnemyPosition
-//        enemySpeed = initialEnemySpeed
-//        enemySpeedAcceleration = initialEnemySpeedAcceleration
-//
-//        cat.removeFromParent()
-//        cat = nil
-//        spawnCat()
-//
-//        GameCenterManager.shared.updateScore(with: pointsCounter)
-//
-//        // Limpar grid
-//        // Repositionar spawned piece
-//
-//        grid.gridContainer.removeFromParent()
-//
-//        grid = Grid(in: self)
-//        grid.generateInitialGrid(playerFootPosition: originalPlayerFootPosition)
-//        gridNodeSize = grid.gridNodeSize
-//
-//        pieceNode.container.removeFromParent()
-//        pieceNode = nil
-//        spawnRandomPiece()
-//        spawnBase()
-//        spawnZeroRow()
-//    }
+    //    func resetGame() {
+    //        maxCameraY = initialCameraPosition.y
+    //
+    //        player.position = initialPlayerPosition
+    //        camera!.position = initialCameraPosition
+    //
+    //        print("Resetting...")
+    //
+    //        enemy.position = initialEnemyPosition
+    //        enemySpeed = initialEnemySpeed
+    //        enemySpeedAcceleration = initialEnemySpeedAcceleration
+    //
+    //        cat.removeFromParent()
+    //        cat = nil
+    //        spawnCat()
+    //
+    //        GameCenterManager.shared.updateScore(with: pointsCounter)
+    //
+    //        // Limpar grid
+    //        // Repositionar spawned piece
+    //
+    //        grid.gridContainer.removeFromParent()
+    //
+    //        grid = Grid(in: self)
+    //        grid.generateInitialGrid(playerFootPosition: originalPlayerFootPosition)
+    //        gridNodeSize = grid.gridNodeSize
+    //
+    //        pieceNode.container.removeFromParent()
+    //        pieceNode = nil
+    //        spawnRandomPiece()
+    //        spawnBase()
+    //        spawnZeroRow()
+    //    }
     
     func endGame() {
         guard !isGameEnded else { return }
         isGameEnded = true
-    
+        
         
         GameCenterManager.shared.updateScore(with: pointsCounter)
         SharedData.shared.savePoints(points: Score(points: pointsCounter))
@@ -479,7 +487,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Salva pontos no user defaults
     }
-      
+    
     func gameOverScreen() {
         gameSceneDelegate?.playerLost(placedPieces: Int(createdPieces)-1)
     }
@@ -494,7 +502,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if placedFirstPiece {
             enemy.moveEnemy()
             enemy.updateEnemySpeed()
-
+            
         }
         calculateEnemyDistance()
         enemyDistanceLabel.text = Int(enemyDistance).description
@@ -526,7 +534,9 @@ extension GameScene: PlayerNodeDelegate {
            let blockNode = gridNode.blockNode,
            blockNode.category == .target,
            blockNode.removeMagic() {
+            
             pointsCounter += 20
+            updateScore()
         }
     }
 }
