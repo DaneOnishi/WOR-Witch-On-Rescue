@@ -18,14 +18,18 @@ class MagicNode: SKSpriteNode {
             // Animacao de rotacao
             // zPosition é startingZPosition + 3
         let magicCenter = SKSpriteNode(imageNamed: "magic_center")
+
         magicCenter.zPosition = startingZPosition + 3
         
         let magicCenterRotate = SKAction.rotate(byAngle: .pi, duration: 5)
+            
         
         magicCenter.run(
             SKAction.repeatForever(
                 magicCenterRotate
             )
+            
+            
         )
         
         let magic_1 = SKSpriteNode(imageNamed: "magic_1")
@@ -58,17 +62,6 @@ class MagicNode: SKSpriteNode {
         addChild(magic_2)
         addChild(magic_3)
         
-        // Cria um magic_1 e coloca
-            // Animacao de rotacao
-            // zPosition é startingZPosition + 2
-        
-        // Cria um magic_2 e coloca
-            // Animacao de rotacao
-            // zPosition é startingZPosition + 1
-        
-        // Cria um magic_3 e coloca
-            // Animacao de rotacao
-            // zPosition é startingZPosition + 0
         
         run(SKAction.repeatForever(SKAction.sequence([
             SKAction.scale(to: 1.3, duration: 4),

@@ -143,16 +143,15 @@ extension GameViewController {
         splashScreen?.center = view.center
         splashScreen?.contentMode = .scaleAspectFill
         splashScreen?.loopMode = .playOnce
+        splashScreen.animationSpeed = 1.5
         splashScreen?.play(completion: { _ in
             
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut) {
                 self.show(state: .start)
             }
-            
         })
     }
 }
-
 
 // MARK: StartScreen
 extension GameViewController {
@@ -172,8 +171,11 @@ extension GameViewController {
     fileprivate func createGameScene() {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
+            
+            print("Creating game scene...")
             if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
+                print("Scene created")
                 scene.scaleMode = .aspectFill
                 
                 scene.gameSceneDelegate = self
@@ -182,10 +184,12 @@ extension GameViewController {
                 
                 // Present the scene
                 view.presentScene(scene)
+                print("Scene presented")
             }
+           // view.showsPhysics = true
             view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
+           // view.showsFPS = true
+            //view.showsNodeCount = true
         }
     }
 }
@@ -245,8 +249,11 @@ extension GameViewController {
 // MARK: GameOverScreen
 extension GameViewController {
     @IBAction func tryAgainButtonOnPress(_ sender: Any) {
+        print("Button pressed")
         show(state: .start)
+        print("Showed start")
         createGameScene()
+        print("Game scene created")
     }
     
     @IBAction func rankingButtonGameOverScreenOnPress(_ sender: Any) {

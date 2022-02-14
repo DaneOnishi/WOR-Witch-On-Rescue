@@ -42,44 +42,47 @@ class PieceNode {
             return (finalWidthOffset, finalHeightOffset)
         }
         
-        print("[render] Generating piece: \(piece)")
+//        print("[render] Generating piece: \(piece)")
         
         for (i, blockRow) in piece.pieceMatrix.enumerated() { // Checking each row of the piece (which is a matrix)
-            for (j, block)  in blockRow.enumerated() {
+            for (j, block)  in blockRow.enumerated() where block != .empty {
+//                print("[render] Generating for i: \(i), j: \(j)")
+                
+                let node = createBlockNode(category: block, blockType: .grass)
+                
+                let offset = calculateOffset(i: i, j: j)
+                
+//                print("[render] offset: \(offset)")
+                
+                node.position = CGPoint(x: offset.0, y: offset.1)
+                
+                container.addChild(node)
+                
+                node.zPosition = CGFloat(startingZPosition - ((matrixSize - 1) - i)) // We basically need to assign the smallest zposition to the most close to the bottom rows
                 switch block {
-                case .empty: continue
-                case .start, .block, .target:
-                    
-                    print("[render] Generating for i: \(i), j: \(j)")
-                    
-                    let node = createBlockNode(category: block, blockType: .grass)
-                    
-                    let offset = calculateOffset(i: i, j: j)
-                    
-                    print("[render] offset: \(offset)")
-                    
-                    node.position = CGPoint(x: offset.0, y: offset.1)
-                    
-                    container.addChild(node)
-                    
-                    node.zPosition = CGFloat(startingZPosition - ((matrixSize - 1) - i)) // We basically need to assign the smallest zposition to the most close to the bottom rows
+                case .target:
+                    let magicNode = MagicNode(startingZPosition: 1)
+                    node.magicNode = magicNode
+                    node.addChild(magicNode)
+                    // colcoa naimation node
+                default: continue
                 }
             }
         }
     }
     
     func rotate() { // Rotates the piece node (and the underlying piece)
-        print("[rotate] Removing all children")
+//        print("[rotate] Removing all children")
         container.removeAllChildren()
         
-        print("[rotate] Rotating piece...")
+//        print("[rotate] Rotating piece...")
         piece = piece.rotated()
         
         didRotate = true
         
-        print("[rotate] Rotated piece!")
+//        print("[rotate] Rotated piece!")
         
-        print("[rotate] Rerendering...")
+//        print("[rotate] Rerendering...")
         render()
     }
     
@@ -178,6 +181,7 @@ class BlockNode: SKSpriteNode {
     
     let category: BlockCategory
     let blockType: BlockType
+    var magicNode: MagicNode? = nil
     
     internal init(blockSize: CGSize, category: BlockCategory, blockType: BlockType) {
         self.category = category
@@ -202,6 +206,20 @@ class BlockNode: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func removeMagic() -> Bool {
+        guard let magicNode = magicNode,
+              magicNode.parent != nil else {
+            return false
+        }
+
+        magicNode.run(SKAction.fadeOut(withDuration: 0.5)) {
+            magicNode.removeFromParent()
+        }
+        
+        self.magicNode = nil
+        return true
     }
 }
 
@@ -257,6 +275,7 @@ enum BlockTexture: String {
             return 97
         }
     }
+    
     
     var bottomBlockHeight: CGFloat {
         switch self {

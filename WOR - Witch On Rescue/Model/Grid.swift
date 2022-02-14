@@ -140,7 +140,7 @@ class GridNode: SKSpriteNode {
     func setHighlighted(highlightMode: HighlightMode) {
         switch highlightMode {
         case .placeable:
-            color = .green.withAlphaComponent(0.6)
+            color = .green.withAlphaComponent(0.2)
         case .hovering:
             color = .purple.withAlphaComponent(0.4)
         }

@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 protocol PlayerNodeDelegate: AnyObject {
-    func moveDone()
+    func moveDone(playerFootPosition: CGPoint)
 }
 
 class PlayerNode: SKSpriteNode {
@@ -62,11 +62,11 @@ class PlayerNode: SKSpriteNode {
     }
     
     func createNextMoveAction() -> SKAction? {
+        delegate?.moveDone(playerFootPosition: playerFootPosition)
         guard !nextPlayerMovements.isEmpty else { return nil }
         
         let nextPosition = nextPlayerMovements.removeFirst()
         previousPlayerMovements.append(nextPosition)
-        delegate?.moveDone()
         
         let moveAction = SKAction.move(to: nextPosition + playerFootDifference, duration: 1/blocksPerSecond)
         

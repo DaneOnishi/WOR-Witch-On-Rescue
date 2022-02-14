@@ -28,6 +28,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var pieceSpawnPoint: CGPoint!
     private var enemySpawnPoint: CGPoint!
     private var catSpawnPoint: CGPoint!
+    private var magicOffNode: SKSpriteNode!
+    private var tapToRotate: SKSpriteNode!
     
     
     
@@ -42,8 +44,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var initialEnemyPosition: CGPoint!
     private var initialCameraPosition: CGPoint!
     var originalPlayerFootPosition: CGPoint!
-    
-   
     
     private var pieceNode: PieceNode!
     var createdPieces: CGFloat = 0
@@ -87,10 +87,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cameraNode = camera!
         catsRescuedLabel = cameraNode.childNode(withName: "catsRescuedLabel") as? SKLabelNode
         pointsCounterLabel = cameraNode.childNode(withName: "pointsCounterLabel") as? SKLabelNode
+        magicOffNode = childNode(withName: "magicOff") as? SKSpriteNode
+        tapToRotate = childNode(withName: "tapToRotate") as? SKSpriteNode
+        
+        print("Starting to create enemy...")
         
         enemy = EnemyNode()
         enemy.position = enemySpawnPointNode.position
         addChild(enemy)
+        
+        tapToRotate.position = pieceSpawnPointNode.position - CGPoint(x: 0, y: 300)
+        
+        tapToRotate.scale(to: CGSize(width: 300, height: 175))
+        
+        
+        print("Enemy created and added...")
+        
         calculateEnemyDistance()
         enemyDistanceLabel = cameraNode.childNode(withName: "Enemy distance") as? SKLabelNode
         
@@ -119,6 +131,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.animationSetup()
         spawnPotion()
         spawnBase()
+        setupLabelAnimation()
         
         SharedData.shared.pointsCounter = 0
         SharedData.shared.catsRescued = 0
@@ -132,9 +145,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Only do ONCE and at the end
         let newPlayerScale = (grid.gridNodeSize.height / player.size.height) * 1.2
         player.setScale(newPlayerScale)
-        
-        let magic = MagicNode(startingZPosition: 10)
-        addChild(magic)
     }
     
     fileprivate func spawnBase() {
@@ -270,6 +280,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func setupLabelAnimation() {
+        var fadeOut = SKAction.fadeAlpha(to: 0.1, duration: 0.5)
+        var fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.5)
+        
+        
+        tapToRotate.run(SKAction.repeatForever(SKAction.sequence([fadeOut,fadeIn])))
+        
+    }
+    
+    func setupSceneAnimation() {
+        var fadeOut = SKAction.fadeAlpha(to: 0.1, duration: 0.5)
+        var fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.5)
+        
+        
+        run(SKAction.repeatForever(SKAction.sequence([fadeOut,fadeIn])))
+        
+    }
+    
     func enemyContact(object: SKNode?) {
         if object == nil {
             return
@@ -280,6 +308,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             endGame()
         }
     }
+    
   
     func touchMoved(toPoint pos : CGPoint) {
         if let movingNode = movingNode {
@@ -313,6 +342,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             startingDragPosition = nil
             grid.setHighlightOff()
+            
+            if tapToRotate.parent != nil {
+                tapToRotate.removeFromParent()
+            }
             
         }
     }
@@ -486,7 +519,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
 
 extension GameScene: PlayerNodeDelegate {
-    func moveDone() {
+    func moveDone(playerFootPosition: CGPoint) {
         removeOldPieces()
+        
+        if let gridNode = grid.getGridNode(for: playerFootPosition),
+           let blockNode = gridNode.blockNode,
+           blockNode.category == .target,
+           blockNode.removeMagic() {
+            pointsCounter += 20
+        }
     }
 }
