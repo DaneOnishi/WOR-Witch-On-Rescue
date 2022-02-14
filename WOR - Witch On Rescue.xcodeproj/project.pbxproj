@@ -36,6 +36,12 @@
 		41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4F27A72CDB0092EF03 /* Configurations.swift */; };
 		41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */; };
 		41B3C97927B70DB5009647EB /* splashScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 41B3C97827B70DB5009647EB /* splashScreen.json */; };
+		41DB617E27BACCED002BF5ED /* nightmare-whistle-horror-frightening-thriller-SBA-300434532.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41DB617827BACCED002BF5ED /* nightmare-whistle-horror-frightening-thriller-SBA-300434532.mp3 */; };
+		41DB617F27BACCED002BF5ED /* during_the_game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41DB617927BACCED002BF5ED /* during_the_game.mp3 */; };
+		41DB618027BACCED002BF5ED /* witch-cackle-laughter-SBA-300055159.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41DB617A27BACCED002BF5ED /* witch-cackle-laughter-SBA-300055159.mp3 */; };
+		41DB618127BACCED002BF5ED /* outdoor-ambiance-in-the-suburbs-1-SBA-300286203.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41DB617B27BACCED002BF5ED /* outdoor-ambiance-in-the-suburbs-1-SBA-300286203.mp3 */; };
+		41DB618227BACCED002BF5ED /* witch-laugh-reverb-1-SBA-300025127.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41DB617C27BACCED002BF5ED /* witch-laugh-reverb-1-SBA-300025127.mp3 */; };
+		41DB618327BACCED002BF5ED /* sorcery-magical-spell-reverse-transition-logo-5-SBA-300421549.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41DB617D27BACCED002BF5ED /* sorcery-magical-spell-reverse-transition-logo-5-SBA-300421549.mp3 */; };
 		41DF64D327B59907006AAF35 /* ContinueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D227B59907006AAF35 /* ContinueCardView.swift */; };
 		41DF64D527B5AC44006AAF35 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */; };
 		41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 41E6558827A9BD4000466D06 /* TileMapScene.sks */; };
@@ -116,6 +122,12 @@
 		41842E4F27A72CDB0092EF03 /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
 		41B3C97827B70DB5009647EB /* splashScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splashScreen.json; sourceTree = "<group>"; };
+		41DB617827BACCED002BF5ED /* nightmare-whistle-horror-frightening-thriller-SBA-300434532.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "nightmare-whistle-horror-frightening-thriller-SBA-300434532.mp3"; sourceTree = "<group>"; };
+		41DB617927BACCED002BF5ED /* during_the_game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = during_the_game.mp3; sourceTree = "<group>"; };
+		41DB617A27BACCED002BF5ED /* witch-cackle-laughter-SBA-300055159.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "witch-cackle-laughter-SBA-300055159.mp3"; sourceTree = "<group>"; };
+		41DB617B27BACCED002BF5ED /* outdoor-ambiance-in-the-suburbs-1-SBA-300286203.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "outdoor-ambiance-in-the-suburbs-1-SBA-300286203.mp3"; sourceTree = "<group>"; };
+		41DB617C27BACCED002BF5ED /* witch-laugh-reverb-1-SBA-300025127.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "witch-laugh-reverb-1-SBA-300025127.mp3"; sourceTree = "<group>"; };
+		41DB617D27BACCED002BF5ED /* sorcery-magical-spell-reverse-transition-logo-5-SBA-300421549.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sorcery-magical-spell-reverse-transition-logo-5-SBA-300421549.mp3"; sourceTree = "<group>"; };
 		41DF64D227B59907006AAF35 /* ContinueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueCardView.swift; sourceTree = "<group>"; };
 		41DF64D427B5AC44006AAF35 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		41E6558827A9BD4000466D06 /* TileMapScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileMapScene.sks; sourceTree = "<group>"; };
@@ -171,6 +183,7 @@
 		415AAEA727B358C8000E6DD6 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
+				41DB617727BACCED002BF5ED /* Witch On Run SFX */,
 				415AAEA527B358C1000E6DD6 /* SFX.swift */,
 			);
 			path = "Sound Effects";
@@ -258,6 +271,19 @@
 			children = (
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		41DB617727BACCED002BF5ED /* Witch On Run SFX */ = {
+			isa = PBXGroup;
+			children = (
+				41DB617827BACCED002BF5ED /* nightmare-whistle-horror-frightening-thriller-SBA-300434532.mp3 */,
+				41DB617927BACCED002BF5ED /* during_the_game.mp3 */,
+				41DB617A27BACCED002BF5ED /* witch-cackle-laughter-SBA-300055159.mp3 */,
+				41DB617B27BACCED002BF5ED /* outdoor-ambiance-in-the-suburbs-1-SBA-300286203.mp3 */,
+				41DB617C27BACCED002BF5ED /* witch-laugh-reverb-1-SBA-300025127.mp3 */,
+				41DB617D27BACCED002BF5ED /* sorcery-magical-spell-reverse-transition-logo-5-SBA-300421549.mp3 */,
+			);
+			path = "Witch On Run SFX";
 			sourceTree = "<group>";
 		};
 		41DF64CF27B5985B006AAF35 /* Views */ = {
@@ -448,13 +474,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41DB618127BACCED002BF5ED /* outdoor-ambiance-in-the-suburbs-1-SBA-300286203.mp3 in Resources */,
+				41DB617F27BACCED002BF5ED /* during_the_game.mp3 in Resources */,
 				4161D7D927A371FA00191C83 /* Main.storyboard in Resources */,
+				41DB617E27BACCED002BF5ED /* nightmare-whistle-horror-frightening-thriller-SBA-300434532.mp3 in Resources */,
 				41815EFF27B1D47D00D5ACA5 /* GoogleService-Info.plist in Resources */,
+				41DB618327BACCED002BF5ED /* sorcery-magical-spell-reverse-transition-logo-5-SBA-300421549.mp3 in Resources */,
 				41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */,
 				4161D7D027A371FA00191C83 /* GameScene.sks in Resources */,
 				41B3C97927B70DB5009647EB /* splashScreen.json in Resources */,
+				41DB618227BACCED002BF5ED /* witch-laugh-reverb-1-SBA-300025127.mp3 in Resources */,
 				4161D7DB27A371FD00191C83 /* Assets.xcassets in Resources */,
 				41E6558B27A9BFC000466D06 /* TileSet.sks in Resources */,
+				41DB618027BACCED002BF5ED /* witch-cackle-laughter-SBA-300055159.mp3 in Resources */,
 				4161D7DE27A371FD00191C83 /* LaunchScreen.storyboard in Resources */,
 				4161D7D227A371FA00191C83 /* Actions.sks in Resources */,
 			);
@@ -749,7 +781,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -787,7 +819,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
