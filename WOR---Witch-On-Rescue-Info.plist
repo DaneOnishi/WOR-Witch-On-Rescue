@@ -155,24 +155,26 @@
 			<string>3qcr597p9d.skadnetwork</string>
 		</dict>
 	</array>
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb638291324111184</string>
-      </array>
-      </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>638291324111184</string>
-    <key>FacebookDisplayName</key>
-    <string>WOR</string>
-    <key>FacebookAdvertiserIDCollectionEnabled</key>
-    <string>FALSE</string>
-    <key>FacebookAutoLogAppEventsEnabled</key>
-    <string>FALSE</string>
-    <key>GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED</key>
-        <false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb638291324111184</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>638291324111184</string>
+	<key>FacebookDisplayName</key>
+	<string>WOR</string>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<string>FALSE</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<string>FALSE</string>
+	<key>GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED</key>
+	<false/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Need tracking for analytics</string>
 </dict>
 </plist>
