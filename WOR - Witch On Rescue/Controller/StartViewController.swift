@@ -16,7 +16,6 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         GameCenterManager.shared.authenticateLocalPlayer(currentVC: self)
         
-        SFXMusicSingleton.shared.playIntroMusic()
     }
     
     @IBAction func startButtonOnPress(_ sender: Any) {

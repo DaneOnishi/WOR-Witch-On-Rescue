@@ -51,15 +51,17 @@ class SFXMusicSingleton: NSObject, AVAudioPlayerDelegate {
                 print(error.localizedDescription)
             }
         }
-        currentPlayer?.numberOfLoops = 100
+        currentPlayer?.numberOfLoops = 1
     }
     
     func playIntroMusic() {
         playSound(soundFileName: "")
+        
     }
     
     func playMainMusic() {
-        playSound(soundFileName: "")
+        playSound(soundFileName: "Default")
+            
     }
     
     func pickCatSFX() {

@@ -1,4 +1,10 @@
 PODS:
+  - FBAEMKit (12.0.2):
+    - FBSDKCoreKit_Basics (= 12.0.2)
+  - FBSDKCoreKit (12.0.2):
+    - FBAEMKit (= 12.0.2)
+    - FBSDKCoreKit_Basics (= 12.0.2)
+  - FBSDKCoreKit_Basics (12.0.2)
   - Firebase/Analytics (8.11.0):
     - Firebase/Core
   - Firebase/Core (8.11.0):
@@ -104,6 +110,7 @@ PODS:
   - PromisesObjC (2.0.0)
 
 DEPENDENCIES:
+  - FBSDKCoreKit
   - Firebase/Analytics
   - Firebase/Crashlytics
   - Google-Mobile-Ads-SDK
@@ -111,6 +118,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -127,6 +137,9 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
+  FBAEMKit: c6b8ddf8371640fcd1a3b844d0f8884c8f334cea
+  FBSDKCoreKit: 506c0fd1c09a3075f62be8fa36bdd921c563daa9
+  FBSDKCoreKit_Basics: c0701d1634c944d60dd3c6361d66dbd0e707a456
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   FirebaseAnalytics: 4e4b13031034e6561ed3bd1d47b6fdabbd6487c6
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
@@ -142,6 +155,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: 99c50bd247522a8a858b67faa7e2894a43255952
+PODFILE CHECKSUM: aecdac2768009b6a88b4375596a46de795b2e585
 
 COCOAPODS: 1.11.2

@@ -69,11 +69,9 @@ class GameViewController: UIViewController {
         GameCenterManager.shared.authenticateLocalPlayer(currentVC: self)
         show(state: .splash)
         setupSplashAnimation()
-        
-        SFXMusicSingleton.shared.playMainMusic()
-        
         createGameScene()
         loadRewardedAd()
+        SFXMusicSingleton.shared.playMainMusic()
         
         catsRescuedCounterLabel.text = "\(SharedData.shared.catsRescued.description)"
         ponctuationLabel.text = "\(SharedData.shared.pointsCounter.description)"

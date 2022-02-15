@@ -7,6 +7,9 @@
 
 import UIKit
 import Firebase
+import FBSDKCoreKit
+import AppTrackingTransparency
+import AdSupport
 
 
 @main
@@ -20,6 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         // Override point for customization after application launch.
         return true
+        
+        
+    }
+    
+    func application(
+        _ app: UIApplication,
+        open url: URL,
+        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+    ) -> Bool {
+        ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+        )
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -38,7 +56,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
-
 }
 
