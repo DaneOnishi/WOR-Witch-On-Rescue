@@ -34,6 +34,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var rankingButton: UIButton!
     
+    
     @IBOutlet weak var tryAgainButton: UIButton!
     @IBOutlet weak var rankingButtonGameOverScreen: UIButton!
     
@@ -56,6 +57,8 @@ class GameViewController: UIViewController {
         pointsList.max()
     }
     
+    var isPlaying = true
+    
     lazy var viewsForState: [GameViewControllerViewState: UIView] = [
         .splash: splashScreen,
         .start: startScreenView,
@@ -66,12 +69,14 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            SFXMusicSingleton.shared.playMainMusic()
+
         GameCenterManager.shared.authenticateLocalPlayer(currentVC: self)
         show(state: .splash)
         setupSplashAnimation()
         createGameScene()
         loadRewardedAd()
-        SFXMusicSingleton.shared.playMainMusic()
+       
         
         catsRescuedCounterLabel.text = "\(SharedData.shared.catsRescued.description)"
         ponctuationLabel.text = "\(SharedData.shared.pointsCounter.description)"
@@ -100,6 +105,7 @@ class GameViewController: UIViewController {
     @objc func applicationDidBecomeActive(_ notification: Notification) {
         // Resume the game if it is currently paused.
         gameScene?.unpauseGame()
+        
     }
     
     

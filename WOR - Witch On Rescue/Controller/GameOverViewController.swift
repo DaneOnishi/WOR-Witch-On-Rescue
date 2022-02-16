@@ -28,7 +28,7 @@ class GameOverViewController: UIViewController, GKGameCenterControllerDelegate {
         super.viewDidLoad()
        
         
-        SFXMusicSingleton.shared.gameOverMusic()
+        
     }
 
     func reloadPoints() {

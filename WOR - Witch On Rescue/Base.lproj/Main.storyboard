@@ -318,31 +318,6 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="88.392857142857139"/>
         </scene>
-        <!--Splash Screen View Controller-->
-        <scene sceneID="k6l-oG-Ax5">
-            <objects>
-                <viewController id="sbL-Kz-i2R" customClass="SplashScreenViewController" customModule="WOR___Witch_On_Rescue" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZR1-zL-cSP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pmp-CR-muU" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="L6n-9z-xbY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <connections>
-                        <outlet property="splashScreen" destination="Pmp-CR-muU" id="4SC-nn-Yv7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5HX-kV-tAK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="788.40579710144937" y="80.357142857142847"/>
-        </scene>
         <!--StartViewController-->
         <scene sceneID="LCu-1a-pZx">
             <objects>
@@ -551,10 +526,6 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
             <point key="canvasLocation" x="2156.521739130435" y="87.723214285714278"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="Pmp-CR-muU"/>
-        <designable name="U5N-cv-NZD"/>
-    </designables>
     <resources>
         <image name="Ativo 19" width="852" height="493"/>
         <image name="Ativo 2" width="766" height="229"/>

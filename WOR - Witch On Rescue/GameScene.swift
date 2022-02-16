@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var catsRescuedLabel: SKLabelNode!
     var pointsCounterLabel: SKLabelNode!
     var enemyDistanceLabel: SKLabelNode!
+    var barNode: SKSpriteNode!
     
     
     
@@ -78,6 +79,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var topY: CGPoint!
     var enemyDistance: CGFloat!
     
+    
+    var minBarWidth: CGFloat = 1
+    var maxBarWidth: CGFloat!
+    var maxEnemyDistanceIndicatorShows: CGFloat = 150
+    
+    
     override func didMove(to view: SKView) {
         let playerSpawn = childNode(withName: "playerSpawn") as? SKSpriteNode
         player = PlayerNode()
@@ -92,6 +99,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         magicOffNode = childNode(withName: "magicOff") as? SKSpriteNode
         tapToRotate = childNode(withName: "tapToRotate") as? SKSpriteNode
+        
+        barNode = childNode(withName: "//Bar Node") as? SKSpriteNode
+        maxBarWidth = barNode.size.width
         
         print("Starting to create enemy...")
         
@@ -150,6 +160,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Only do ONCE and at the end
         let newPlayerScale = (grid.gridNodeSize.height / player.size.height) * 1.2
         player.setScale(newPlayerScale)
+    }
+    
+    func setBar(width: CGFloat) {
+       barNode.size.width = width
     }
     
     fileprivate func spawnBase() {
@@ -412,7 +426,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         node.removeFromParent()
         spawnCat()
         updateScore()
-        SFXMusicSingleton.shared.pickCatSFX()
+        
     }
     
     func updateScore() {
@@ -506,6 +520,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         calculateEnemyDistance()
         enemyDistanceLabel.text = Int(enemyDistance).description
+        
+        let consideredEnemyDistance = max(enemyDistance, 0.01)
+        let enemyDistancePercentage = 1 - min(1, consideredEnemyDistance / maxEnemyDistanceIndicatorShows)
+        setBar(width: enemyDistancePercentage * maxBarWidth)
     }
     
     func pauseGame() {
