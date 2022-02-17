@@ -9,8 +9,9 @@ import Foundation
 import SpriteKit
 
 class PieceNode {
-    internal init(piece: Piece, container: SKNode, startingZPosition: Int, blockSize: CGSize) {
+    internal init(piece: Piece, pieceNumber: Int, container: SKNode, startingZPosition: Int, blockSize: CGSize) {
         self.piece = piece
+        self.pieceNumber = pieceNumber
         self.container = container
         self.startingZPosition = startingZPosition
         self.blockSize = blockSize
@@ -21,6 +22,7 @@ class PieceNode {
     var piece: Piece
     let container: SKNode // Stores all the smaller nodes
     let startingZPosition: Int // Minimum zIndex this piece uses
+    let pieceNumber: Int
     
     let matrixSize = 4 // Static, might need to be changed if pieces change size
     let blockSize: CGSize // The width and height of an individual block
@@ -88,7 +90,7 @@ class PieceNode {
     
     private func createBlockNode(category: BlockCategory, blockType: BlockType) -> BlockNode {
         let node = BlockNode(blockSize: blockSize, category: category, blockType: blockType)
-        node.name = "rotatable_piece"
+        node.name = "rotatable_piece_\(pieceNumber)"
         return node
     }
     

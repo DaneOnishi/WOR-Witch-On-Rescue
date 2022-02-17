@@ -11,7 +11,9 @@ import UIKit
 
 class CatNode: SKSpriteNode {
     internal init() {
-        let texture = SKTexture(imageNamed: "cat")
+        let catsTextures = ["cat 1", "cat 2", "cat 3", "cat 4"]
+        let randomCat = catsTextures.randomElement()
+        let texture = SKTexture(imageNamed: randomCat!)
         super.init(texture: texture, color: .clear, size: texture.size())
         self.size = size
         physicsBody = SKPhysicsBody(circleOfRadius: 30)

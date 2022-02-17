@@ -18,13 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-TB-hjp" userLabel="Continue Card View" customClass="ContinueCardView" customModule="WOR___Witch_On_Rescue" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-TB-hjp" userLabel="Continue Card View" customClass="ContinueCardView" customModule="WOR___Witch_On_Rescue" customModuleProvider="target">
                                 <rect key="frame" x="20" y="268" width="374" height="370"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Continue Card Bckground" translatesAutoresizingMaskIntoConstraints="NO" id="ein-7I-Ch0">
                                         <rect key="frame" x="8" y="17" width="358" height="370"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat label" translatesAutoresizingMaskIntoConstraints="NO" id="nq7-DY-fxv">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dizzy" translatesAutoresizingMaskIntoConstraints="NO" id="nq7-DY-fxv">
                                         <rect key="frame" x="97" y="-79.5" width="180" height="159"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nq7-DY-fxv" secondAttribute="height" multiplier="60:53" id="CCB-K8-zvu"/>
@@ -35,6 +35,7 @@
                                         <rect key="frame" x="8" y="99.5" width="358" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="1aO-qQ-6gy"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="340" id="v4C-Fa-euy"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GRY-kg-L7g">
@@ -526,6 +527,9 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
             <point key="canvasLocation" x="2156.521739130435" y="87.723214285714278"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="U5N-cv-NZD"/>
+    </designables>
     <resources>
         <image name="Ativo 19" width="852" height="493"/>
         <image name="Ativo 2" width="766" height="229"/>
@@ -540,7 +544,7 @@ Mas cuidado, a névoa pode ser muito traiçoeira</string>
         <image name="Continue Card Bckground" width="934" height="899.5"/>
         <image name="GameOver" width="761.34002685546875" height="446.26998901367188"/>
         <image name="Wor" width="623.6099853515625" height="281.70999145507812"/>
-        <image name="cat label" width="80" height="75"/>
+        <image name="dizzy" width="584" height="551"/>
         <image name="rescue the cats button" width="766" height="229"/>
         <namedColor name="Color">
             <color red="0.032999999821186066" green="0.037999998778104782" blue="0.14000000059604645" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="displayP3"/>

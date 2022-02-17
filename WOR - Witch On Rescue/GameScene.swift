@@ -12,6 +12,16 @@ import AVFoundation
 // think -- camera follows cat when he dies
 // thonk -- fog delay after starting
 
+// rever constraints
+// distance bar sumindo em devices pequenos
+// animacao dos pontos
+// duas peças
+// ou poder arrastar de qq lugar
+// pecitas em baixo dos bixin
+
+
+// pedir para for for beck in becking como bota coisa sem encosta em otra coisa
+
 protocol GameSceneDelegate: AnyObject {
     
     func playerLost(placedPieces: Int)
@@ -26,12 +36,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var enemy: EnemyNode!
     private var movingNode: SKNode?
     private var potion: PotionNode!
-    private var pieceSpawnPoint: CGPoint!
     private var enemySpawnPoint: CGPoint!
     private var catSpawnPoint: CGPoint!
     private var magicOffNode: SKSpriteNode!
     private var tapToRotate: SKSpriteNode!
-    
+    private var piece1SpawnPoint: CGPoint!
+    private var piece2SpawnPoint: CGPoint!
+    private var piece1SpawnPointFromCamera: CGPoint {
+        return CGPoint(x:piece1SpawnPoint.x, y: 0) + CGPoint(x: 0, y: spawnPoint1CameraOffSet) + CGPoint(x: 0, y: cameraNode.position.y)
+    }
+    private var piece2SpawnPointFromCamera: CGPoint {
+        return CGPoint(x:piece2SpawnPoint.x, y: 0) + CGPoint(x: 0, y: spawnPoint2CameraOffSet) + CGPoint(x: 0, y: cameraNode.position.y)
+
+    }
+  
     private var catsRescuedLabel: SKLabelNode!
     var pointsCounterLabel: SKLabelNode!
     var enemyDistanceLabel: SKLabelNode!
@@ -40,7 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     private var maxCameraY: CGFloat = 0
-    private var spawnPointCameraOffSet: CGFloat = 0
+    private var spawnPoint1CameraOffSet: CGFloat = 0
+    private var spawnPoint2CameraOffSet: CGFloat = 0
     private var playerCameraOffSet: CGFloat = 0
     
     var catsRescued = SharedData.shared.catsRescued
@@ -51,12 +70,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var initialCameraPosition: CGPoint!
     var originalPlayerFootPosition: CGPoint!
     
-    private var pieceNode: PieceNode!
     var createdPieces: CGFloat = 0
-    
     var placedPieces: Int {
         Int(createdPieces - 1)
     }
+    private var pieceNode1: PieceNode!
+    private var pieceNode2: PieceNode!
     
     
     private var gameCenterManager: GameCenterManager!
@@ -79,10 +98,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var topY: CGPoint!
     var enemyDistance: CGFloat!
     
-    
     var minBarWidth: CGFloat = 1
     var maxBarWidth: CGFloat!
     var maxEnemyDistanceIndicatorShows: CGFloat = 150
+    
+    
     
     
     override func didMove(to view: SKView) {
@@ -91,7 +111,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.delegate = self
         player.position = playerSpawn!.position
         addChild(player)
-        let pieceSpawnPointNode = childNode(withName: "pieceSpawn")!
         let enemySpawnPointNode = childNode(withName: "enemySpawn")!
         cameraNode = camera!
         pointsCounterLabel = cameraNode.childNode(withName: "pointsCounterLabel") as? SKLabelNode
@@ -103,15 +122,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         barNode = childNode(withName: "//Bar Node") as? SKSpriteNode
         maxBarWidth = barNode.size.width
         
+//        catScoreAnimation = childNode(withName: "cat label") as? SKSpriteNode
+
+        
+        
+        
         print("Starting to create enemy...")
         
         enemy = EnemyNode()
         enemy.position = enemySpawnPointNode.position
         addChild(enemy)
         
-        tapToRotate.position = pieceSpawnPointNode.position - CGPoint(x: 0, y: 300)
-        
-        tapToRotate.scale(to: CGSize(width: 300, height: 175))
+      
         
         
         
@@ -123,10 +145,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         originalPlayerFootPosition = player.playerFootPosition
         
-        pieceSpawnPoint = pieceSpawnPointNode.position
-        spawnPointCameraOffSet = pieceSpawnPoint.y - cameraNode.position.y
+        let piece1SpawnPointNode = cameraNode.childNode(withName: "piece1Spawn")!
+        let piece2SpawnPointNode = cameraNode.childNode(withName: "piece2Spawn")!
+        
+        piece1SpawnPoint = piece1SpawnPointNode.position
+        piece2SpawnPoint = piece2SpawnPointNode.position
+        spawnPoint1CameraOffSet = piece1SpawnPoint.y - cameraNode.position.y
+        spawnPoint2CameraOffSet = piece2SpawnPoint.y - cameraNode.position.y
         playerCameraOffSet = cameraNode.position.y - player.position.y
         
+        tapToRotate.position = CGPoint(x: 0, y: piece1SpawnPoint.y - 300)
+        tapToRotate.scale(to: CGSize(width: 320, height: 175))
         
         maxCameraY = cameraNode.position.y
         
@@ -141,7 +170,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         grid.generateInitialGrid(playerFootPosition: player.playerFootPosition)
         gridNodeSize = grid.gridNodeSize
         
-        spawnPiece(piece: PieceFactory.shared.build(type: .line)!)
+        spawnPiece(piece: PieceFactory.shared.build(type: .line)!, pieceNumber: 1)
+        spawnPiece(piece: PieceFactory.shared.build(type: .mirrorL)!, pieceNumber: 2)
         spawnZeroRow()
         player.animationSetup()
         spawnPotion()
@@ -195,7 +225,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard !isGamePaused, !isGameEnded else { return }
         
         if let node = nodes(at: pos).first {
-            if node.name == "rotatable_piece" {
+            if let name = node.name, let pieceNode = getPieceNode(for: name) {
                 movingNode = pieceNode.container
                 movingNode?.alpha = 0.7
                 startingDragPosition = pos
@@ -203,7 +233,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func canPlacePiece() -> Bool {
+    func getPieceNode(for pieceName: String) -> PieceNode? {
+        guard pieceName.starts(with: "rotatable_piece") else { return nil }
+        if pieceName.hasSuffix("1") {
+            return pieceNode1
+        } else if pieceName.hasSuffix("2") {
+            return pieceNode2
+        } else {
+            return nil
+        }
+    }
+    
+    func getPieceNode(for container: SKNode) -> PieceNode? {
+        if pieceNode1.container == container {
+            return pieceNode1
+        } else if pieceNode2.container == container {
+            return pieceNode2
+        } else {
+            return nil
+        }
+    }
+    
+    func canPlacePiece(pieceNode: PieceNode) -> Bool {
         
         for blockNode in pieceNode.getBlockNodes() {
             if let gridNode = grid.getGridNode(for: blockNode) {
@@ -245,7 +296,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.previousPlayerMovements.removeFirst(player.previousPlayerMovements.count - maxPieceCount)
     }
     
-    fileprivate func placePiece() {
+    fileprivate func placePiece(pieceNode: PieceNode) {
         let orderedBlockNodes = pieceNode.getOrderedBlockNodes()
         
         let orderedGridNodes = orderedBlockNodes.compactMap { blockNode in
@@ -271,7 +322,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         AnalyticsManager.shared.log(event: .placedPiece(pieceNode.piece.type.rawValue, pieceNode.placeAttempts, pieceNode.didRotate))
         
-        spawnRandomPiece()
+        spawnRandomPiece(pieceNumber: pieceNode.pieceNumber)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -330,33 +381,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func touchMoved(toPoint pos : CGPoint) {
-        if let movingNode = movingNode {
-            if movingNode == pieceNode.container {
+        if let movingNode = movingNode, let pieceNode = getPieceNode(for: movingNode) {
                 pieceNode.container.position = pos
                 
-                let canPlace = canPlacePiece()
+            let canPlace = canPlacePiece(pieceNode: pieceNode)
                 
                 grid.highlightGrid(basedOn: pieceNode, canPlace: canPlace)
-            }
         }
     }
     
     
+    
+    
     func touchUp(atPoint pos : CGPoint) {
-        if movingNode == pieceNode.container {
-            movingNode?.alpha = 1
+        if let movingNode = movingNode, let pieceNode = getPieceNode(for: movingNode) {
+            movingNode.alpha = 1
             
             // se ta pertinho, rotate
             if let startingPosition = startingDragPosition,
                startingPosition.distance(to: pos) < 40 {
                 pieceNode.rotate()
                 // se nao ta pertinho, tenta colocar
-            } else if canPlacePiece() {
-                placePiece()
+            } else if canPlacePiece(pieceNode: pieceNode) {
+                placePiece(pieceNode: pieceNode)
                 generator.notificationOccurred(.success)
             } else {
                 pieceNode.placeAttempts += 1
-                pieceNode.container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
+                pieceNode.container.position = getSpawnPoint(for: pieceNode)!
             }
             
             startingDragPosition = nil
@@ -367,6 +418,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
+    }
+    
+    func getSpawnPoint(for piece: PieceNode) -> CGPoint? {
+        if piece.pieceNumber == 1 {
+            return piece1SpawnPointFromCamera
+        } else if piece.pieceNumber == 2 {
+            return piece2SpawnPointFromCamera
+        } else { return nil }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -385,19 +444,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    fileprivate func spawnRandomPiece() {
+    fileprivate func spawnRandomPiece(pieceNumber: Int) {
         if let piece = PieceFactory.shared.buildRandomPiece() {
-            spawnPiece(piece: piece)
+            spawnPiece(piece: piece, pieceNumber: pieceNumber)
         }
     }
     
-    func spawnPiece(piece: Piece) {
+    func spawnPiece(piece: Piece, pieceNumber: Int) {
         createdPieces += 1
         
         let container = SKNode()
-        container.position = cameraNode.position + CGPoint(x: 0, y: spawnPointCameraOffSet)
+        
         addChild(container)
-        pieceNode = PieceNode(piece: piece, container: container, startingZPosition: 3, blockSize: gridNodeSize)
+        let pieceNode = PieceNode(piece: piece, pieceNumber: pieceNumber, container: container, startingZPosition: 3, blockSize: gridNodeSize)
+        container.position = getSpawnPoint(for: pieceNode)!
+        if pieceNumber == 1 {
+            pieceNode1 = pieceNode
+        } else {
+            pieceNode2 = pieceNode
+        }
+        
     }
     
     func spawnCat() {
@@ -426,6 +492,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         node.removeFromParent()
         spawnCat()
         updateScore()
+        
         
     }
     
@@ -502,6 +569,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Salva pontos no user defaults
     }
     
+//    func scoreCatAnimation() {
+//        catScoreAnimation.alpha = 1
+//        SKAction.move(to: catsRescuedLabel.position, duration: 0.5)
+//        run(SKAction.fadeAlpha(to: 0, duration: 0.5))
+//    }
+    
     func gameOverScreen() {
         gameSceneDelegate?.playerLost(placedPieces: Int(createdPieces)-1)
     }
@@ -524,6 +597,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let consideredEnemyDistance = max(enemyDistance, 0.01)
         let enemyDistancePercentage = 1 - min(1, consideredEnemyDistance / maxEnemyDistanceIndicatorShows)
         setBar(width: enemyDistancePercentage * maxBarWidth)
+        
+        if let movingNode = movingNode {
+            if pieceNode1 != nil, pieceNode1.container != movingNode {
+                pieceNode1.container.position = piece1SpawnPointFromCamera
+            }
+            
+            if pieceNode2 != nil, pieceNode2.container != movingNode {
+                pieceNode2.container.position = piece2SpawnPointFromCamera
+            }
+        }
     }
     
     func pauseGame() {
