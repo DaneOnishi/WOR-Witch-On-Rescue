@@ -174,5 +174,7 @@
 			<string>3qcr597p9d.skadnetwork</string>
 		</dict>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 </dict>
 </plist>
