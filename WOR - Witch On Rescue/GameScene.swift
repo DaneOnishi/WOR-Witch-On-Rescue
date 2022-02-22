@@ -42,6 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var tapToRotate: SKSpriteNode!
     private var piece1SpawnPoint: CGPoint!
     private var piece2SpawnPoint: CGPoint!
+    private var enemyClose: SKShapeNode!
     private var piece1SpawnPointFromCamera: CGPoint {
         return CGPoint(x:piece1SpawnPoint.x, y: 0) + CGPoint(x: 0, y: spawnPoint1CameraOffSet) + CGPoint(x: 0, y: cameraNode.position.y)
     }
@@ -102,6 +103,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var maxBarWidth: CGFloat!
     var maxEnemyDistanceIndicatorShows: CGFloat = 150
     
+    var catScoreImage: SKSpriteNode!
+    var magicNodeSpriteImage: SKSpriteNode!
+    
     
     
     
@@ -118,6 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         magicOffNode = childNode(withName: "magicOff") as? SKSpriteNode
         tapToRotate = childNode(withName: "tapToRotate") as? SKSpriteNode
+        enemyClose = childNode(withName: "enemyClose") as? SKShapeNode
         
         barNode = childNode(withName: "//Bar Node") as? SKSpriteNode
         maxBarWidth = barNode.size.width
@@ -132,10 +137,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy = EnemyNode()
         enemy.position = enemySpawnPointNode.position
         addChild(enemy)
-        
-      
-        
-        
         
         
         print("Enemy created and added...")
@@ -221,16 +222,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private var startingDragPosition: CGPoint?
+    
     func touchDown(atPoint pos : CGPoint) {
         guard !isGamePaused, !isGameEnded else { return }
         
-        if let node = nodes(at: pos).first {
-            if let name = node.name, let pieceNode = getPieceNode(for: name) {
-                movingNode = pieceNode.container
-                movingNode?.alpha = 0.7
-                startingDragPosition = pos
-            }
+        if pos.x > 0 {
+            movingNode = pieceNode1.container
+        } else {
+            movingNode = pieceNode2.container
         }
+        
+        movingNode?.alpha = 0.7
+        startingDragPosition = pos
     }
     
     func getPieceNode(for pieceName: String) -> PieceNode? {
@@ -364,10 +367,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.5)
         
         
-        run(SKAction.repeatForever(SKAction.sequence([fadeOut,fadeIn])))
-        
+        enemyClose.run(SKAction.repeatForever(SKAction.sequence([fadeIn,fadeOut])))
     }
     
+    func animateCatScore() {
+        catScoreImage = childNode(withName: "cat score label") as? SKSpriteNode
+        
+        let moveCat = SKAction.move(to: catsRescuedLabel.position, duration: 0.5)
+        let catDissapear = SKAction.fadeAlpha(to: 0, duration: 0.5)
+        
+        catScoreImage.run(SKAction.sequence([moveCat, catDissapear]))
+    }
+    
+    func animateMagicNodeScore() {
+        magicNodeSpriteImage = childNode(withName: "magic node") as? SKSpriteNode
+        
+        let moveMagicNodeImage = SKAction.move(to: pointsCounterLabel.position, duration: 0.5)
+        let magicNodeDisappear = SKAction.fadeAlpha(to: 0, duration: 0.5)
+        
+        magicNodeSpriteImage.run(SKAction.sequence([moveMagicNodeImage, magicNodeDisappear]))
+    }
+    
+
     func enemyContact(object: SKNode?) {
         if object == nil {
             return
@@ -391,8 +412,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    
-    
     func touchUp(atPoint pos : CGPoint) {
         if let movingNode = movingNode, let pieceNode = getPieceNode(for: movingNode) {
             movingNode.alpha = 1
@@ -400,7 +419,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // se ta pertinho, rotate
             if let startingPosition = startingDragPosition,
                startingPosition.distance(to: pos) < 40 {
-                pieceNode.rotate()
+                    pieceNode.rotate()
+            
+                
                 // se nao ta pertinho, tenta colocar
             } else if canPlacePiece(pieceNode: pieceNode) {
                 placePiece(pieceNode: pieceNode)
@@ -418,6 +439,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
+        movingNode = nil
     }
     
     func getSpawnPoint(for piece: PieceNode) -> CGPoint? {
@@ -492,8 +514,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         node.removeFromParent()
         spawnCat()
         updateScore()
-        
-        
     }
     
     func updateScore() {
@@ -559,7 +579,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func endGame() {
         guard !isGameEnded else { return }
         isGameEnded = true
-        
+       
         
         GameCenterManager.shared.updateScore(with: pointsCounter)
         SharedData.shared.savePoints(points: Score(points: pointsCounter))
@@ -593,6 +613,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         calculateEnemyDistance()
         enemyDistanceLabel.text = Int(enemyDistance).description
+        
+//        if enemyDistance <= 30 && catsRescued >= 1 {
+//            setupSceneAnimation()
+//        } else {
+//            removeAllActions()
+//        }
+        
+       
         
         let consideredEnemyDistance = max(enemyDistance, 0.01)
         let enemyDistancePercentage = 1 - min(1, consideredEnemyDistance / maxEnemyDistanceIndicatorShows)

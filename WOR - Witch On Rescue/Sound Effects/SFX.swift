@@ -16,7 +16,7 @@ class SFXMusicSingleton: NSObject, AVAudioPlayerDelegate {
     var players: [URL: AVAudioPlayer] = [:]
     var duplicatePlayers: [AVAudioPlayer] = []
     
-    func playSound(soundFileName: String) {
+    func playSound(soundFileName: String, loop: Bool) {
         
         guard let bundle = Bundle.main.path(forResource: soundFileName, ofType: "mp3")
         else{ return }
@@ -37,6 +37,7 @@ class SFXMusicSingleton: NSObject, AVAudioPlayerDelegate {
                     duplicatePlayers.append(duplicatePlayer)
                     duplicatePlayer.prepareToPlay()
                     duplicatePlayer.play()
+                    duplicatePlayer.numberOfLoops = loop ? -1 : 0
                 } catch let error {
                     print(error.localizedDescription)
                 }
@@ -47,15 +48,15 @@ class SFXMusicSingleton: NSObject, AVAudioPlayerDelegate {
                 players[soundFileNameURL] = player
                 player.prepareToPlay()
                 player.play()
+                player.numberOfLoops = loop ? -1 : 0
             } catch let error {
                 print(error.localizedDescription)
             }
         }
-        currentPlayer?.numberOfLoops = -1
     }
     
     func playMainMusic() {
-        playSound(soundFileName: "Default")
+        playSound(soundFileName: "TrilhaWor", loop: true)
     }
 }
 

@@ -186,7 +186,13 @@ extension GameViewController {
     }
     
     
+    fileprivate func resetScore() {
+        SharedData.shared.pointsCounter = 0
+        SharedData.shared.catsRescued = 0
+    }
+    
     fileprivate func createGameScene() {
+        resetScore()
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             
@@ -251,7 +257,12 @@ extension GameViewController {
     
     fileprivate func loadRewardedAd() {
         GADRewardedAd.load(
-            withAdUnitID: "ca-app-pub-3940256099942544/1712485313", request: GADRequest()
+            
+            //teste
+//            withAdUnitID: "ca-app-pub-3940256099942544/1712485313", request: GADRequest()
+            
+             //real
+            withAdUnitID: "ca-app-pub-6628135191566644/6900466601", request: GADRequest()
         ) { (ad, error) in
             if let error = error {
                 print("Rewarded ad failed to load with error: \(error.localizedDescription)")

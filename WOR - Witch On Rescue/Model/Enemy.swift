@@ -11,7 +11,7 @@ import SpriteKit
 
 class EnemyNode: SKSpriteNode, SKPhysicsContactDelegate {
     // think -- delay fog after starting
-    var enemySpeed: CGFloat = 28 // Speed per second
+    var enemySpeed: CGFloat = 24 // Speed per second
     var enemySpeedAcceleration: CGFloat = 0.007 // Adds to the enemy spee every tick
     var enemySpeedAccelerationIncrease: CGFloat = 0.0005 // Adds to the enemy acceleration every tick
     var maxEnemySpeed: CGFloat = 80
