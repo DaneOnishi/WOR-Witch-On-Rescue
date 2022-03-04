@@ -72,6 +72,7 @@
 /* Begin PBXFileReference section */
 		410D3E7927B37428003D225E /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		410D3E7B27B374FD003D225E /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		41105ABA27C7DB7D00936DF6 /* WOR - Witch On Rescue.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WOR - Witch On Rescue.entitlements"; sourceTree = "<group>"; };
 		415AAEA527B358C1000E6DD6 /* SFX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFX.swift; sourceTree = "<group>"; };
 		4161D7CA27A371FA00191C83 /* WOR - Witch On Rescue .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WOR - Witch On Rescue .app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4161D7CD27A371FA00191C83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 		4161D7CC27A371FA00191C83 /* WOR - Witch On Rescue */ = {
 			isa = PBXGroup;
 			children = (
+				41105ABA27C7DB7D00936DF6 /* WOR - Witch On Rescue.entitlements */,
 				41B3C97727B6FDB7009647EB /* Assets */,
 				416ABA4927B2B7BC00CA9A83 /* WOR---Witch-On-Rescue-Info.plist */,
 				4161D7CD27A371FA00191C83 /* AppDelegate.swift */,
@@ -760,8 +762,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "WOR - Witch On Rescue/WOR - Witch On Rescue.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -781,7 +784,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusiness;
 				PRODUCT_NAME = "WOR - Witch On Rescue ";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -799,8 +802,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "WOR - Witch On Rescue/WOR - Witch On Rescue.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
@@ -819,7 +823,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusiness;
 				PRODUCT_NAME = "WOR - Witch On Rescue";
 				SWIFT_EMIT_LOC_STRINGS = YES;

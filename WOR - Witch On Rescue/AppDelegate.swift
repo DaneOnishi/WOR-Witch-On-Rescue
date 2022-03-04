@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 import FBSDKCoreKit
 import AppTrackingTransparency
 import AdSupport

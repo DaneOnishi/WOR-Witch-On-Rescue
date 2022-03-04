@@ -76,8 +76,9 @@ class GameViewController: UIViewController {
         setupSplashAnimation()
         createGameScene()
         loadRewardedAd()
-       
         
+        overrideUserInterfaceStyle = .light
+       
         catsRescuedCounterLabel.text = "\(SharedData.shared.catsRescued.description)"
         ponctuationLabel.text = "\(SharedData.shared.pointsCounter.description)"
         recordLabel.text = record?.points.description ?? ""

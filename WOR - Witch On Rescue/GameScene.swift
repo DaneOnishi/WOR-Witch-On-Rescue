@@ -42,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var tapToRotate: SKSpriteNode!
     private var piece1SpawnPoint: CGPoint!
     private var piece2SpawnPoint: CGPoint!
-    private var enemyClose: SKShapeNode!
+    private var enemyIndicator: SKSpriteNode!
     private var piece1SpawnPointFromCamera: CGPoint {
         return CGPoint(x:piece1SpawnPoint.x, y: 0) + CGPoint(x: 0, y: spawnPoint1CameraOffSet) + CGPoint(x: 0, y: cameraNode.position.y)
     }
@@ -122,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         magicOffNode = childNode(withName: "magicOff") as? SKSpriteNode
         tapToRotate = childNode(withName: "tapToRotate") as? SKSpriteNode
-        enemyClose = childNode(withName: "enemyClose") as? SKShapeNode
+        enemyIndicator = childNode(withName: "//animation fog") as? SKSpriteNode
         
         barNode = childNode(withName: "//Bar Node") as? SKSpriteNode
         maxBarWidth = barNode.size.width
@@ -366,8 +366,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var fadeOut = SKAction.fadeAlpha(to: 0.1, duration: 0.5)
         var fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.5)
         
-        
-        enemyClose.run(SKAction.repeatForever(SKAction.sequence([fadeIn,fadeOut])))
+        enemyIndicator.run(SKAction.repeatForever(SKAction.sequence([fadeIn,fadeOut])))
     }
     
     func animateCatScore() {
@@ -614,12 +613,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         calculateEnemyDistance()
         enemyDistanceLabel.text = Int(enemyDistance).description
         
-//        if enemyDistance <= 30 && catsRescued >= 1 {
-//            setupSceneAnimation()
-//        } else {
-//            removeAllActions()
-//        }
-        
+        if placedFirstPiece {
+            let maxAlpha = 1
+            let maxDistance = CGFloat(30)
+            
+            let currentDistanceRatio = min(1, enemyDistance / maxDistance)
+            enemyIndicator.alpha = 1 - currentDistanceRatio
+        }
        
         
         let consideredEnemyDistance = max(enemyDistance, 0.01)
