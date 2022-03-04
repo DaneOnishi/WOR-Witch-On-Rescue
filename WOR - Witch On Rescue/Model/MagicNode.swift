@@ -28,8 +28,6 @@ class MagicNode: SKSpriteNode {
             SKAction.repeatForever(
                 magicCenterRotate
             )
-            
-            
         )
         
         let magic_1 = SKSpriteNode(imageNamed: "magic_1")

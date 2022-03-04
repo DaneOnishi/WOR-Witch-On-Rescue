@@ -47,7 +47,7 @@
 		41E6559627AB7A5E00466D06 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559527AB7A5E00466D06 /* Grid.swift */; };
 		41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6559727AC4FD700466D06 /* GameCenterViewController.swift */; };
 		907641DF27B6965000CE877F /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907641DE27B6965000CE877F /* SplashScreenViewController.swift */; };
-		C791BB91B66190B37DBADB0C /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */; };
+		BE0704C4EDABEDBAAAA62DCE /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6467794EC1578253EBF14C1 /* Pods_WOR___Witch_On_Rescue.framework */; };
 		E8AE49F827AD99EF00943F0E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F727AD99EF00943F0E /* StartViewController.swift */; };
 		E8AE49FA27AD99FF00943F0E /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */; };
 /* End PBXBuildFile section */
@@ -104,7 +104,6 @@
 		416ABA3827B1FEEA00CA9A83 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = "Pods/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current/GoogleMobileAds.xcframework"; sourceTree = "<group>"; };
 		416ABA3A27B1FEEA00CA9A83 /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		416ABA3C27B1FEEA00CA9A83 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		416ABA3E27B1FEEA00CA9A83 /* Pods_WOR___Witch_On_RescueTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = "Pods_WOR___Witch_On_RescueTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		416ABA4027B1FEEA00CA9A83 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		416ABA4227B1FEEA00CA9A83 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = Pods/GoogleUserMessagingPlatform/Frameworks/Release/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
 		416ABA4427B20FB400CA9A83 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
@@ -128,12 +127,12 @@
 		41E6559327AB51FD00466D06 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		41E6559527AB7A5E00466D06 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		41E6559727AC4FD700466D06 /* GameCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
-		48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_WOR___Witch_On_Rescue.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.release.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.release.xcconfig"; sourceTree = "<group>"; };
 		907641DE27B6965000CE877F /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		A6467794EC1578253EBF14C1 /* Pods_WOR___Witch_On_Rescue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_WOR___Witch_On_Rescue.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D338F736BD81C25FCBFC62C2 /* Pods-WOR - Witch On Rescue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.release.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.release.xcconfig"; sourceTree = "<group>"; };
+		DE8B42CAB36C0C1AAB99115D /* Pods-WOR - Witch On Rescue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.debug.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.debug.xcconfig"; sourceTree = "<group>"; };
 		E8AE49F727AD99EF00943F0E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		E8AE49F927AD99FF00943F0E /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
-		EDBB22CC8C4DE4017385F819 /* Pods-WOR - Witch On Rescue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOR - Witch On Rescue.debug.xcconfig"; path = "Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C791BB91B66190B37DBADB0C /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */,
 				416ABA4B27B2BB4700CA9A83 /* GameKit.framework in Frameworks */,
+				BE0704C4EDABEDBAAAA62DCE /* Pods_WOR___Witch_On_Rescue.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,8 +323,8 @@
 		535F9FC2328D8004D40A4D7D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EDBB22CC8C4DE4017385F819 /* Pods-WOR - Witch On Rescue.debug.xcconfig */,
-				894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */,
+				DE8B42CAB36C0C1AAB99115D /* Pods-WOR - Witch On Rescue.debug.xcconfig */,
+				D338F736BD81C25FCBFC62C2 /* Pods-WOR - Witch On Rescue.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -345,10 +344,9 @@
 				416ABA3827B1FEEA00CA9A83 /* GoogleMobileAds.xcframework */,
 				416ABA3A27B1FEEA00CA9A83 /* GoogleUtilities.framework */,
 				416ABA3C27B1FEEA00CA9A83 /* nanopb.framework */,
-				416ABA3E27B1FEEA00CA9A83 /* Pods_WOR___Witch_On_RescueTests.framework */,
 				416ABA4027B1FEEA00CA9A83 /* FBLPromises.framework */,
 				416ABA4227B1FEEA00CA9A83 /* UserMessagingPlatform.xcframework */,
-				48BE499C75446687DE6B8DC3 /* Pods_WOR___Witch_On_Rescue.framework */,
+				A6467794EC1578253EBF14C1 /* Pods_WOR___Witch_On_Rescue.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -360,12 +358,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4161D7F727A371FE00191C83 /* Build configuration list for PBXNativeTarget "WOR - Witch On Rescue" */;
 			buildPhases = (
-				584729F8D1059BC90A3C4B95 /* [CP] Check Pods Manifest.lock */,
+				C57DD5B36FD0EDFDB6E7B37B /* [CP] Check Pods Manifest.lock */,
 				4161D7C627A371F900191C83 /* Sources */,
 				4161D7C727A371F900191C83 /* Frameworks */,
 				4161D7C827A371F900191C83 /* Resources */,
-				868BA57254DA1EB06121C98D /* [CP] Embed Pods Frameworks */,
 				416ABA4827B2168100CA9A83 /* ShellScript */,
+				585B8FEB120D5C68939638CA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -510,7 +508,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		584729F8D1059BC90A3C4B95 /* [CP] Check Pods Manifest.lock */ = {
+		585B8FEB120D5C68939638CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C57DD5B36FD0EDFDB6E7B37B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -530,23 +545,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		868BA57254DA1EB06121C98D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WOR - Witch On Rescue/Pods-WOR - Witch On Rescue-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -757,7 +755,7 @@
 		};
 		4161D7F827A371FE00191C83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDBB22CC8C4DE4017385F819 /* Pods-WOR - Witch On Rescue.debug.xcconfig */;
+			baseConfigurationReference = DE8B42CAB36C0C1AAB99115D /* Pods-WOR - Witch On Rescue.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -797,7 +795,7 @@
 		};
 		4161D7F927A371FE00191C83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 894BAFF722D1E45F3E4465B3 /* Pods-WOR - Witch On Rescue.release.xcconfig */;
+			baseConfigurationReference = D338F736BD81C25FCBFC62C2 /* Pods-WOR - Witch On Rescue.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
