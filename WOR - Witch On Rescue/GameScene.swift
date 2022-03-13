@@ -127,7 +127,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         barNode = childNode(withName: "//Bar Node") as? SKSpriteNode
         maxBarWidth = barNode.size.width
         
-//        catScoreAnimation = childNode(withName: "cat label") as? SKSpriteNode
+        
 
         
         
@@ -369,13 +369,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemyIndicator.run(SKAction.repeatForever(SKAction.sequence([fadeIn,fadeOut])))
     }
     
-    func animateCatScore() {
-        catScoreImage = childNode(withName: "cat score label") as? SKSpriteNode
-        
-        let moveCat = SKAction.move(to: catsRescuedLabel.position, duration: 0.5)
+   
+    
+    func scoreCatAnimation(cat: SKNode) {
+        let catScoreAnimationImage = SKSpriteNode(imageNamed: "happy")
+        addChild(catScoreAnimationImage)
+        let targetImage = camera!.childNode(withName: "cat label image") as! SKSpriteNode
+        catScoreAnimationImage.position = cat.position
+        let moveCat = SKAction.move(to: convert(targetImage.position, from: camera!), duration: 0.5)
         let catDissapear = SKAction.fadeAlpha(to: 0, duration: 0.5)
-        
-        catScoreImage.run(SKAction.sequence([moveCat, catDissapear]))
+        catScoreAnimationImage.run(SKAction.sequence([moveCat, catDissapear]))
     }
     
     func animateMagicNodeScore() {
@@ -506,6 +509,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func rescueCat(node: SKNode) {
+        scoreCatAnimation(cat:node)
         catsRescued += 1
         pointsCounter += 60
         SFXMusicSingleton.shared.pickCatSFX()
@@ -590,11 +594,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Salva pontos no user defaults
     }
     
-//    func scoreCatAnimation() {
-//        catScoreAnimation.alpha = 1
-//        SKAction.move(to: catsRescuedLabel.position, duration: 0.5)
-//        run(SKAction.fadeAlpha(to: 0, duration: 0.5))
-//    }
+   
     
     func gameOverScreen() {
         gameSceneDelegate?.playerLost(placedPieces: Int(createdPieces)-1)
