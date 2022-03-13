@@ -26,6 +26,8 @@ class GameCenterManager {
                 
                 // Player is already authenticated and logged in
                 self.gcEnabled = true
+                
+                AchievementsManager.shared.loadAchievements()
 
                 // Get the default leaderboard ID
                 localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifer, error) in

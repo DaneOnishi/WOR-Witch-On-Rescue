@@ -15,6 +15,9 @@ class Grid {
     private let gridHorizontalMargin: CGFloat = 20
     private let gridColumnCount: CGFloat = 7
     private let gridAspectRatio: CGFloat = 0.8 // graminha height / width
+    private var gridRows: [Int : [GridNode]] = [:]
+    private var startingPlayerFootStartPosition: CGPoint = .zero
+    var lastCreatedRow: Int = 0
    
     lazy var initialGridRowCount: Int = {
         return Int(sceneSize.height / gridNodeSize.height) + 1500
@@ -33,15 +36,20 @@ class Grid {
         scene.addChild(gridContainer)
     }
     
-    
+    func calculateRowOffSet(row: CGFloat) -> CGFloat {
+        return row * gridNodeSize.height
+        
+    }
     func generateInitialGrid(playerFootPosition: CGPoint) {
+        startingPlayerFootStartPosition = playerFootPosition
         for row in 0..<initialGridRowCount {
-            let offset = CGFloat(row) * gridNodeSize.height
+            let offset = calculateRowOffSet(row: CGFloat(row))
             _ = generateGridRow(y: playerFootPosition.y + offset, rowIndex: -(CGFloat(row + 1)))
         }
     }
     
     func generateGridRow(y: CGFloat, rowIndex: CGFloat) -> [GridNode] {
+        let row = -rowIndex - 1
         let nodeSize = gridNodeSize
         var generatedNodes: [GridNode] = []
         
@@ -58,7 +66,14 @@ class Grid {
             gridContainer.addChild(gridNode)
             generatedNodes.append(gridNode)
         }
+        gridRows[Int(row)] = generatedNodes
+        
+        if Int(row) > lastCreatedRow {
+            lastCreatedRow  = Int(row)
+        }
+        
         return generatedNodes
+        
     }
     
     var highlightedNodes: [GridNode] = []
@@ -112,6 +127,29 @@ class Grid {
         }
         
     }
+    
+    func update(playerFootY: CGFloat) {
+        //pegar a row do player
+        // tirar todas as rows abaixo do player - 1000
+        // adicionar n rows acima da ultima (n = total de rows tiradas)
+        let row = getGridRow(y: playerFootY)
+        let rowsToRemove = gridRows.keys.filter({$0 < row - 1000 && gridRows[$0] != nil } )
+        rowsToRemove.forEach { row in
+            gridRows[row]?.forEach({$0.removeFromParent()})
+            gridRows[row] = nil
+        }
+        for newRow in 0..<rowsToRemove.count {
+            let row = lastCreatedRow + 1
+            let rowIndex = -(CGFloat(row + 1))
+            let offSet = calculateRowOffSet(row: CGFloat(row))
+            generateGridRow(y: startingPlayerFootStartPosition.y + offSet, rowIndex: rowIndex)
+            
+        }
+    }
+    
+    func getGridRow(y: CGFloat) -> Int {
+        Int(ceil((y - startingPlayerFootStartPosition.y) / gridNodeSize.height)) 
+    }
 }
 
 class GridNode: SKSpriteNode {
@@ -145,6 +183,8 @@ class GridNode: SKSpriteNode {
             color = .purple.withAlphaComponent(0.4)
         }
     }
+    
+ 
     
     func setHighlightOff() {
         color = .clear

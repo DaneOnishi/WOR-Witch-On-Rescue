@@ -11,10 +11,14 @@ import SpriteKit
 
 class EnemyNode: SKSpriteNode, SKPhysicsContactDelegate {
     // think -- delay fog after starting
-    var enemySpeed: CGFloat = 24 // Speed per second
-    var enemySpeedAcceleration: CGFloat = 0.007 // Adds to the enemy spee every tick
-    var enemySpeedAccelerationIncrease: CGFloat = 0.0005 // Adds to the enemy acceleration every tick
-    var maxEnemySpeed: CGFloat = 80
+    // increase foggy speed according to the points
+    // after x points show some you need to run visual feedback
+    var enemySpeed: CGFloat = 43 // Speed per second
+    var enemySpeedAcceleration: CGFloat = 0.009 / 60 // Adds to the enemy spee every tick
+    var enemySpeedAccelerationIncrease: CGFloat = 0.0023 / 60 // Adds to the enemy acceleration every tick
+    var maxEnemySpeed: CGFloat = 90
+    var maxEnemySpeedAcceleration: CGFloat = 7 / 60
+    
     
     var initialEnemySpeed: CGFloat!
     var initialEnemySpeedAcceleration: CGFloat!
@@ -151,9 +155,12 @@ class EnemyNode: SKSpriteNode, SKPhysicsContactDelegate {
     }
     
     func updateEnemySpeed() {
-        if enemySpeed < maxEnemySpeed {
-            enemySpeed += enemySpeedAcceleration
-            enemySpeedAcceleration += enemySpeedAccelerationIncrease
+        enemySpeed += enemySpeedAcceleration
+        if enemySpeed > maxEnemySpeed {
+            enemySpeed = maxEnemySpeed
+        }
+        if enemySpeedAcceleration > maxEnemySpeedAcceleration {
+            enemySpeedAcceleration = maxEnemySpeedAcceleration
         }
     }
 }

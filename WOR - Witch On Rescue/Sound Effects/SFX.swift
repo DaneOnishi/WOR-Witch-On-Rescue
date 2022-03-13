@@ -56,7 +56,11 @@ class SFXMusicSingleton: NSObject, AVAudioPlayerDelegate {
     }
     
     func playMainMusic() {
-        playSound(soundFileName: "TrilhaWor", loop: true)
+       playSound(soundFileName: "TrilhaWor", loop: true)
+    }
+    
+    func pickCatSFX() {
+        playSound(soundFileName: "PickCat", loop: false)
     }
 }
 

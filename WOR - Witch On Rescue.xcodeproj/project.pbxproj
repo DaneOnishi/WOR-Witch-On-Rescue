@@ -35,6 +35,8 @@
 		41842E4E27A72AE50092EF03 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4D27A72AE50092EF03 /* LevelViewController.swift */; };
 		41842E5027A72CDB0092EF03 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E4F27A72CDB0092EF03 /* Configurations.swift */; };
 		41842E5227A736360092EF03 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */; };
+		41967FBC27D2E2E1000C685F /* AchievementsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41967FBB27D2E2E1000C685F /* AchievementsManager.swift */; };
+		41967FBE27D2ED77000C685F /* PickCat in Resources */ = {isa = PBXBuildFile; fileRef = 41967FBD27D2ED77000C685F /* PickCat */; };
 		41A90BD827C47DE40096D9D7 /* TrilhaWor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41A90BD727C47DE40096D9D7 /* TrilhaWor.mp3 */; };
 		41B3C97927B70DB5009647EB /* splashScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 41B3C97827B70DB5009647EB /* splashScreen.json */; };
 		41DF64D327B59907006AAF35 /* ContinueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF64D227B59907006AAF35 /* ContinueCardView.swift */; };
@@ -116,6 +118,8 @@
 		41842E4D27A72AE50092EF03 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		41842E4F27A72CDB0092EF03 /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		41842E5127A736360092EF03 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		41967FBB27D2E2E1000C685F /* AchievementsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsManager.swift; sourceTree = "<group>"; };
+		41967FBD27D2ED77000C685F /* PickCat */ = {isa = PBXFileReference; lastKnownFileType = file; path = PickCat; sourceTree = "<group>"; };
 		41A90BD727C47DE40096D9D7 /* TrilhaWor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TrilhaWor.mp3; sourceTree = "<group>"; };
 		41B3C97827B70DB5009647EB /* splashScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splashScreen.json; sourceTree = "<group>"; };
 		41DF64D227B59907006AAF35 /* ContinueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueCardView.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 		41DB617727BACCED002BF5ED /* Witch On Run SFX */ = {
 			isa = PBXGroup;
 			children = (
+				41967FBD27D2ED77000C685F /* PickCat */,
 				41A90BD727C47DE40096D9D7 /* TrilhaWor.mp3 */,
 			);
 			path = "Witch On Run SFX";
@@ -307,6 +312,7 @@
 				416ABA4C27B2C20500CA9A83 /* SharedData.swift */,
 				410D3E7B27B374FD003D225E /* Score.swift */,
 				41647D5227B8E90F00288A43 /* MagicNode.swift */,
+				41967FBB27D2E2E1000C685F /* AchievementsManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				41E6558927A9BD4000466D06 /* TileMapScene.sks in Resources */,
 				4161D7D027A371FA00191C83 /* GameScene.sks in Resources */,
 				41B3C97927B70DB5009647EB /* splashScreen.json in Resources */,
+				41967FBE27D2ED77000C685F /* PickCat in Resources */,
 				4161D7DB27A371FD00191C83 /* Assets.xcassets in Resources */,
 				41A90BD827C47DE40096D9D7 /* TrilhaWor.mp3 in Resources */,
 				41E6558B27A9BFC000466D06 /* TileSet.sks in Resources */,
@@ -558,6 +565,7 @@
 				4161D80127A3757200191C83 /* PlayerNode.swift in Sources */,
 				41815EFD27B0A74E00D5ACA5 /* Potion.swift in Sources */,
 				410D3E7C27B374FD003D225E /* Score.swift in Sources */,
+				41967FBC27D2E2E1000C685F /* AchievementsManager.swift in Sources */,
 				41E6559827AC4FD700466D06 /* GameCenterViewController.swift in Sources */,
 				41DF64D327B59907006AAF35 /* ContinueCardView.swift in Sources */,
 				41E6559427AB51FE00466D06 /* GameCenterManager.swift in Sources */,
@@ -759,16 +767,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "WOR - Witch On Rescue/WOR - Witch On Rescue.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = WOR;
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Need tracking for analytics";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "WOR needs tracking permission for analytics and showing personalized ads ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -782,7 +791,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusiness;
 				PRODUCT_NAME = "WOR - Witch On Rescue ";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -799,15 +808,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "WOR - Witch On Rescue/WOR - Witch On Rescue.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = U77829B9P3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WOR---Witch-On-Rescue-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = WOR;
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Need tracking for analytics";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "WOR needs tracking permission for analytics and showing personalized ads ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -821,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.daneonishi.NanoBusiness;
 				PRODUCT_NAME = "WOR - Witch On Rescue";
 				SWIFT_EMIT_LOC_STRINGS = YES;

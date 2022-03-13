@@ -33,6 +33,7 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var rankingButton: UIButton!
+    @IBOutlet weak var achievementsButton: UIButton!
     
     
     @IBOutlet weak var tryAgainButton: UIButton!
@@ -184,7 +185,16 @@ extension GameViewController {
     @IBAction func startButtonOnPress(_ sender: Any) {
         show(state: .game)
         AnalyticsManager.shared.log(event: .levelStart)
+        AchievementsManager.shared.updatFirstRound()
     }
+    
+    
+     @IBAction func achievementsButtonOnPress(_ sender: Any) {
+         let vc = GKGameCenterViewController()
+             vc.gameCenterDelegate = self
+             vc.viewState = .achievements
+             present(vc, animated: true, completion: nil)
+}
     
     
     fileprivate func resetScore() {
@@ -211,7 +221,7 @@ extension GameViewController {
                 view.presentScene(scene)
                 print("Scene presented")
             }
-           // view.showsPhysics = true
+            //view.showsPhysics = true
             view.ignoresSiblingOrder = true
            // view.showsFPS = true
             //view.showsNodeCount = true
@@ -291,6 +301,8 @@ extension GameViewController {
         GameCenterVC.gameCenterDelegate = self
         present(GameCenterVC, animated: true, completion: nil)
     }
+    
+    
 }
 
 // MARK: Navigation

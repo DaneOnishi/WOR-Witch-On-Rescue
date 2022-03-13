@@ -508,11 +508,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func rescueCat(node: SKNode) {
         catsRescued += 1
         pointsCounter += 60
+        SFXMusicSingleton.shared.pickCatSFX()
         SharedData.shared.pointsCounter = pointsCounter
         SharedData.shared.catsRescued = catsRescued
         node.removeFromParent()
         spawnCat()
         updateScore()
+        AchievementsManager.shared.updateRescuedCats()
     }
     
     func updateScore() {
@@ -525,7 +527,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func pickPotion(node: SKNode) {
         node.removeFromParent()
-        enemy.enemySpeed = 20
+        enemy.enemySpeed = 40
         spawnPotion()
     }
     
@@ -602,6 +604,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if isGameEnded || isGamePaused {
             return
         }
+        grid.update(playerFootY: player.playerFootPosition.y)
         // Called before each frame is rendered
         updateCamera(playerPosition: player.position)
         // rescueCat()
@@ -652,6 +655,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.enemySpeed = enemy.initialEnemySpeed
         enemy.enemySpeedAcceleration = enemy.initialEnemySpeedAcceleration
         isGameEnded = false
+        
+        self["cat"].forEach { cat in
+            if cat.position.y < player.position.y {
+                cat.removeFromParent()
+            }
+        }
     }
 }
 
